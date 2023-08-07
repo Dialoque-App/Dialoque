@@ -13,7 +13,8 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
     @ObservedObject var playerModel = PlayerModel.shared
     @ObservedObject var statModel = StatModel.shared
 
-    let LEADERBOARD_ID = "com.nielio.Dialoque.score"
+//    let LEADERBOARD_ID = "com.nielio.Dialoque.score"
+    let LEADERBOARD_ID = "score"
 
     override init() {
         super.init()
@@ -49,7 +50,7 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
                 totalScore,
                 context: 0,
                 player: playerModel.localPlayer,
-                leaderboardIDs: ["score"]
+                leaderboardIDs: [LEADERBOARD_ID]
             ) { error in
                 print("Leaderboard Submit Score Error:")
                 print(error)

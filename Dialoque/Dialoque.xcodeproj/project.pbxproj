@@ -24,6 +24,7 @@
 		05BA05142A7A4002007DA27D /* StatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA05132A7A4002007DA27D /* StatModel.swift */; };
 		05BA05192A7A4306007DA27D /* GameCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA05182A7A4306007DA27D /* GameCenterView.swift */; };
 		05BA051B2A7A490F007DA27D /* StatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA051A2A7A490F007DA27D /* StatController.swift */; };
+		05BFFD9B2A80F3BC00D657B9 /* CKContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFD9A2A80F3BC00D657B9 /* CKContainer.swift */; };
 		05C18FBC2A73AFA2002FF46C /* DialoqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */; };
 		05C18FBE2A73AFA2002FF46C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FBD2A73AFA2002FF46C /* ContentView.swift */; };
 		05C18FC02A73AFA3002FF46C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C18FBF2A73AFA3002FF46C /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		05BFFD8C2A80D9A000D657B9 /* DialoqueWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DialoqueWatch Watch App.entitlements"; sourceTree = "<group>"; };
 		05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dialoque.entitlements; sourceTree = "<group>"; };
 		05BFFD982A80E1AD00D657B9 /* DialoqueWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DialoqueWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		05BFFD9A2A80F3BC00D657B9 /* CKContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKContainer.swift; sourceTree = "<group>"; };
 		05C18FB82A73AFA2002FF46C /* Dialoque.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dialoque.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueApp.swift; sourceTree = "<group>"; };
 		05C18FBD2A73AFA2002FF46C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -216,31 +218,39 @@
 			path = "DialoqueWatch Watch AppUITests";
 			sourceTree = "<group>";
 		};
-		05BA050D2A7A3CCB007DA27D /* Controller */ = {
+		05BA050D2A7A3CCB007DA27D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				05BA050E2A7A3EB7007DA27D /* GameKitController.swift */,
 				05BA051A2A7A490F007DA27D /* StatController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		05BA05102A7A3EF6007DA27D /* Model */ = {
+		05BA05102A7A3EF6007DA27D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				05BA05112A7A3F04007DA27D /* PlayerModel.swift */,
 				05BA05132A7A4002007DA27D /* StatModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		05BA05172A7A42F0007DA27D /* View */ = {
+		05BA05172A7A42F0007DA27D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				05BA05182A7A4306007DA27D /* GameCenterView.swift */,
 			);
-			name = View;
-			path = Controller/View;
+			name = Views;
+			path = Controller/Views;
+			sourceTree = "<group>";
+		};
+		05BFFD992A80F35B00D657B9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				05BFFD9A2A80F3BC00D657B9 /* CKContainer.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		05C18FAF2A73AFA2002FF46C = {
@@ -273,16 +283,17 @@
 		05C18FBA2A73AFA2002FF46C /* Dialoque */ = {
 			isa = PBXGroup;
 			children = (
-				05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */,
-				05BA05172A7A42F0007DA27D /* View */,
-				05BA05102A7A3EF6007DA27D /* Model */,
-				05BA050D2A7A3CCB007DA27D /* Controller */,
+				05BFFD992A80F35B00D657B9 /* Extensions */,
+				05BA05172A7A42F0007DA27D /* Views */,
+				05BA05102A7A3EF6007DA27D /* Models */,
+				05BA050D2A7A3CCB007DA27D /* Controllers */,
 				05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */,
 				05C18FBD2A73AFA2002FF46C /* ContentView.swift */,
 				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
-				05C18FBF2A73AFA3002FF46C /* Assets.xcassets */,
 				05C18FC92A73AFA3002FF46C /* Info.plist */,
 				05C18FC62A73AFA3002FF46C /* Dialoque.xcdatamodeld */,
+				05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */,
+				05C18FBF2A73AFA3002FF46C /* Assets.xcassets */,
 				05C18FC12A73AFA3002FF46C /* Preview Content */,
 			);
 			path = Dialoque;
@@ -568,6 +579,7 @@
 				058672412A7CE6A000C5B61C /* Counter.swift in Sources */,
 				0586723F2A7CE68200C5B61C /* SessionDelegater.swift in Sources */,
 				05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */,
+				05BFFD9B2A80F3BC00D657B9 /* CKContainer.swift in Sources */,
 				05C18FC82A73AFA3002FF46C /* Dialoque.xcdatamodeld in Sources */,
 				05C18FBE2A73AFA2002FF46C /* ContentView.swift in Sources */,
 				05BA05192A7A4306007DA27D /* GameCenterView.swift in Sources */,

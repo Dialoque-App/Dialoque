@@ -19,7 +19,17 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item>
     
-    @AppStorage("score") var score: Int = 0
+    @State var isPresented: Bool = false
+    
+    @StateObject var counter = Counter()
+    
+    var labelStyle: some LabelStyle {
+    #if os(watchOS)
+        return IconOnlyLabelStyle()
+    #else
+        return DefaultLabelStyle()
+    #endif
+    }
     
     var body: some View {
         NavigationView {
@@ -45,21 +55,18 @@ struct ContentView: View {
                     }
                 }
                 VStack{
+                    Text("\(counter.score)")
+                        .font(.largeTitle)
+                    
                     HStack{
                         Text("Score:")
-                        Button(action: {
-                            if self.score <= 0{
-                                self.score = 0
-                            } else {
-                                self.score -= 1
-                            }
-                        }){
+                        Button(action:
+                                counter.decrement
+                        ){
                             Text("-").bold()
                         }
-                        Text("\(score)")
-                        Button(action: {
-                            self.score += 1
-                        }){
+                        Text("\(counter.score)")
+                        Button(action: counter.increment){
                             Text("+").bold()
                         }
                     }
@@ -67,7 +74,7 @@ struct ContentView: View {
                     Spacer().frame(height: 16)
                     
                     Button(action: {
-                        gameKitController.reportScore(totalScore: self.score)
+                        gameKitController.reportScore(totalScore: counter.score)
                     }){
                         Text("Submit")
                             .bold()
@@ -77,12 +84,16 @@ struct ContentView: View {
                     Spacer().frame(height: 8)
                     
                     Button(action: {
-                        let newView = GameCenterView().ignoresSafeArea()
-                        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: newView)
+                        isPresented = true
                     }){
                         Text("Leaderboard")
                             .bold()
                             .foregroundColor(.indigo)
+                    }
+                    .fullScreenCover(isPresented: $isPresented) {
+                        GameCenterView().ignoresSafeArea()
+                        //                        let newView = GameCenterView().ignoresSafeArea()
+                        //                        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: newView)
                     }
                     
                 }

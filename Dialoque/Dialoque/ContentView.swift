@@ -10,43 +10,103 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
+    @EnvironmentObject var statController: StatController
+    @EnvironmentObject var gameKitController: GameKitController
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
-
+    
+    @State var isPresented: Bool = false
+    
+    @StateObject var counter = Counter()
+    
+    var labelStyle: some LabelStyle {
+    #if os(watchOS)
+        return IconOnlyLabelStyle()
+    #else
+        return DefaultLabelStyle()
+    #endif
+    }
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+            VStack{
+                List {
+                    ForEach(items) { item in
+                        NavigationLink {
+                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        } label: {
+                            Text(item.timestamp!, formatter: itemFormatter)
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: addItem) {
+                            Label("Add Item", systemImage: "plus")
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                VStack{
+                    Text("\(counter.score)")
+                        .font(.largeTitle)
+                    
+                    HStack{
+                        Text("Score:")
+                        Button(action:
+                                counter.decrement
+                        ){
+                            Text("-").bold()
+                        }
+                        Text("\(counter.score)")
+                        Button(action: counter.increment){
+                            Text("+").bold()
+                        }
                     }
+                    
+                    Spacer().frame(height: 16)
+                    
+                    Button(action: {
+                        gameKitController.reportScore(totalScore: counter.score)
+                    }){
+                        Text("Submit")
+                            .bold()
+                            .foregroundColor(.black)
+                    }
+                    
+                    Spacer().frame(height: 8)
+                    
+                    Button(action: {
+                        isPresented = true
+                    }){
+                        Text("Leaderboard")
+                            .bold()
+                            .foregroundColor(.indigo)
+                    }
+                    .fullScreenCover(isPresented: $isPresented) {
+                        GameCenterView().ignoresSafeArea()
+                        //                        let newView = GameCenterView().ignoresSafeArea()
+                        //                        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: newView)
+                    }
+                    
                 }
+                
             }
-            Text("Select an item")
         }
     }
-
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -57,11 +117,11 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -83,6 +143,10 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        @StateObject var gameKitController = GameKitController()
+        
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(gameKitController)
     }
 }

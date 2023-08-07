@@ -107,6 +107,7 @@
 		05BA051A2A7A490F007DA27D /* StatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatController.swift; sourceTree = "<group>"; };
 		05BFFD8C2A80D9A000D657B9 /* DialoqueWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DialoqueWatch Watch App.entitlements"; sourceTree = "<group>"; };
 		05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dialoque.entitlements; sourceTree = "<group>"; };
+		05BFFD982A80E1AD00D657B9 /* DialoqueWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DialoqueWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		05C18FB82A73AFA2002FF46C /* Dialoque.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dialoque.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueApp.swift; sourceTree = "<group>"; };
 		05C18FBD2A73AFA2002FF46C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,6 +181,7 @@
 		058672792A7CE9AD00C5B61C /* DialoqueWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				05BFFD982A80E1AD00D657B9 /* DialoqueWatch-Watch-App-Info.plist */,
 				05BFFD8C2A80D9A000D657B9 /* DialoqueWatch Watch App.entitlements */,
 				0586727A2A7CE9AD00C5B61C /* DialoqueWatchApp.swift */,
 				0586727C2A7CE9AD00C5B61C /* ContentView.swift */,
@@ -635,6 +637,7 @@
 				DEVELOPMENT_TEAM = G6VH4SDWTF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DialoqueWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = DialoqueWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.nielio.Dialoque;
@@ -666,6 +669,7 @@
 				DEVELOPMENT_TEAM = G6VH4SDWTF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DialoqueWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = DialoqueWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.nielio.Dialoque;
@@ -894,6 +898,7 @@
 				DEVELOPMENT_TEAM = G6VH4SDWTF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Dialoque/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -925,6 +930,7 @@
 				DEVELOPMENT_TEAM = G6VH4SDWTF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Dialoque/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

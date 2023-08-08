@@ -53,7 +53,9 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
                 leaderboardIDs: [LEADERBOARD_ID]
             ) { error in
                 print("Leaderboard Submit Score Error:")
-                print(error)
+                if let errorText = error?.localizedDescription {
+                    print(errorText)
+                }
             }
             print("Score submitted: \(totalScore)")
         }

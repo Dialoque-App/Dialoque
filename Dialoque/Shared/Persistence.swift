@@ -14,7 +14,7 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
+            let newItem = Point(context: viewContext)
             newItem.timestamp = Date()
         }
         do {
@@ -52,5 +52,16 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+    
+    func createPoint(timestamp: Date) {
+        let newPoint = Point(context: container.viewContext)
+        newPoint.timestamp = timestamp
+        
+        do {
+            try container.viewContext.save()
+        } catch {
+            fatalError("Failed to save new point: \(error)")
+        }
     }
 }

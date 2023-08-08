@@ -7,75 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0586723F2A7CE68200C5B61C /* SessionDelegater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586723E2A7CE68200C5B61C /* SessionDelegater.swift */; };
-		058672412A7CE6A000C5B61C /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058672402A7CE6A000C5B61C /* Counter.swift */; };
 		0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586727A2A7CE9AD00C5B61C /* DialoqueWatchApp.swift */; };
 		0586727D2A7CE9AD00C5B61C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586727C2A7CE9AD00C5B61C /* ContentView.swift */; };
 		0586727F2A7CE9AE00C5B61C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0586727E2A7CE9AE00C5B61C /* Assets.xcassets */; };
 		058672822A7CE9AE00C5B61C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058672812A7CE9AE00C5B61C /* Preview Assets.xcassets */; };
-		0586728C2A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586728B2A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppTests.swift */; };
-		058672962A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058672952A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITests.swift */; };
-		058672982A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058672972A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITestsLaunchTests.swift */; };
 		0586729B2A7CE9AE00C5B61C /* DialoqueWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 058672782A7CE9AD00C5B61C /* DialoqueWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		058672A52A7CE9D700C5B61C /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058672402A7CE6A000C5B61C /* Counter.swift */; };
-		058672A62A7CE9DC00C5B61C /* SessionDelegater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586723E2A7CE68200C5B61C /* SessionDelegater.swift */; };
 		05BA050F2A7A3EB7007DA27D /* GameKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA050E2A7A3EB7007DA27D /* GameKitController.swift */; };
 		05BA05122A7A3F04007DA27D /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA05112A7A3F04007DA27D /* PlayerModel.swift */; };
 		05BA05142A7A4002007DA27D /* StatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA05132A7A4002007DA27D /* StatModel.swift */; };
 		05BA051B2A7A490F007DA27D /* StatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA051A2A7A490F007DA27D /* StatController.swift */; };
 		05BFFD9B2A80F3BC00D657B9 /* CKContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFD9A2A80F3BC00D657B9 /* CKContainer.swift */; };
-		05BFFD9D2A80F4E700D657B9 /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFD9C2A80F4E700D657B9 /* ErrorWrapper.swift */; };
-		05BFFD9F2A80F61A00D657B9 /* ScoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFD9E2A80F61A00D657B9 /* ScoreItem.swift */; };
-		05BFFDA12A80F74A00D657B9 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFDA02A80F74900D657B9 /* ScoreModel.swift */; };
-		05BFFDA32A80F96300D657B9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFDA22A80F96300D657B9 /* ErrorView.swift */; };
 		05BFFDA52A80F9B100D657B9 /* GameCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */; };
-		05BFFDA72A80F9E100D657B9 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFDA62A80F9E100D657B9 /* ScoreView.swift */; };
 		05C18FBC2A73AFA2002FF46C /* DialoqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */; };
 		05C18FBE2A73AFA2002FF46C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FBD2A73AFA2002FF46C /* ContentView.swift */; };
 		05C18FC02A73AFA3002FF46C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C18FBF2A73AFA3002FF46C /* Assets.xcassets */; };
 		05C18FC32A73AFA3002FF46C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C18FC22A73AFA3002FF46C /* Preview Assets.xcassets */; };
 		05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
-		05C18FC82A73AFA3002FF46C /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC62A73AFA3002FF46C /* Dialoque.xcdatamodeld */; };
-		05C18FD32A73AFA3002FF46C /* DialoqueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FD22A73AFA3002FF46C /* DialoqueTests.swift */; };
-		05C18FDD2A73AFA3002FF46C /* DialoqueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FDC2A73AFA3002FF46C /* DialoqueUITests.swift */; };
-		05C18FDF2A73AFA3002FF46C /* DialoqueUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FDE2A73AFA3002FF46C /* DialoqueUITestsLaunchTests.swift */; };
+		7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
+		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
+		7D0046D02A823886002B71F0 /* PointRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CF2A823886002B71F0 /* PointRepository.swift */; };
+		7D0046D12A823886002B71F0 /* PointRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CF2A823886002B71F0 /* PointRepository.swift */; };
+		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
+		7D0046D52A824FA5002B71F0 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = 7D0046D42A824FA5002B71F0 /* SwiftSpeech */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		058672882A7CE9AE00C5B61C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05C18FB02A73AFA2002FF46C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 058672772A7CE9AD00C5B61C;
-			remoteInfo = "DialoqueWatch Watch App";
-		};
-		058672922A7CE9AE00C5B61C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05C18FB02A73AFA2002FF46C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 058672772A7CE9AD00C5B61C;
-			remoteInfo = "DialoqueWatch Watch App";
-		};
 		058672992A7CE9AE00C5B61C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05C18FB02A73AFA2002FF46C /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 058672772A7CE9AD00C5B61C;
 			remoteInfo = "DialoqueWatch Watch App";
-		};
-		05C18FCF2A73AFA3002FF46C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05C18FB02A73AFA2002FF46C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05C18FB72A73AFA2002FF46C;
-			remoteInfo = Dialoque;
-		};
-		05C18FD92A73AFA3002FF46C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05C18FB02A73AFA2002FF46C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05C18FB72A73AFA2002FF46C;
-			remoteInfo = Dialoque;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -94,18 +56,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0586723E2A7CE68200C5B61C /* SessionDelegater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegater.swift; sourceTree = "<group>"; };
-		058672402A7CE6A000C5B61C /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		058672782A7CE9AD00C5B61C /* DialoqueWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DialoqueWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0586727A2A7CE9AD00C5B61C /* DialoqueWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueWatchApp.swift; sourceTree = "<group>"; };
 		0586727C2A7CE9AD00C5B61C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0586727E2A7CE9AE00C5B61C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058672812A7CE9AE00C5B61C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		058672872A7CE9AE00C5B61C /* DialoqueWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DialoqueWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0586728B2A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueWatch_Watch_AppTests.swift; sourceTree = "<group>"; };
-		058672912A7CE9AE00C5B61C /* DialoqueWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DialoqueWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		058672952A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
-		058672972A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		05BA050E2A7A3EB7007DA27D /* GameKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitController.swift; sourceTree = "<group>"; };
 		05BA05112A7A3F04007DA27D /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		05BA05132A7A4002007DA27D /* StatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatModel.swift; sourceTree = "<group>"; };
@@ -114,25 +69,16 @@
 		05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dialoque.entitlements; sourceTree = "<group>"; };
 		05BFFD982A80E1AD00D657B9 /* DialoqueWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DialoqueWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		05BFFD9A2A80F3BC00D657B9 /* CKContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKContainer.swift; sourceTree = "<group>"; };
-		05BFFD9C2A80F4E700D657B9 /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
-		05BFFD9E2A80F61A00D657B9 /* ScoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreItem.swift; sourceTree = "<group>"; };
-		05BFFDA02A80F74900D657B9 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
-		05BFFDA22A80F96300D657B9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorView.swift; path = Dialoque/Models/ErrorView.swift; sourceTree = SOURCE_ROOT; };
 		05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameCenterView.swift; path = Dialoque/Models/GameCenterView.swift; sourceTree = SOURCE_ROOT; };
-		05BFFDA62A80F9E100D657B9 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScoreView.swift; path = Dialoque/Models/ScoreView.swift; sourceTree = SOURCE_ROOT; };
 		05C18FB82A73AFA2002FF46C /* Dialoque.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dialoque.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueApp.swift; sourceTree = "<group>"; };
 		05C18FBD2A73AFA2002FF46C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		05C18FBF2A73AFA3002FF46C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05C18FC22A73AFA3002FF46C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		05C18FC42A73AFA3002FF46C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		05C18FC72A73AFA3002FF46C /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
 		05C18FC92A73AFA3002FF46C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05C18FCE2A73AFA3002FF46C /* DialoqueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DialoqueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		05C18FD22A73AFA3002FF46C /* DialoqueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueTests.swift; sourceTree = "<group>"; };
-		05C18FD82A73AFA3002FF46C /* DialoqueUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DialoqueUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		05C18FDC2A73AFA3002FF46C /* DialoqueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueUITests.swift; sourceTree = "<group>"; };
-		05C18FDE2A73AFA3002FF46C /* DialoqueUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
+		7D0046CF2A823886002B71F0 /* PointRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,38 +89,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		058672842A7CE9AE00C5B61C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0586728E2A7CE9AE00C5B61C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05C18FB52A73AFA2002FF46C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05C18FCB2A73AFA3002FF46C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05C18FD52A73AFA3002FF46C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				7D0046D52A824FA5002B71F0 /* SwiftSpeech in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,8 +103,9 @@
 		0586723D2A7CE65100C5B61C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				0586723E2A7CE68200C5B61C /* SessionDelegater.swift */,
-				058672402A7CE6A000C5B61C /* Counter.swift */,
+				7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */,
+				7D0046CF2A823886002B71F0 /* PointRepository.swift */,
+				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -211,23 +131,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		0586728A2A7CE9AE00C5B61C /* DialoqueWatch Watch AppTests */ = {
-			isa = PBXGroup;
-			children = (
-				0586728B2A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppTests.swift */,
-			);
-			path = "DialoqueWatch Watch AppTests";
-			sourceTree = "<group>";
-		};
-		058672942A7CE9AE00C5B61C /* DialoqueWatch Watch AppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				058672952A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITests.swift */,
-				058672972A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITestsLaunchTests.swift */,
-			);
-			path = "DialoqueWatch Watch AppUITests";
-			sourceTree = "<group>";
-		};
 		05BA050D2A7A3CCB007DA27D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,9 +145,6 @@
 			children = (
 				05BA05112A7A3F04007DA27D /* PlayerModel.swift */,
 				05BA05132A7A4002007DA27D /* StatModel.swift */,
-				05BFFD9C2A80F4E700D657B9 /* ErrorWrapper.swift */,
-				05BFFD9E2A80F61A00D657B9 /* ScoreItem.swift */,
-				05BFFDA02A80F74900D657B9 /* ScoreModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,9 +152,7 @@
 		05BA05172A7A42F0007DA27D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				05BFFDA22A80F96300D657B9 /* ErrorView.swift */,
 				05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */,
-				05BFFDA62A80F9E100D657B9 /* ScoreView.swift */,
 			);
 			name = Views;
 			path = Controller/Views;
@@ -273,11 +171,7 @@
 			children = (
 				0586723D2A7CE65100C5B61C /* Shared */,
 				05C18FBA2A73AFA2002FF46C /* Dialoque */,
-				05C18FD12A73AFA3002FF46C /* DialoqueTests */,
-				05C18FDB2A73AFA3002FF46C /* DialoqueUITests */,
 				058672792A7CE9AD00C5B61C /* DialoqueWatch Watch App */,
-				0586728A2A7CE9AE00C5B61C /* DialoqueWatch Watch AppTests */,
-				058672942A7CE9AE00C5B61C /* DialoqueWatch Watch AppUITests */,
 				05C18FB92A73AFA2002FF46C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -286,11 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				05C18FB82A73AFA2002FF46C /* Dialoque.app */,
-				05C18FCE2A73AFA3002FF46C /* DialoqueTests.xctest */,
-				05C18FD82A73AFA3002FF46C /* DialoqueUITests.xctest */,
 				058672782A7CE9AD00C5B61C /* DialoqueWatch Watch App.app */,
-				058672872A7CE9AE00C5B61C /* DialoqueWatch Watch AppTests.xctest */,
-				058672912A7CE9AE00C5B61C /* DialoqueWatch Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -298,15 +188,13 @@
 		05C18FBA2A73AFA2002FF46C /* Dialoque */ = {
 			isa = PBXGroup;
 			children = (
-				05BFFD992A80F35B00D657B9 /* Extensions */,
-				05BA05172A7A42F0007DA27D /* Views */,
-				05BA05102A7A3EF6007DA27D /* Models */,
 				05BA050D2A7A3CCB007DA27D /* Controllers */,
+				05BA05102A7A3EF6007DA27D /* Models */,
+				05BA05172A7A42F0007DA27D /* Views */,
 				05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */,
 				05C18FBD2A73AFA2002FF46C /* ContentView.swift */,
-				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
+				05BFFD992A80F35B00D657B9 /* Extensions */,
 				05C18FC92A73AFA3002FF46C /* Info.plist */,
-				05C18FC62A73AFA3002FF46C /* Dialoque.xcdatamodeld */,
 				05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */,
 				05C18FBF2A73AFA3002FF46C /* Assets.xcassets */,
 				05C18FC12A73AFA3002FF46C /* Preview Content */,
@@ -320,23 +208,6 @@
 				05C18FC22A73AFA3002FF46C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		05C18FD12A73AFA3002FF46C /* DialoqueTests */ = {
-			isa = PBXGroup;
-			children = (
-				05C18FD22A73AFA3002FF46C /* DialoqueTests.swift */,
-			);
-			path = DialoqueTests;
-			sourceTree = "<group>";
-		};
-		05C18FDB2A73AFA3002FF46C /* DialoqueUITests */ = {
-			isa = PBXGroup;
-			children = (
-				05C18FDC2A73AFA3002FF46C /* DialoqueUITests.swift */,
-				05C18FDE2A73AFA3002FF46C /* DialoqueUITestsLaunchTests.swift */,
-			);
-			path = DialoqueUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,42 +230,6 @@
 			productReference = 058672782A7CE9AD00C5B61C /* DialoqueWatch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		058672862A7CE9AE00C5B61C /* DialoqueWatch Watch AppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0586729F2A7CE9AE00C5B61C /* Build configuration list for PBXNativeTarget "DialoqueWatch Watch AppTests" */;
-			buildPhases = (
-				058672832A7CE9AE00C5B61C /* Sources */,
-				058672842A7CE9AE00C5B61C /* Frameworks */,
-				058672852A7CE9AE00C5B61C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				058672892A7CE9AE00C5B61C /* PBXTargetDependency */,
-			);
-			name = "DialoqueWatch Watch AppTests";
-			productName = "DialoqueWatch Watch AppTests";
-			productReference = 058672872A7CE9AE00C5B61C /* DialoqueWatch Watch AppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		058672902A7CE9AE00C5B61C /* DialoqueWatch Watch AppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 058672A22A7CE9AE00C5B61C /* Build configuration list for PBXNativeTarget "DialoqueWatch Watch AppUITests" */;
-			buildPhases = (
-				0586728D2A7CE9AE00C5B61C /* Sources */,
-				0586728E2A7CE9AE00C5B61C /* Frameworks */,
-				0586728F2A7CE9AE00C5B61C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				058672932A7CE9AE00C5B61C /* PBXTargetDependency */,
-			);
-			name = "DialoqueWatch Watch AppUITests";
-			productName = "DialoqueWatch Watch AppUITests";
-			productReference = 058672912A7CE9AE00C5B61C /* DialoqueWatch Watch AppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		05C18FB72A73AFA2002FF46C /* Dialoque */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05C18FE22A73AFA3002FF46C /* Build configuration list for PBXNativeTarget "Dialoque" */;
@@ -410,45 +245,12 @@
 				0586729A2A7CE9AE00C5B61C /* PBXTargetDependency */,
 			);
 			name = Dialoque;
+			packageProductDependencies = (
+				7D0046D42A824FA5002B71F0 /* SwiftSpeech */,
+			);
 			productName = Dialoque;
 			productReference = 05C18FB82A73AFA2002FF46C /* Dialoque.app */;
 			productType = "com.apple.product-type.application";
-		};
-		05C18FCD2A73AFA3002FF46C /* DialoqueTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 05C18FE52A73AFA3002FF46C /* Build configuration list for PBXNativeTarget "DialoqueTests" */;
-			buildPhases = (
-				05C18FCA2A73AFA3002FF46C /* Sources */,
-				05C18FCB2A73AFA3002FF46C /* Frameworks */,
-				05C18FCC2A73AFA3002FF46C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				05C18FD02A73AFA3002FF46C /* PBXTargetDependency */,
-			);
-			name = DialoqueTests;
-			productName = DialoqueTests;
-			productReference = 05C18FCE2A73AFA3002FF46C /* DialoqueTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		05C18FD72A73AFA3002FF46C /* DialoqueUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 05C18FE82A73AFA3002FF46C /* Build configuration list for PBXNativeTarget "DialoqueUITests" */;
-			buildPhases = (
-				05C18FD42A73AFA3002FF46C /* Sources */,
-				05C18FD52A73AFA3002FF46C /* Frameworks */,
-				05C18FD62A73AFA3002FF46C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				05C18FDA2A73AFA3002FF46C /* PBXTargetDependency */,
-			);
-			name = DialoqueUITests;
-			productName = DialoqueUITests;
-			productReference = 05C18FD82A73AFA3002FF46C /* DialoqueUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -463,24 +265,8 @@
 					058672772A7CE9AD00C5B61C = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
-					058672862A7CE9AE00C5B61C = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 058672772A7CE9AD00C5B61C;
-					};
-					058672902A7CE9AE00C5B61C = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 058672772A7CE9AD00C5B61C;
-					};
 					05C18FB72A73AFA2002FF46C = {
 						CreatedOnToolsVersion = 14.3.1;
-					};
-					05C18FCD2A73AFA3002FF46C = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 05C18FB72A73AFA2002FF46C;
-					};
-					05C18FD72A73AFA3002FF46C = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 05C18FB72A73AFA2002FF46C;
 					};
 				};
 			};
@@ -493,16 +279,15 @@
 				Base,
 			);
 			mainGroup = 05C18FAF2A73AFA2002FF46C;
+			packageReferences = (
+				7D0046D32A824FA5002B71F0 /* XCRemoteSwiftPackageReference "SwiftSpeech" */,
+			);
 			productRefGroup = 05C18FB92A73AFA2002FF46C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				05C18FB72A73AFA2002FF46C /* Dialoque */,
-				05C18FCD2A73AFA3002FF46C /* DialoqueTests */,
-				05C18FD72A73AFA3002FF46C /* DialoqueUITests */,
 				058672772A7CE9AD00C5B61C /* DialoqueWatch Watch App */,
-				058672862A7CE9AE00C5B61C /* DialoqueWatch Watch AppTests */,
-				058672902A7CE9AE00C5B61C /* DialoqueWatch Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -517,40 +302,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		058672852A7CE9AE00C5B61C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0586728F2A7CE9AE00C5B61C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05C18FB62A73AFA2002FF46C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				05C18FC32A73AFA3002FF46C /* Preview Assets.xcassets in Resources */,
 				05C18FC02A73AFA3002FF46C /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05C18FCC2A73AFA3002FF46C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05C18FD62A73AFA3002FF46C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,25 +320,9 @@
 			files = (
 				0586727D2A7CE9AD00C5B61C /* ContentView.swift in Sources */,
 				0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */,
-				058672A62A7CE9DC00C5B61C /* SessionDelegater.swift in Sources */,
-				058672A52A7CE9D700C5B61C /* Counter.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		058672832A7CE9AE00C5B61C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0586728C2A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0586728D2A7CE9AE00C5B61C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				058672982A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITestsLaunchTests.swift in Sources */,
-				058672962A7CE9AE00C5B61C /* DialoqueWatch_Watch_AppUITests.swift in Sources */,
+				7D0046D12A823886002B71F0 /* PointRepository.swift in Sources */,
+				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
+				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,70 +330,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05BFFDA12A80F74A00D657B9 /* ScoreModel.swift in Sources */,
-				05BFFD9D2A80F4E700D657B9 /* ErrorWrapper.swift in Sources */,
 				05BA05122A7A3F04007DA27D /* PlayerModel.swift in Sources */,
-				05BFFDA72A80F9E100D657B9 /* ScoreView.swift in Sources */,
 				05BA05142A7A4002007DA27D /* StatModel.swift in Sources */,
-				058672412A7CE6A000C5B61C /* Counter.swift in Sources */,
+				7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				05BFFDA52A80F9B100D657B9 /* GameCenterView.swift in Sources */,
-				0586723F2A7CE68200C5B61C /* SessionDelegater.swift in Sources */,
 				05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */,
 				05BFFD9B2A80F3BC00D657B9 /* CKContainer.swift in Sources */,
-				05C18FC82A73AFA3002FF46C /* Dialoque.xcdatamodeld in Sources */,
 				05C18FBE2A73AFA2002FF46C /* ContentView.swift in Sources */,
-				05BFFD9F2A80F61A00D657B9 /* ScoreItem.swift in Sources */,
+				7D0046D02A823886002B71F0 /* PointRepository.swift in Sources */,
 				05BA051B2A7A490F007DA27D /* StatController.swift in Sources */,
 				05C18FBC2A73AFA2002FF46C /* DialoqueApp.swift in Sources */,
 				05BA050F2A7A3EB7007DA27D /* GameKitController.swift in Sources */,
-				05BFFDA32A80F96300D657B9 /* ErrorView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05C18FCA2A73AFA3002FF46C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05C18FD32A73AFA3002FF46C /* DialoqueTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05C18FD42A73AFA3002FF46C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05C18FDF2A73AFA3002FF46C /* DialoqueUITestsLaunchTests.swift in Sources */,
-				05C18FDD2A73AFA3002FF46C /* DialoqueUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		058672892A7CE9AE00C5B61C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 058672772A7CE9AD00C5B61C /* DialoqueWatch Watch App */;
-			targetProxy = 058672882A7CE9AE00C5B61C /* PBXContainerItemProxy */;
-		};
-		058672932A7CE9AE00C5B61C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 058672772A7CE9AD00C5B61C /* DialoqueWatch Watch App */;
-			targetProxy = 058672922A7CE9AE00C5B61C /* PBXContainerItemProxy */;
-		};
 		0586729A2A7CE9AE00C5B61C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 058672772A7CE9AD00C5B61C /* DialoqueWatch Watch App */;
 			targetProxy = 058672992A7CE9AE00C5B61C /* PBXContainerItemProxy */;
-		};
-		05C18FD02A73AFA3002FF46C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05C18FB72A73AFA2002FF46C /* Dialoque */;
-			targetProxy = 05C18FCF2A73AFA3002FF46C /* PBXContainerItemProxy */;
-		};
-		05C18FDA2A73AFA3002FF46C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05C18FB72A73AFA2002FF46C /* Dialoque */;
-			targetProxy = 05C18FD92A73AFA3002FF46C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -718,88 +416,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Release;
-		};
-		058672A02A7CE9AE00C5B61C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6VH4SDWTF;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nielio.DialoqueWatch-Watch-AppTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DialoqueWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DialoqueWatch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
-			};
-			name = Debug;
-		};
-		058672A12A7CE9AE00C5B61C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6VH4SDWTF;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nielio.DialoqueWatch-Watch-AppTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DialoqueWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DialoqueWatch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
-			};
-			name = Release;
-		};
-		058672A32A7CE9AE00C5B61C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6VH4SDWTF;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nielio.DialoqueWatch-Watch-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "DialoqueWatch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
-			};
-			name = Debug;
-		};
-		058672A42A7CE9AE00C5B61C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6VH4SDWTF;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nielio.DialoqueWatch-Watch-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "DialoqueWatch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
 			};
 			name = Release;
 		};
@@ -931,6 +547,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Dialoque/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app uses the mircrophone to record audio for speech recognition.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This app uses speech recognition to convert your speech into text.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -963,6 +581,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Dialoque/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app uses the mircrophone to record audio for speech recognition.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This app uses speech recognition to convert your speech into text.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -981,82 +601,6 @@
 			};
 			name = Release;
 		};
-		05C18FE62A73AFA3002FF46C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6VH4SDWTF;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nielio.DialoqueTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dialoque.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dialoque";
-			};
-			name = Debug;
-		};
-		05C18FE72A73AFA3002FF46C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6VH4SDWTF;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nielio.DialoqueTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dialoque.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dialoque";
-			};
-			name = Release;
-		};
-		05C18FE92A73AFA3002FF46C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6VH4SDWTF;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nielio.DialoqueUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Dialoque;
-			};
-			name = Debug;
-		};
-		05C18FEA2A73AFA3002FF46C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6VH4SDWTF;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nielio.DialoqueUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Dialoque;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1065,24 +609,6 @@
 			buildConfigurations = (
 				0586729D2A7CE9AE00C5B61C /* Debug */,
 				0586729E2A7CE9AE00C5B61C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0586729F2A7CE9AE00C5B61C /* Build configuration list for PBXNativeTarget "DialoqueWatch Watch AppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				058672A02A7CE9AE00C5B61C /* Debug */,
-				058672A12A7CE9AE00C5B61C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		058672A22A7CE9AE00C5B61C /* Build configuration list for PBXNativeTarget "DialoqueWatch Watch AppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				058672A32A7CE9AE00C5B61C /* Debug */,
-				058672A42A7CE9AE00C5B61C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1105,33 +631,34 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05C18FE52A73AFA3002FF46C /* Build configuration list for PBXNativeTarget "DialoqueTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				05C18FE62A73AFA3002FF46C /* Debug */,
-				05C18FE72A73AFA3002FF46C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		05C18FE82A73AFA3002FF46C /* Build configuration list for PBXNativeTarget "DialoqueUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				05C18FE92A73AFA3002FF46C /* Debug */,
-				05C18FEA2A73AFA3002FF46C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		7D0046D32A824FA5002B71F0 /* XCRemoteSwiftPackageReference "SwiftSpeech" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cay-Zhang/SwiftSpeech";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7D0046D42A824FA5002B71F0 /* SwiftSpeech */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D0046D32A824FA5002B71F0 /* XCRemoteSwiftPackageReference "SwiftSpeech" */;
+			productName = SwiftSpeech;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* Begin XCVersionGroup section */
-		05C18FC62A73AFA3002FF46C /* Dialoque.xcdatamodeld */ = {
+		7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				05C18FC72A73AFA3002FF46C /* Dialoque.xcdatamodel */,
+				7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */,
 			);
-			currentVersion = 05C18FC72A73AFA3002FF46C /* Dialoque.xcdatamodel */;
+			currentVersion = 7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */;
 			path = Dialoque.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

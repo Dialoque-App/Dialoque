@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import SwiftSpeech
+import WidgetKit
 
 
 struct ContentView: View {
@@ -21,7 +22,7 @@ struct ContentView: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Point.timestamp, ascending: true)],
         animation: .default)
-    private var points: FetchedResults<Point>
+    private var fetchedPoint: FetchedResults<Point>
     
     @State var isPresented = false
     @State private var recognizedText = ""
@@ -36,9 +37,57 @@ struct ContentView: View {
     #endif
     }
     
+    @AppStorage("streak", store: UserDefaults.group) var streak: Int = 0
+    @AppStorage("points", store: UserDefaults.group) var points: Int = 0
+    
     var body: some View {
         NavigationView {
             VStack{
+                VStack {
+                    
+                    HStack {
+                        Button(action: {
+                            streak -= 1
+                        }) {
+                            Image(systemName: "minus.circle")
+                                .font(.title)
+                        }
+                        Text("Streak: \(streak)")
+                        Button(action: {
+                            streak += 1
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .font(.title)
+                        }
+                    }
+                    
+                    HStack {
+                        Button(action: {
+                            points -= 1
+                        }) {
+                            Image(systemName: "minus.circle")
+                                .font(.title)
+                        }
+                        Text("Points: \(points)")
+                        Button(action: {
+                            points += 1
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .font(.title)
+                        }
+                    }
+
+                    Button("Set Widget") {
+                        UserDefaults.group?.synchronize()
+                        WidgetCenter.shared.reloadTimelines(ofKind: "Dialoque Widget")
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                }
+                .padding()
+                
                 Button(
                     action: {
                         isSessionOver = !isSessionOver
@@ -70,12 +119,12 @@ struct ContentView: View {
                         .foregroundColor(isRecording ? .red : .blue)
                 }
                 
-                Text("\(points.count)")
+                Text("\(fetchedPoint.count)")
                     .font(.largeTitle)
                 
                 HStack{
                     Text("Score:")
-                    Text("\(points.count)")
+                    Text("\(fetchedPoint.count)")
                     Button(
                         action: {
                             createPoint(timestamp: .now)
@@ -101,7 +150,7 @@ struct ContentView: View {
             }
             .onChange(of: isSessionOver) { sessionOver in
                 if sessionOver {
-                    gameKitController.reportScore(totalScore: points.count)
+                    gameKitController.reportScore(totalScore: fetchedPoint.count)
                 }
             }
             .onAppear {

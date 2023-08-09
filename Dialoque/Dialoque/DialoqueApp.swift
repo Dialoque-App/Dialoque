@@ -6,9 +6,23 @@
 //
 
 import SwiftUI
+import CloudKit
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        UIApplication.shared.registerForRemoteNotifications()
+        return true
+    }
+    
+}
+
 
 @main
 struct DialoqueApp: App {
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
+    
     let persistenceController = PersistenceController.shared
     @StateObject var gameKitController = GameKitController()
 

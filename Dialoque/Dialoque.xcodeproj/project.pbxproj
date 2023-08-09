@@ -69,7 +69,7 @@
 		05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dialoque.entitlements; sourceTree = "<group>"; };
 		05BFFD982A80E1AD00D657B9 /* DialoqueWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DialoqueWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		05BFFD9A2A80F3BC00D657B9 /* CKContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKContainer.swift; sourceTree = "<group>"; };
-		05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameCenterView.swift; path = Dialoque/Models/GameCenterView.swift; sourceTree = SOURCE_ROOT; };
+		05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameCenterView.swift; path = Dialoque/Views/GameCenterView.swift; sourceTree = SOURCE_ROOT; };
 		05C18FB82A73AFA2002FF46C /* Dialoque.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dialoque.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueApp.swift; sourceTree = "<group>"; };
 		05C18FBD2A73AFA2002FF46C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -131,6 +131,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		058957952A838A6E009E3BBF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		05BA050D2A7A3CCB007DA27D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,15 +155,6 @@
 				05BA05132A7A4002007DA27D /* StatModel.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		05BA05172A7A42F0007DA27D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */,
-			);
-			name = Views;
-			path = Controller/Views;
 			sourceTree = "<group>";
 		};
 		05BFFD992A80F35B00D657B9 /* Extensions */ = {
@@ -190,7 +189,7 @@
 			children = (
 				05BA050D2A7A3CCB007DA27D /* Controllers */,
 				05BA05102A7A3EF6007DA27D /* Models */,
-				05BA05172A7A42F0007DA27D /* Views */,
+				058957952A838A6E009E3BBF /* Views */,
 				05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */,
 				05C18FBD2A73AFA2002FF46C /* ContentView.swift */,
 				05BFFD992A80F35B00D657B9 /* Extensions */,

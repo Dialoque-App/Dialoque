@@ -7,9 +7,9 @@
 
 import SwiftUI
 import CoreData
+import CloudKit
 import CoreHaptics
 import SwiftSpeech
-
 
 struct ContentView: View {
     @State var yourLocaleString = "en_US"
@@ -45,7 +45,7 @@ struct ContentView: View {
                     action: {
                         isSessionOver = !isSessionOver
                     }
-                ) {
+                ){
                     Text(isSessionOver ? "Start" : "End")
                 }
                 
@@ -85,17 +85,20 @@ struct ContentView: View {
                     }
                 }
                 
+                
                 Text("isPressed: \(isRecording.description)")
                 
-                Text("Success Haptics")
-                    .foregroundColor(.green)
-                    .onTapGesture{simpleHaptics(type: "success")}
-                Text("Error Haptics")
-                    .foregroundColor(.red)
-                    .onTapGesture{simpleHaptics(type: "error")}
-                Text("Custom Haptics")
-                    .foregroundColor(.blue)
-                    .onTapGesture{customHaptics()}
+                Group{
+                    Text("Success Haptics")
+                        .foregroundColor(.green)
+                        .onTapGesture{simpleHaptics(type: "success")}
+                    Text("Error Haptics")
+                        .foregroundColor(.red)
+                        .onTapGesture{simpleHaptics(type: "error")}
+                    Text("Custom Haptics")
+                        .foregroundColor(.blue)
+                        .onTapGesture{customHaptics()}
+                }
                 
                 Button{
                     isPresented = true
@@ -106,6 +109,24 @@ struct ContentView: View {
                 }
                 .fullScreenCover(isPresented: $isPresented) {
                     GameCenterView().ignoresSafeArea()
+                }
+                
+                Group{
+                    Button{
+                        requestNotificationsPermission()
+                    } label: {
+                        Text("Request Notification Permission").foregroundColor(.orange)
+                    }
+                    Button{
+                        subscribeNotifications()
+                    } label: {
+                        Text("Subscribe Notification")
+                    }
+                    Button{
+                        unSubscribeNotifications()
+                    } label: {
+                        Text("Unsubscribe Notification")
+                    }
                 }
                 
             }
@@ -123,6 +144,53 @@ struct ContentView: View {
     
     func createPoint(timestamp: Date) {
         PersistenceController.shared.createPoint(timestamp: timestamp)
+    }
+    
+    func requestNotificationsPermission(){
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        UNUserNotificationCenter.current().requestAuthorization(options: options){success, error in
+            if let error = error{
+                print("Error: \(error.localizedDescription)")
+            } else if success {
+                print("Notification permission granted")
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            } else {
+                print("Notification permission failure")
+            }
+        }
+    }
+    
+    func subscribeNotifications(){
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: "CD_Point", predicate: predicate, subscriptionID: "point_added_to_cloud", options: .firesOnRecordCreation)
+        
+        let notification = CKSubscription.NotificationInfo()
+        notification.title = "New Score submitted!"
+        notification.alertBody = "Open app to check your score."
+        notification.soundName = "default"
+        
+        subscription.notificationInfo = notification
+        
+        CKContainer.default().privateCloudDatabase.save(subscription){ returnedSubscription, returnedError in
+            if let error = returnedError{
+                print(error)
+            } else {
+                print("Successfully subscribed notifications")
+            }
+        }
+        
+    }
+    
+    func unSubscribeNotifications(){
+        CKContainer.default().privateCloudDatabase.delete(withSubscriptionID: "point_added_to_cloud"){ returnedID, returnedError in
+            if let error = returnedError{
+                print(error)
+            } else {
+                print("Successfully unsubscribed notifications")
+            }
+        }
     }
     
     func simpleHaptics(type: String){
@@ -155,7 +223,7 @@ struct ContentView: View {
         for i in stride(from: 0, to: 1, by: 0.25){
             let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: Float(i)) //min=0 || max=1
             let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: Float(i)) //min=0 || max=1
-
+            
             let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity,sharpness], relativeTime: i)
             events.append(event)
         }

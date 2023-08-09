@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var counter = Counter()
-    
-    
     var labelStyle: some LabelStyle {
         #if os(watchOS)
             return IconOnlyLabelStyle()
@@ -21,22 +18,8 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("\(counter.score)")
+            Text("hello")
                 .font(.largeTitle)
-            
-            HStack {
-                Button(action: counter.decrement) {
-                    Label("Decrement", systemImage: "minus.circle")
-                }
-                .padding()
-                
-                Button(action: counter.increment) {
-                    Label("Increment", systemImage: "plus.circle.fill")
-                }
-                .padding()
-            }
-            .font(.headline)
-            .labelStyle(labelStyle)
         }
     }
 }

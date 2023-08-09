@@ -7,21 +7,26 @@
 
 import SwiftUI
 import CoreData
+import SwiftSpeech
+
 
 struct ContentView: View {
+    @State var yourLocaleString = "en_US"
+    
     @Environment(\.managedObjectContext) private var viewContext
     
     @EnvironmentObject var statController: StatController
     @EnvironmentObject var gameKitController: GameKitController
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Point.timestamp, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var points: FetchedResults<Point>
     
-    @State var isPresented: Bool = false
-    
-    @StateObject var counter = Counter()
+    @State var isPresented = false
+    @State private var recognizedText = ""
+    @State private var isRecording = false
+    @State private var isSessionOver = true
     
     var labelStyle: some LabelStyle {
     #if os(watchOS)
@@ -34,103 +39,79 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack{
-                List {
-                    ForEach(items) { item in
-                        NavigationLink {
-                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                        } label: {
-                            Text(item.timestamp!, formatter: itemFormatter)
-                        }
+                Button(
+                    action: {
+                        isSessionOver = !isSessionOver
                     }
-                    .onDelete(perform: deleteItems)
+                ) {
+                    Text(isSessionOver ? "Start" : "End")
                 }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
-                    ToolbarItem {
-                        Button(action: addItem) {
-                            Label("Add Item", systemImage: "plus")
+                
+                Text("Recognized Text: \(recognizedText)")
+                
+                if !isSessionOver {
+                    SwiftSpeech.RecordButton()
+                        .swiftSpeechRecordOnHold(
+                            sessionConfiguration: SwiftSpeech.Session.Configuration(locale: Locale(identifier: "en-US")),
+                            animation: .linear(duration: 0.3),
+                            distanceToCancel: 100
+                        )
+                        .onRecognizeLatest(
+                            includePartialResults: false,
+                            update: $recognizedText
+                        )
+                        .onStartRecording { session in
+                            isRecording = true
                         }
+                        .onStopRecording { session in
+                            isRecording = false
+                            createPoint(timestamp: .now)
+                        }
+                        .foregroundColor(isRecording ? .red : .blue)
+                }
+                
+                Text("\(points.count)")
+                    .font(.largeTitle)
+                
+                HStack{
+                    Text("Score:")
+                    Text("\(points.count)")
+                    Button(
+                        action: {
+                            createPoint(timestamp: .now)
+                        }
+                    ){
+                        Text("+").bold()
                     }
                 }
-                VStack{
-                    Text("\(counter.score)")
-                        .font(.largeTitle)
-                    
-                    HStack{
-                        Text("Score:")
-                        Button(action:
-                                counter.decrement
-                        ){
-                            Text("-").bold()
-                        }
-                        Text("\(counter.score)")
-                        Button(action: counter.increment){
-                            Text("+").bold()
-                        }
-                    }
-                    
-                    Spacer().frame(height: 16)
-                    
-                    Button(action: {
-                        gameKitController.reportScore(totalScore: counter.score)
-                    }){
-                        Text("Submit")
-                            .bold()
-                            .foregroundColor(.black)
-                    }
-                    
-                    Spacer().frame(height: 8)
-                    
-                    Button(action: {
-                        isPresented = true
-                    }){
-                        Text("Leaderboard")
-                            .bold()
-                            .foregroundColor(.indigo)
-                    }
-                    .fullScreenCover(isPresented: $isPresented) {
-                        GameCenterView().ignoresSafeArea()
-                        //                        let newView = GameCenterView().ignoresSafeArea()
-                        //                        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: newView)
-                    }
-                    
+                
+                Text("isPressed: \(isRecording.description)")
+                
+                Button(action: {
+                    isPresented = true
+                }){
+                    Text("Leaderboard")
+                        .bold()
+                        .foregroundColor(.indigo)
+                }
+                .fullScreenCover(isPresented: $isPresented) {
+                    GameCenterView().ignoresSafeArea()
                 }
                 
             }
-        }
-    }
-    
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            .onChange(of: isSessionOver) { sessionOver in
+                if sessionOver {
+                    gameKitController.reportScore(totalScore: points.count)
+                }
+            }
+            .onAppear {
+                SwiftSpeech.requestSpeechRecognitionAuthorization()
             }
         }
     }
     
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-            
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+    func createPoint(timestamp: Date) {
+        PersistenceController.shared.createPoint(timestamp: timestamp)
     }
 }
 
@@ -140,6 +121,7 @@ private let itemFormatter: DateFormatter = {
     formatter.timeStyle = .medium
     return formatter
 }()
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

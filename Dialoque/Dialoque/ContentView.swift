@@ -7,11 +7,13 @@
 
 import SwiftUI
 import CoreData
+import CoreHaptics
 import SwiftSpeech
 
 
 struct ContentView: View {
     @State var yourLocaleString = "en_US"
+    @State private var engine: CHHapticEngine?
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -29,11 +31,11 @@ struct ContentView: View {
     @State private var isSessionOver = true
     
     var labelStyle: some LabelStyle {
-    #if os(watchOS)
+#if os(watchOS)
         return IconOnlyLabelStyle()
-    #else
+#else
         return DefaultLabelStyle()
-    #endif
+#endif
     }
     
     var body: some View {
@@ -76,20 +78,28 @@ struct ContentView: View {
                 HStack{
                     Text("Score:")
                     Text("\(points.count)")
-                    Button(
-                        action: {
-                            createPoint(timestamp: .now)
-                        }
-                    ){
+                    Button{
+                        createPoint(timestamp: .now)
+                    } label: {
                         Text("+").bold()
                     }
                 }
                 
                 Text("isPressed: \(isRecording.description)")
                 
-                Button(action: {
+                Text("Success Haptics")
+                    .foregroundColor(.green)
+                    .onTapGesture{simpleHaptics(type: "success")}
+                Text("Error Haptics")
+                    .foregroundColor(.red)
+                    .onTapGesture{simpleHaptics(type: "error")}
+                Text("Custom Haptics")
+                    .foregroundColor(.blue)
+                    .onTapGesture{customHaptics()}
+                
+                Button{
                     isPresented = true
-                }){
+                } label: {
                     Text("Leaderboard")
                         .bold()
                         .foregroundColor(.indigo)
@@ -106,12 +116,66 @@ struct ContentView: View {
             }
             .onAppear {
                 SwiftSpeech.requestSpeechRecognitionAuthorization()
+                prepareCustomHaptics()
             }
         }
     }
     
     func createPoint(timestamp: Date) {
         PersistenceController.shared.createPoint(timestamp: timestamp)
+    }
+    
+    func simpleHaptics(type: String){
+        let generator = UINotificationFeedbackGenerator()
+        if type.lowercased() == "success"{
+            generator.notificationOccurred(.success)
+        } else if type.lowercased() == "warning" {
+            generator.notificationOccurred(.warning)
+        } else if type.lowercased() == "error" {
+            generator.notificationOccurred(.error)
+        }
+    }
+    
+    func prepareCustomHaptics(){
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {return}
+        
+        do {
+            engine = try CHHapticEngine()
+            try engine?.start()
+        } catch {
+            print("CHHapticEngine Error: \(error.localizedDescription)")
+        }
+    }
+    
+    func customHaptics(){
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {return}
+        
+        var events = [CHHapticEvent]()
+        
+        for i in stride(from: 0, to: 1, by: 0.25){
+            let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: Float(i)) //min=0 || max=1
+            let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: Float(i)) //min=0 || max=1
+
+            let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity,sharpness], relativeTime: i)
+            events.append(event)
+        }
+        
+        //Another example of customizing haptics
+        for i in stride(from: 0, to: 1, by: 0.25){
+            let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: Float(1-i)) //min=0 || max=1
+            let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: Float(1-i)) //min=0 || max=1
+            
+            let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity,sharpness], relativeTime: 1+i)
+            events.append(event)
+        }
+        
+        do{
+            let pattern = try CHHapticPattern(events: events, parameters: [])
+            let player = try engine?.makePlayer(with: pattern)
+            try player?.start(atTime: 0)
+        } catch {
+            print("Failed to play pattern: \(error.localizedDescription)")
+        }
     }
 }
 

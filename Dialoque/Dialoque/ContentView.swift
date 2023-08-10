@@ -7,12 +7,14 @@
 
 import SwiftUI
 import CoreData
+import CloudKit
+import CoreHaptics
 import SwiftSpeech
 import WidgetKit
 
-
 struct ContentView: View {
     @State var yourLocaleString = "en_US"
+    @State private var engine: CHHapticEngine?
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -30,11 +32,11 @@ struct ContentView: View {
     @State private var isSessionOver = true
     
     var labelStyle: some LabelStyle {
-    #if os(watchOS)
+#if os(watchOS)
         return IconOnlyLabelStyle()
-    #else
+#else
         return DefaultLabelStyle()
-    #endif
+#endif
     }
     
     @AppStorage("streak", store: UserDefaults.group) var streak: Int = 0
@@ -92,7 +94,7 @@ struct ContentView: View {
                     action: {
                         isSessionOver = !isSessionOver
                     }
-                ) {
+                ){
                     Text(isSessionOver ? "Start" : "End")
                 }
                 
@@ -134,17 +136,48 @@ struct ContentView: View {
                     }
                 }
                 
+                
                 Text("isPressed: \(isRecording.description)")
                 
-                Button(action: {
+                Group{
+                    Text("Success Haptics")
+                        .foregroundColor(.green)
+                        .onTapGesture{simpleHaptics(type: "success")}
+                    Text("Error Haptics")
+                        .foregroundColor(.red)
+                        .onTapGesture{simpleHaptics(type: "error")}
+                    Text("Custom Haptics")
+                        .foregroundColor(.blue)
+                        .onTapGesture{customHaptics()}
+                }
+                
+                Button{
                     isPresented = true
-                }){
+                } label: {
                     Text("Leaderboard")
                         .bold()
                         .foregroundColor(.indigo)
                 }
                 .fullScreenCover(isPresented: $isPresented) {
                     GameCenterView().ignoresSafeArea()
+                }
+                
+                Group{
+                    Button{
+                        requestNotificationsPermission()
+                    } label: {
+                        Text("Request Notification Permission").foregroundColor(.orange)
+                    }
+                    Button{
+                        subscribeNotifications()
+                    } label: {
+                        Text("Subscribe Notification")
+                    }
+                    Button{
+                        unSubscribeNotifications()
+                    } label: {
+                        Text("Unsubscribe Notification")
+                    }
                 }
                 
             }
@@ -155,6 +188,7 @@ struct ContentView: View {
             }
             .onAppear {
                 SwiftSpeech.requestSpeechRecognitionAuthorization()
+                prepareCustomHaptics()
             }
         }
     }
@@ -162,14 +196,107 @@ struct ContentView: View {
     func createPoint(timestamp: Date) {
         PersistenceController.shared.createPoint(timestamp: timestamp)
     }
+    
+    func requestNotificationsPermission(){
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        UNUserNotificationCenter.current().requestAuthorization(options: options){success, error in
+            if let error = error{
+                print("Error: \(error.localizedDescription)")
+            } else if success {
+                print("Notification permission granted")
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            } else {
+                print("Notification permission failure")
+            }
+        }
+    }
+    
+    func subscribeNotifications(){
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: "CD_Point", predicate: predicate, subscriptionID: "point_added_to_cloud", options: .firesOnRecordCreation)
+        
+        let notification = CKSubscription.NotificationInfo()
+        notification.title = "New Score submitted!"
+        notification.alertBody = "Open app to check your score."
+        notification.soundName = "default"
+        
+        subscription.notificationInfo = notification
+        
+        CKContainer.default().privateCloudDatabase.save(subscription){ returnedSubscription, returnedError in
+            if let error = returnedError{
+                print(error)
+            } else {
+                print("Successfully subscribed notifications")
+            }
+        }
+        
+    }
+    
+    func unSubscribeNotifications(){
+        CKContainer.default().privateCloudDatabase.delete(withSubscriptionID: "point_added_to_cloud"){ returnedID, returnedError in
+            if let error = returnedError{
+                print(error)
+            } else {
+                print("Successfully unsubscribed notifications")
+            }
+        }
+    }
+    
+    func simpleHaptics(type: String){
+        let generator = UINotificationFeedbackGenerator()
+        if type.lowercased() == "success"{
+            generator.notificationOccurred(.success)
+        } else if type.lowercased() == "warning" {
+            generator.notificationOccurred(.warning)
+        } else if type.lowercased() == "error" {
+            generator.notificationOccurred(.error)
+        }
+    }
+    
+    func prepareCustomHaptics(){
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {return}
+        
+        do {
+            engine = try CHHapticEngine()
+            try engine?.start()
+        } catch {
+            print("CHHapticEngine Error: \(error.localizedDescription)")
+        }
+    }
+    
+    func customHaptics(){
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {return}
+        
+        var events = [CHHapticEvent]()
+        
+        for i in stride(from: 0, to: 1, by: 0.25){
+            let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: Float(i)) //min=0 || max=1
+            let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: Float(i)) //min=0 || max=1
+            
+            let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity,sharpness], relativeTime: i)
+            events.append(event)
+        }
+        
+        //Another example of customizing haptics
+        for i in stride(from: 0, to: 1, by: 0.25){
+            let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: Float(1-i)) //min=0 || max=1
+            let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: Float(1-i)) //min=0 || max=1
+            
+            let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity,sharpness], relativeTime: 1+i)
+            events.append(event)
+        }
+        
+        do{
+            let pattern = try CHHapticPattern(events: events, parameters: [])
+            let player = try engine?.makePlayer(with: pattern)
+            try player?.start(atTime: 0)
+        } catch {
+            print("Failed to play pattern: \(error.localizedDescription)")
+        }
+    }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 
 struct ContentView_Previews: PreviewProvider {

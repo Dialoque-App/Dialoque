@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct DashboardView: View {
     var labelStyle: some LabelStyle {
         #if os(watchOS)
             return IconOnlyLabelStyle()
@@ -24,8 +24,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        DashboardView()
     }
 }

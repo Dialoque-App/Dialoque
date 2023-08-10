@@ -12,7 +12,7 @@ import CoreHaptics
 import SwiftSpeech
 import WidgetKit
 
-struct ContentView: View {
+struct DashboardView: View {
     @State var yourLocaleString = "en_US"
     @State private var engine: CHHapticEngine?
     
@@ -299,11 +299,11 @@ struct ContentView: View {
 }
 
 
-struct ContentView_Previews: PreviewProvider {
+struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         @StateObject var gameKitController = GameKitController()
         
-        ContentView()
+        DashboardView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(gameKitController)
     }

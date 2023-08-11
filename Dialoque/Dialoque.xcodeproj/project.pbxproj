@@ -25,8 +25,6 @@
 		05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
 		7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
-		7D0046D02A823886002B71F0 /* PointRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CF2A823886002B71F0 /* PointRepository.swift */; };
-		7D0046D12A823886002B71F0 /* PointRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CF2A823886002B71F0 /* PointRepository.swift */; };
 		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
 		7D0046D52A824FA5002B71F0 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = 7D0046D42A824FA5002B71F0 /* SwiftSpeech */; };
 		7DAEBE7B2A837D55009379ED /* Dialoque_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */; };
@@ -38,6 +36,8 @@
 		7DAEBE8D2A838FCF009379ED /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */; };
 		7DAEBE8E2A838FCF009379ED /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */; };
 		7DAEBE8F2A838FCF009379ED /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */; };
+		7DB174882A84D5F2004DEF8E /* PointsCountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */; };
+		7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +105,6 @@
 		05C18FC42A73AFA3002FF46C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		05C18FC92A73AFA3002FF46C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
-		7D0046CF2A823886002B71F0 /* PointRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointRepository.swift; sourceTree = "<group>"; };
 		7DAEBE762A837D55009379ED /* Dialoque WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dialoque WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialoque_WidgetBundle.swift; sourceTree = "<group>"; };
 		7DAEBE7E2A837D55009379ED /* Dialoque_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialoque_Widget.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		7DAEBE832A837D56009379ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		7DAEBEAE2A83B8C3009379ED /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
+		7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCountManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,9 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */,
-				7D0046CF2A823886002B71F0 /* PointRepository.swift */,
 				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
 				7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */,
+				7DB174862A84D5DE004DEF8E /* Helper */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -177,6 +177,7 @@
 		058957952A838A6E009E3BBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				05C18FBD2A73AFA2002FF46C /* DashboardView.swift */,
 				05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */,
 			);
 			path = Views;
@@ -237,7 +238,6 @@
 				05BA05102A7A3EF6007DA27D /* Models */,
 				058957952A838A6E009E3BBF /* Views */,
 				05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */,
-				05C18FBD2A73AFA2002FF46C /* DashboardView.swift */,
 				05BFFD992A80F35B00D657B9 /* Extensions */,
 				05C18FC92A73AFA3002FF46C /* Info.plist */,
 				05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */,
@@ -265,6 +265,14 @@
 				7DAEBE832A837D56009379ED /* Info.plist */,
 			);
 			path = "Dialoque Widget";
+			sourceTree = "<group>";
+		};
+		7DB174862A84D5DE004DEF8E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,7 +417,7 @@
 				0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */,
 				0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */,
 				7DAEBE8E2A838FCF009379ED /* UserDefaults.swift in Sources */,
-				7D0046D12A823886002B71F0 /* PointRepository.swift in Sources */,
+				7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
 			);
@@ -428,7 +436,7 @@
 				05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */,
 				05BFFD9B2A80F3BC00D657B9 /* CKContainer.swift in Sources */,
 				05C18FBE2A73AFA2002FF46C /* DashboardView.swift in Sources */,
-				7D0046D02A823886002B71F0 /* PointRepository.swift in Sources */,
+				7DB174882A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				05BA051B2A7A490F007DA27D /* StatController.swift in Sources */,
 				05C18FBC2A73AFA2002FF46C /* DialoqueApp.swift in Sources */,
 				05BA050F2A7A3EB7007DA27D /* GameKitController.swift in Sources */,
@@ -665,7 +673,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nielio.Dialoque;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -699,7 +707,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nielio.Dialoque;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

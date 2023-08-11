@@ -164,6 +164,12 @@ struct DashboardView: View {
                 
                 Group{
                     Button{
+                        gameKitController.reportAchievement(identifier: "com.nielio.Dialoque.achievement.luckyClover")
+                    } label: {
+                        Text("get achievement")
+                    }
+                    
+                    Button{
                         requestNotificationsPermission()
                     } label: {
                         Text("Request Notification Permission").foregroundColor(.orange)

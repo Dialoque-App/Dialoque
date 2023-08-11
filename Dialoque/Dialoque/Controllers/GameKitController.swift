@@ -12,10 +12,11 @@ import SwiftUI
 class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
     @ObservedObject var playerModel = PlayerModel.shared
     @ObservedObject var statModel = StatModel.shared
-
+    
 //    let LEADERBOARD_ID = "com.nielio.Dialoque.score"
     let LEADERBOARD_ID = "score"
-
+    let ACHIEVEMENT_ID_LUCKY_CLOVER = "com.nielio.Dialoque.achievement.luckyClover"
+    
     override init() {
         super.init()
 
@@ -58,6 +59,22 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
                 }
             }
             print("Score submitted: \(totalScore)")
+        }
+    }
+    
+    func reportAchievement(identifier: String){
+        if playerModel.localPlayer.isAuthenticated{
+            let achievement = GKAchievement(identifier: identifier)
+            achievement.percentComplete = 100.0
+            achievement.showsCompletionBanner = true
+            
+            GKAchievement.report([achievement]) { error in
+                if let error = error {
+                    print("Failed to report achievement: \(error.localizedDescription)")
+                } else {
+                    print("Achievement reported successfully!")
+                }
+            }
         }
     }
 }

@@ -18,16 +18,15 @@ struct DashboardView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @EnvironmentObject var statController: StatController
     @EnvironmentObject var gameKitController: GameKitController
+    
+    @StateObject private var pointsCountManager: PointsCountManager
     
     @State var isPresented = false
     @State private var recognizedText = ""
     @State private var isRecording = false
     @State private var isSessionOver = true
     
-    @StateObject private var pointsCountManager: PointsCountManager
-        
     init() {
         let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
         _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
@@ -114,7 +113,7 @@ struct DashboardView: View {
             }
             .onChange(of: isSessionOver) { sessionOver in
                 if sessionOver {
-                    gameKitController.reportScore(totalScore: pointsCountManager.pointsCount)
+                    gameKitController.reportScore(score: pointsCountManager.pointsCount)
                 }
             }
             .onAppear {

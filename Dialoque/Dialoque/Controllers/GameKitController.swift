@@ -11,17 +11,19 @@ import SwiftUI
 
 class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
     @ObservedObject var playerModel = PlayerModel.shared
-    @ObservedObject var statModel = StatModel.shared
-
-//    let LEADERBOARD_ID = "com.nielio.Dialoque.score"
-    let LEADERBOARD_ID = "score"
+    @StateObject private var pointsCountManager: PointsCountManager
+    
+    let LEADERBOARD_ID_SCORE = "com.nielio.Dialoque.leaderboard.score"
 
     override init() {
+        let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
+        _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
+        
         super.init()
-
+        
         authenticateUser { [self] success in
             if success {
-                self.reportScore(totalScore: statModel.totalScore!)
+                self.reportScore(score: pointsCountManager.pointsCount)
             }
         }
     }
@@ -44,20 +46,20 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
         }
     }
 
-    func reportScore(totalScore: Int) {
+    func reportScore(score: Int) {
         if playerModel.localPlayer.isAuthenticated {
             GKLeaderboard.submitScore(
-                totalScore,
+                score,
                 context: 0,
                 player: playerModel.localPlayer,
-                leaderboardIDs: [LEADERBOARD_ID]
+                leaderboardIDs: [LEADERBOARD_ID_SCORE]
             ) { error in
                 print("Leaderboard Submit Score Error:")
                 if let errorText = error?.localizedDescription {
                     print(errorText)
                 }
             }
-            print("Score submitted: \(totalScore)")
+            print("Score submitted: \(score)")
         }
     }
 }

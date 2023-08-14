@@ -14,6 +14,7 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
     @StateObject private var pointsCountManager: PointsCountManager
     
     let LEADERBOARD_ID_SCORE = "com.nielio.Dialoque.leaderboard.score"
+    let ACHIEVEMENT_ID_LUCKY_CLOVER = "com.nielio.Dialoque.achievement.luckyClover"
 
     override init() {
         let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
@@ -60,6 +61,22 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
                 }
             }
             print("Score submitted: \(score)")
+        }
+    }
+    
+    func reportAchievement(identifier: String){
+        if playerModel.localPlayer.isAuthenticated{
+            let achievement = GKAchievement(identifier: identifier)
+            achievement.percentComplete = 100.0
+            achievement.showsCompletionBanner = true
+            
+            GKAchievement.report([achievement]) { error in
+                if let error = error {
+                    print("Failed to report achievement: \(error.localizedDescription)")
+                } else {
+                    print("Achievement reported successfully!")
+                }
+            }
         }
     }
 }

@@ -104,7 +104,8 @@ struct DashboardView: View {
                         Spacer()
                         
                         Button{
-                            print("Start Practice Button Tapped")
+                            let inGameView = InGameView()
+                            UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: inGameView)
                         } label: {
                             Text("START PRACTICE")
                                 .font(.system(size: 20))

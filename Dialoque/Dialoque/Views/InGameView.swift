@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import SwiftSpeech
 
 struct InGameView: View {
+    
+    @State private var recognizedText = ""
+    @State private var isRecording = false
+    @State private var isSessionOver = true
+    
     var body: some View {
         GeometryReader{ geometry in
             VStack{
@@ -49,7 +55,7 @@ struct InGameView: View {
                                     .fill(Color.darkGray).frame(height: geometry.size.height*0.2)
                                 HStack(alignment: .bottom ,spacing: geometry.size.width*0.045){
                                     Button{
-                                        print("Start Practice Button Tapped")
+                                        print("End Practice Button Tapped")
                                     } label: {
                                         Text("END PRACTICE")
                                             .font(.system(size: 18))
@@ -111,11 +117,32 @@ struct InGameView: View {
                                     RoundedRectangle(cornerRadius: 25)
                                         .stroke(Color.white, lineWidth: 4)
                                 )
-                                .padding(.bottom, geometry.size.height*0.05)
-                            Rectangle() //recording button here
-                                .fill(Color.red)
+                                .padding(.bottom, geometry.size.height*0.02)
+                            Rectangle()
                                 .frame(width: 72, height: 72)
-                                .padding(.bottom, geometry.size.height*0.05)
+                                .overlay(
+//                                    if !isSessionOver {
+                                        SwiftSpeech.RecordButton()
+                                            .swiftSpeechRecordOnHold(
+                                                sessionConfiguration: SwiftSpeech.Session.Configuration(locale: Locale(identifier: "en-US")),
+                                                animation: .linear(duration: 0.3),
+                                                distanceToCancel: 100
+                                            )
+                                            .onRecognizeLatest(
+                                                includePartialResults: false,
+                                                update: $recognizedText
+                                            )
+                                            .onStartRecording { session in
+                                                isRecording = true
+                                            }
+                                            .onStopRecording { session in
+                                                isRecording = false
+                                                //                                            createPoint(timestamp: .now)
+                                            }
+                                            .foregroundColor(isRecording ? .red : .blue)
+//                                    }
+                                )
+                                .padding(.bottom, geometry.size.height*0.08)
                         }
                         .padding(.horizontal, geometry.size.width*0.075)
                         

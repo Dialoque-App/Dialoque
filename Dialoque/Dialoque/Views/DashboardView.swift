@@ -111,7 +111,6 @@ struct DashboardView: View {
                                 .bold()
                                 .foregroundColor(.white)
                                 .frame(width: geometry.size.width*0.5)
-                                .font(.system(size: 18))
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 25).fill(Color.lightGreen.shadow(.drop(color: .black, radius: 12))))
                                 .overlay(

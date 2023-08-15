@@ -13,7 +13,7 @@ import SwiftSpeech
 import WidgetKit
 
 struct DashboardView: View {
-    let publisher  = NotificationCenter.default.publisher(for: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
+    let publisher = NotificationCenter.default.publisher(for: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
         .receive(on: RunLoop.main)
     @State private var receiveNotification = false
     
@@ -73,7 +73,6 @@ struct DashboardView: View {
                     Button("Update Streak") {
                         synchronizeStreak()
                         if updateStreakToday() { // resync if streak is updated
-                            synchronizeStreak()
                         }
                     }
                     .padding()
@@ -220,13 +219,13 @@ struct DashboardView: View {
             let maxDeadline = max(streakDeadline, icloudDeadline)
             streakDeadline = maxDeadline
             NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = maxDeadline
-        } else if streakDeadline <= icloudStart {
-            streakDeadline = icloudDeadline
-            NSUbiquitousKeyValueStore.ubiquitousStreakStart = streakStart
-        } else if streakStart <= icloudDeadline {
-            streakStart = icloudStart
-            NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = streakDeadline
+        } else if
+            (streakDeadline >= icloudStart && streakStart <= icloudDeadline) ||
+                (icloudDeadline >= streakStart && icloudStart <= streakDeadline) {
+            //handle streak continuity
+            assignNewStreak(min(streakStart, icloudStart), max(streakDeadline, icloudDeadline))
         } else {
+            // When no continuous streak on both
             // Assign which values are more recent atomically
             if streakDeadline < icloudDeadline {
                 streakStart = icloudStart
@@ -236,6 +235,13 @@ struct DashboardView: View {
                 NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = streakDeadline
             }
         }
+    }
+    
+    func assignNewStreak(_ start: Double, _ deadline: Double) {
+        streakStart = start
+        NSUbiquitousKeyValueStore.ubiquitousStreakStart = start
+        streakDeadline = deadline
+        NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = deadline
     }
 }
 

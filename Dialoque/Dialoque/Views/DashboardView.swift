@@ -1,139 +1,136 @@
 //
-//  ContentView.swift
+//  DashboardView.swift
 //  Dialoque
 //
-//  Created by Daniel Aprillio on 28/07/23.
+//  Created by Daniel Aprillio on 14/08/23.
 //
 
 import SwiftUI
-import CoreData
-import CloudKit
-import CoreHaptics
-import SwiftSpeech
-import WidgetKit
 
 struct DashboardView: View {
-    @State var yourLocaleString = "en_US"
-    @State private var engine: CHHapticEngine?
-    
-    @Environment(\.managedObjectContext) private var viewContext
-    
-    @EnvironmentObject var gameKitController: GameKitController
-    
-    @StateObject private var pointsCountManager: PointsCountManager
-    
-    @State var isPresented = false
-    @State private var recognizedText = ""
-    @State private var isRecording = false
-    @State private var isSessionOver = true
-    
-    init() {
-        let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
-        _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
-    }
-    
-    @AppStorage("streak", store: UserDefaults.group) var streak: Int = 0
-    @AppStorage("points", store: UserDefaults.group) var points: Int = 0
-    
     var body: some View {
-        NavigationView {
+        GeometryReader{ geometry in
             VStack{
-                VStack {
-                    Button("Set Widget") {
-                        UserDefaults.group?.synchronize()
-                        WidgetCenter.shared.reloadTimelines(ofKind: "Dialoque Widget")
+                ZStack(alignment: .top){
+                    Color.black
+                    Group{
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .background(
+                                Image("flying_land")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: geometry.size.height*0.40)
+                                    .clipped()
+                            )
+                            .padding(.top, geometry.size.height*0.48)
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .background(
+                                Image("character_default")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: geometry.size.height*0.35)
+                                    .clipped()
+                            )
+                            .padding(.top, geometry.size.height*0.05)
                     }
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                }
-                .padding()
-                
-                Button(
-                    action: {
-                        isSessionOver = !isSessionOver
+                    VStack{
+                        Group{
+                            ZStack{
+                                RoundedCornersShape(corners: [.bottomLeft, .bottomRight], radius: 36)
+                                    .fill(Color.darkGray).frame(height: geometry.size.height*0.2)
+                                HStack(alignment: .bottom ,spacing: geometry.size.width*0.045){
+                                    Image("american_flag")
+                                        .resizable()
+                                        .cornerRadius(12)
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: geometry.size.width*0.25, height: geometry.size.height*0.05)
+                                        .clipped()
+                                    ZStack(alignment: .bottomTrailing){
+                                        RoundedCornersShape(corners: [.allCorners], radius: 16)
+                                            .fill(Color.white)
+                                            .frame(width: geometry.size.width*0.3, height: geometry.size.height*0.05)
+                                        HStack(alignment: .center){
+                                            Text("24")
+                                                .font(.system(size: 22))
+                                                .bold()
+                                                .padding(.top, 12)
+                                            Image("streak_icon")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .padding(.bottom, geometry.size.height*0.01)
+                                                .frame(height: geometry.size.height*0.065)
+                                                .clipped()
+                                        }
+                                    }
+                                    ZStack(alignment: .bottomTrailing){
+                                        RoundedCornersShape(corners: [.allCorners], radius: 16)
+                                            .fill(Color.white)
+                                            .frame(width: geometry.size.width*0.3, height: geometry.size.height*0.05)
+                                        HStack(alignment: .center){
+                                            Text("952")
+                                                .font(.system(size: 22))
+                                                .bold()
+                                                .padding(.top, 12)
+                                            Image("coin_icon")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .padding(.bottom, geometry.size.height*0.01)
+                                                .frame(height: geometry.size.height*0.065)
+                                                .clipped()
+                                        }
+                                    }
+                                }
+                                .padding(.top, geometry.size.height*0.02)
+                            }
+                        }
+                        HStack{
+                            Spacer().frame(width: geometry.size.width*0.05)
+                            Image("leaderboard_icon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: geometry.size.height*0.08)
+                                .clipped()
+                            Spacer()
+                            Image("achievement_icon_white")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: geometry.size.height*0.08)
+                                .clipped()
+                        }
+                        .padding(.top)
+                        
+                        Spacer()
+                        
+                        Button{
+                            print("Start Practice Button Tapped")
+                        } label: {
+                            Text("START PRACTICE")
+                                .font(.system(size: 20))
+                                .bold()
+                                .foregroundColor(.white)
+                                .frame(width: geometry.size.width*0.5)
+                                .font(.system(size: 18))
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 25).fill(Color.lightGreen.shadow(.drop(color: .black, radius: 12))))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(Color.darkGreen, lineWidth: 8)
+                                )
+                        }
+                        .padding(.bottom, geometry.size.height*0.15)
                     }
-                ){
-                    Text(isSessionOver ? "Start" : "End")
-                }
-                
-                Text("Recognized Text: \(recognizedText)")
-                
-                if !isSessionOver {
-                    SwiftSpeech.RecordButton()
-                        .swiftSpeechRecordOnHold(
-                            sessionConfiguration: SwiftSpeech.Session.Configuration(locale: Locale(identifier: "en-US")),
-                            animation: .linear(duration: 0.3),
-                            distanceToCancel: 100
-                        )
-                        .onRecognizeLatest(
-                            includePartialResults: false,
-                            update: $recognizedText
-                        )
-                        .onStartRecording { session in
-                            isRecording = true
-                        }
-                        .onStopRecording { session in
-                            isRecording = false
-                            createPoint(timestamp: .now)
-                        }
-                        .foregroundColor(isRecording ? .red : .blue)
-                }
-                
-                Text("\(pointsCountManager.pointsCount)")
-                    .font(.largeTitle)
-                
-                HStack{
-                    Text("Score:")
-                    Text("\(pointsCountManager.pointsCount)")
-                    Button(
-                        action: {
-                            createPoint(timestamp: .now)
-                        }
-                    ){
-                        Text("+").bold()
-                    }
-                }
-                
-                
-                Text("isPressed: \(isRecording.description)")
-                
-                Button{
-                    isPresented = true
-                } label: {
-                    Text("Leaderboard")
-                        .bold()
-                        .foregroundColor(.indigo)
-                }
-                .fullScreenCover(isPresented: $isPresented) {
-                    GameCenterView().ignoresSafeArea()
-                }
-                
-            }
-            .onChange(of: isSessionOver) { sessionOver in
-                if sessionOver {
-                    gameKitController.reportScore(score: pointsCountManager.pointsCount)
                 }
             }
-            .onAppear {
-                SwiftSpeech.requestSpeechRecognitionAuthorization()
-            }
+            
         }
-    }
-    
-    func createPoint(timestamp: Date) {
-        PersistenceController.shared.createPoint(timestamp: timestamp)
+        .ignoresSafeArea()
     }
 }
 
-
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        @StateObject var gameKitController = GameKitController()
-        
         DashboardView()
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .environmentObject(gameKitController)
     }
 }

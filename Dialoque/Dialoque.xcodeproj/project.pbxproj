@@ -21,8 +21,8 @@
 		05C18FC32A73AFA3002FF46C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C18FC22A73AFA3002FF46C /* Preview Assets.xcassets */; };
 		05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
 		05EAC9622A8B62F60091C1AA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9612A8B62F60091C1AA /* TestView.swift */; };
-		05EAC9642A8B63000091C1AA /* Components in Resources */ = {isa = PBXBuildFile; fileRef = 05EAC9632A8B63000091C1AA /* Components */; };
 		05EAC9662A8B63620091C1AA /* Extensions in Resources */ = {isa = PBXBuildFile; fileRef = 05EAC9652A8B63620091C1AA /* Extensions */; };
+		05EAC96B2A8B647C0091C1AA /* RoundedCornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC96A2A8B647C0091C1AA /* RoundedCornersShape.swift */; };
 		7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
@@ -102,8 +102,8 @@
 		05C18FC42A73AFA3002FF46C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		05C18FC92A73AFA3002FF46C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05EAC9612A8B62F60091C1AA /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		05EAC9632A8B63000091C1AA /* Components */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Components; sourceTree = "<group>"; };
 		05EAC9652A8B63620091C1AA /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extensions; sourceTree = "<group>"; };
+		05EAC96A2A8B647C0091C1AA /* RoundedCornersShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornersShape.swift; sourceTree = "<group>"; };
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
 		7DAEBE762A837D55009379ED /* Dialoque WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dialoque WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialoque_WidgetBundle.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 		058957952A838A6E009E3BBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				05EAC9632A8B63000091C1AA /* Components */,
+				05EAC9672A8B64450091C1AA /* Components */,
 				05EAC9612A8B62F60091C1AA /* TestView.swift */,
 				05C18FBD2A73AFA2002FF46C /* DashboardView.swift */,
 				05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */,
@@ -245,6 +245,14 @@
 				05C18FC22A73AFA3002FF46C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		05EAC9672A8B64450091C1AA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				05EAC96A2A8B647C0091C1AA /* RoundedCornersShape.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		7DAEBE792A837D55009379ED /* Dialoque Widget */ = {
@@ -389,7 +397,6 @@
 				05C18FC32A73AFA3002FF46C /* Preview Assets.xcassets in Resources */,
 				05C18FC02A73AFA3002FF46C /* Assets.xcassets in Resources */,
 				05EAC9662A8B63620091C1AA /* Extensions in Resources */,
-				05EAC9642A8B63000091C1AA /* Components in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +435,7 @@
 				7DAEBE8D2A838FCF009379ED /* UserDefaults.swift in Sources */,
 				7DAEBE852A837D56009379ED /* Dialoque_Widget.intentdefinition in Sources */,
 				05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */,
+				05EAC96B2A8B647C0091C1AA /* RoundedCornersShape.swift in Sources */,
 				05C18FBE2A73AFA2002FF46C /* DashboardView.swift in Sources */,
 				7DB174882A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				05C18FBC2A73AFA2002FF46C /* DialoqueApp.swift in Sources */,

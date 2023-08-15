@@ -18,7 +18,7 @@ struct TestView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @EnvironmentObject var statController: StatController
+//    @EnvironmentObject var statController: StatController
     @EnvironmentObject var gameKitController: GameKitController
     
     @FetchRequest(
@@ -189,7 +189,7 @@ struct TestView: View {
             }
             .onChange(of: isSessionOver) { sessionOver in
                 if sessionOver {
-                    gameKitController.reportScore(totalScore: fetchedPoint.count)
+                    gameKitController.reportScore(score: fetchedPoint.count)
                 }
             }
             .onAppear {

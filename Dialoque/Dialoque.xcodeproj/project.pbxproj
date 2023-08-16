@@ -16,7 +16,7 @@
 		05BA05122A7A3F04007DA27D /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA05112A7A3F04007DA27D /* PlayerModel.swift */; };
 		05BFFDA52A80F9B100D657B9 /* GameCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */; };
 		05C18FBC2A73AFA2002FF46C /* DialoqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */; };
-		05C18FBE2A73AFA2002FF46C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FBD2A73AFA2002FF46C /* DashboardView.swift */; };
+		05C18FBE2A73AFA2002FF46C /* GameDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FBD2A73AFA2002FF46C /* GameDashboardView.swift */; };
 		05C18FC02A73AFA3002FF46C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C18FBF2A73AFA3002FF46C /* Assets.xcassets */; };
 		05C18FC32A73AFA3002FF46C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C18FC22A73AFA3002FF46C /* Preview Assets.xcassets */; };
 		05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
@@ -99,7 +99,7 @@
 		05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameCenterView.swift; path = Dialoque/Views/GameCenterView.swift; sourceTree = SOURCE_ROOT; };
 		05C18FB82A73AFA2002FF46C /* Dialoque.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dialoque.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C18FBB2A73AFA2002FF46C /* DialoqueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueApp.swift; sourceTree = "<group>"; };
-		05C18FBD2A73AFA2002FF46C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		05C18FBD2A73AFA2002FF46C /* GameDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDashboardView.swift; sourceTree = "<group>"; };
 		05C18FBF2A73AFA3002FF46C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05C18FC22A73AFA3002FF46C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		05C18FC42A73AFA3002FF46C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 				05EAC9672A8B64450091C1AA /* Components */,
 				05EAC9772A8B72950091C1AA /* TestView.swift */,
 				05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */,
-				05C18FBD2A73AFA2002FF46C /* DashboardView.swift */,
+				05C18FBD2A73AFA2002FF46C /* GameDashboardView.swift */,
 				05EAC9752A8B6C140091C1AA /* InGameView.swift */,
 				05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */,
 			);
@@ -455,7 +455,7 @@
 				05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */,
 				05EAC96B2A8B647C0091C1AA /* RoundedCornersShape.swift in Sources */,
 				05EAC9742A8B6AC40091C1AA /* Color.swift in Sources */,
-				05C18FBE2A73AFA2002FF46C /* DashboardView.swift in Sources */,
+				05C18FBE2A73AFA2002FF46C /* GameDashboardView.swift in Sources */,
 				7DB174882A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				05EAC9762A8B6C140091C1AA /* InGameView.swift in Sources */,
 				05C18FBC2A73AFA2002FF46C /* DialoqueApp.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  DashboardView.swift
+//  GameDashboardView.swift
 //  Dialoque
 //
 //  Created by Daniel Aprillio on 14/08/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DashboardView: View {
+struct GameDashboardView: View {
     var body: some View {
         GeometryReader{ geometry in
             VStack{
@@ -129,8 +129,8 @@ struct DashboardView: View {
     }
 }
 
-struct DashboardView_Previews: PreviewProvider {
+struct GameDashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        DashboardView()
+        GameDashboardView()
     }
 }

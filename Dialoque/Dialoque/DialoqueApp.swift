@@ -28,7 +28,7 @@ struct DialoqueApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TestView()
+            GameDashboardView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(gameKitController)
         }

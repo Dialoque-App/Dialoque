@@ -41,11 +41,11 @@ struct GameDashboardView: View {
                                     .background(
                                         LottieView(lottieFile: "dialoque_character_mini_jump", loopMode: .loop)
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(height: geometry.size.height*1.5)
+                                            .frame(height: geometry.size.height*1.8)
                                             .clipped()
                                             .padding(.bottom, geometry.size.height*0.1)
                                     )
-                                    .animation(.easeInOut)
+                                    .animation(.easeOut)
                             } else {
                                 Rectangle()
                                     .foregroundColor(.clear)
@@ -56,7 +56,7 @@ struct GameDashboardView: View {
                                             .frame(height: geometry.size.height*0.35)
                                             .clipped()
                                     )
-                                    .animation(.easeInOut)
+                                    .animation(.easeOut)
                             }
                         }
                         .padding(.top, geometry.size.height*0.05)

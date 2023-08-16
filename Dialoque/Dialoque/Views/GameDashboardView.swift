@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct GameDashboardView: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @EnvironmentObject var gameKitController: GameKitController
+    
+    @State var isPressed = false
+    @State var isGameCenterPresented = false
+    
     var body: some View {
         GeometryReader{ geometry in
             VStack{
@@ -24,16 +32,34 @@ struct GameDashboardView: View {
                                     .clipped()
                             )
                             .padding(.top, geometry.size.height*0.48)
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .background(
-                                Image("character_default")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: geometry.size.height*0.35)
-                                    .clipped()
-                            )
-                            .padding(.top, geometry.size.height*0.05)
+                        Button{
+                            isPressed = !isPressed
+                        } label: {
+                            if(isPressed){
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .background(
+                                        LottieView(lottieFile: "dialoque_character_mini_jump", loopMode: .loop)
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(height: geometry.size.height*1.5)
+                                            .clipped()
+                                            .padding(.bottom, geometry.size.height*0.1)
+                                    )
+                                    .animation(.easeInOut)
+                            } else {
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .background(
+                                        Image("character_default")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(height: geometry.size.height*0.35)
+                                            .clipped()
+                                    )
+                                    .animation(.easeInOut)
+                            }
+                        }
+                        .padding(.top, geometry.size.height*0.05)
                     }
                     VStack{
                         Group{
@@ -87,17 +113,29 @@ struct GameDashboardView: View {
                         }
                         HStack{
                             Spacer().frame(width: geometry.size.width*0.05)
-                            Image("leaderboard_icon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: geometry.size.height*0.08)
-                                .clipped()
+                            Button{
+                                isGameCenterPresented = true
+                            } label: {
+                                Image("leaderboard_icon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: geometry.size.height*0.08)
+                                    .clipped()
+                            }.fullScreenCover(isPresented: $isGameCenterPresented) {
+                                GameCenterView().ignoresSafeArea()
+                            }
                             Spacer()
-                            Image("achievement_icon_white")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: geometry.size.height*0.08)
-                                .clipped()
+                            Button{
+                                isGameCenterPresented = true
+                            } label: {
+                                Image("achievement_icon_white")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: geometry.size.height*0.08)
+                                    .clipped()
+                            }.fullScreenCover(isPresented: $isGameCenterPresented) {
+                                GameCenterView().ignoresSafeArea()
+                            }
                         }
                         .padding(.top)
                         

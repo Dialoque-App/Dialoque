@@ -23,14 +23,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct DialoqueApp: App {
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     
-//    let persistenceController = PersistenceController.shared
-//    @StateObject var gameKitController = GameKitController()
+    let persistenceController = PersistenceController.shared
+    @StateObject var gameKitController = GameKitController()
 
     var body: some Scene {
         WindowGroup {
             GameDashboardView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-//                .environmentObject(gameKitController)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(gameKitController)
         }
     }
 }

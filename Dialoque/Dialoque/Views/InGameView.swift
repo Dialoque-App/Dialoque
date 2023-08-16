@@ -10,6 +10,10 @@ import SwiftSpeech
 
 struct InGameView: View {
     
+    @State private var playerHealth = 3
+    @State private var pointCount = 95
+    
+    @State private var displayText = "HAPPY"
     @State private var recognizedText = ""
     @State private var isRecording = false
     @State private var isSessionOver = true
@@ -55,7 +59,8 @@ struct InGameView: View {
                                     .fill(Color.darkGray).frame(height: geometry.size.height*0.2)
                                 HStack(alignment: .bottom ,spacing: geometry.size.width*0.045){
                                     Button{
-                                        print("End Practice Button Tapped")
+                                        let gameResultView = GameResultView()
+                                        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: gameResultView)
                                     } label: {
                                         Text("END PRACTICE")
                                             .font(.system(size: 18))
@@ -74,7 +79,7 @@ struct InGameView: View {
                                             .fill(Color.white)
                                             .frame(width: geometry.size.width*0.3, height: geometry.size.height*0.05)
                                         HStack(alignment: .center){
-                                            Text("952")
+                                            Text(pointCount.description)
                                                 .font(.system(size: 22))
                                                 .bold()
                                                 .padding(.top, 12)
@@ -91,9 +96,15 @@ struct InGameView: View {
                             }
                         }
                         HStack(alignment: .center, spacing: 2){
-                            ForEach(1...3, id:\.self){ _ in
+                            ForEach(0..<playerHealth, id:\.self){ _ in
                                 Image(systemName: "heart.fill")
                                     .foregroundColor(Color.red)
+                                    .font(.system(size: 32))
+                                    .clipped()
+                            }
+                            ForEach(0..<(3-playerHealth), id:\.self){ _ in
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(Color.gray)
                                     .font(.system(size: 32))
                                     .clipped()
                             }
@@ -106,7 +117,7 @@ struct InGameView: View {
                             Text("Say this to me..")
                                 .foregroundColor(Color.white)
                                 .frame(width: geometry.size.width*0.8 ,alignment: .leading)
-                            Text("HAPPY")
+                            Text(displayText)
                                 .font(.system(size: 24))
                                 .bold()
                                 .foregroundColor(.white)

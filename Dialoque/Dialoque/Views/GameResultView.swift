@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct GameResultView: View {
+    
+    @State private var pointCount = 95
+    @State private var streakCount = 1
+    
     var body: some View {
         GeometryReader{ geometry in
             VStack{
@@ -28,7 +32,7 @@ struct GameResultView: View {
                                         .foregroundColor(Color.white)
                                         .multilineTextAlignment(.center)
                                 }
-                                .padding(.top, geometry.size.height*0.02)
+                                .padding(.top, geometry.size.height*0.025)
                             }
                         }
                         VStack(spacing: geometry.size.height*0.04){
@@ -44,7 +48,7 @@ struct GameResultView: View {
                                     .padding(.bottom, geometry.size.height*0.01)
                                     .frame(height: geometry.size.height*0.065)
                                     .clipped()
-                                Text("+1 Streak")
+                                Text("+\(streakCount) Streak")
                                     .font(.system(size: 24))
                                     .fontWeight(Font.Weight.bold)
                                     .foregroundColor(Color.white)
@@ -56,7 +60,7 @@ struct GameResultView: View {
                                     .padding(.bottom, geometry.size.height*0.01)
                                     .frame(height: geometry.size.height*0.065)
                                     .clipped()
-                                Text("+98 Coins")
+                                Text("+\(pointCount) Coins")
                                     .font(.system(size: 24))
                                     .fontWeight(Font.Weight.bold)
                                     .foregroundColor(Color.white)
@@ -68,6 +72,7 @@ struct GameResultView: View {
                             .font(.system(size: geometry.size.height > geometry.size.width ? geometry.size.width * 0.036: geometry.size.height * 0.1))
                             .bold()
                             .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
                             .frame(width: geometry.size.width*0.8)
                             .padding()
                             .overlay(

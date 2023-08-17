@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftSpeech
 import Combine
+import WidgetKit
 
 struct GameDashboardView: View {
     
@@ -295,6 +296,7 @@ struct GameDashboardView: View {
                 streak = updateStreaksCount(context: viewContext)
                 points = pointsCountManager.pointsCount
                 isStreakYetToday = pointsCountManager.isPointScoredToday()
+                updateStorageStreakYetToday(value: isStreakYetToday)
             }
             .onChange(of: pointsCountManager.pointsCount) { newPoint in
                 if sessionStatus == .idle {
@@ -308,6 +310,9 @@ struct GameDashboardView: View {
                     endSession()
                 }
             }
+            .onChange(of: isStreakYetToday) { value in
+                updateStorageStreakYetToday(value: value)
+            }
             .navigationDestination(isPresented: $navigateToResult) {
                 let streakAdded = !isStreakYetToday && pointsInSession > 0 ? 1 : 0
                 GameResultView(
@@ -319,10 +324,11 @@ struct GameDashboardView: View {
                     sessionStatus = .idle
                     isStartButtonPulsing = false
                     isSpeechButtonPulsing = false
-                    points += pointsInSession
-                    streak += streakAdded
                     pointsInSession = 0
                 }
+            }
+            .onChange(of: streak) { _ in
+                refreshWidget()
             }
         }
         .preferredColorScheme(.dark)
@@ -340,6 +346,11 @@ struct GameDashboardView: View {
     func endSession() {
         if pointsInSession > 0 {
             navigateToResult = true
+        } else {
+            sessionStatus = .idle
+            isStartButtonPulsing = false
+            isSpeechButtonPulsing = false
+            pointsInSession = 0
         }
     }
     
@@ -360,5 +371,14 @@ struct GameDashboardView: View {
     
     func generateRandomPrompt() {
         speechPrompt = promptArray.randomElement()?.uppercased() ?? "PROMPT"
+    }
+    
+    func updateStorageStreakYetToday(value: Bool) {
+        UserDefaults.group?.set(value, forKey: "isTodayStreakYet")
+        refreshWidget()
+    }
+    
+    func refreshWidget() {
+        WidgetCenter.shared.reloadTimelines(ofKind: "Dialoque Widget")
     }
 }

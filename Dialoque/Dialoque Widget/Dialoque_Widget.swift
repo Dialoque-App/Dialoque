@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import CoreData
 
 struct Provider: TimelineProvider {
 
@@ -14,7 +15,7 @@ struct Provider: TimelineProvider {
         DialoqueDataEntry(
             date: Date(),
             streak: 5,
-            points: 39
+            isTodayStreakYet: true
         )
     }
 
@@ -22,23 +23,22 @@ struct Provider: TimelineProvider {
         let entry = DialoqueDataEntry(
             date: Date(),
             streak: 5,
-            points: 39
+            isTodayStreakYet: true
         )
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<DialoqueDataEntry>) -> Void) {
-
+        
+        let isTodayStreakYet = UserDefaults.group?.bool(forKey: "isTodayStreakYet") ?? false
+        
         let streak = UserDefaults.group?.integer(forKey: "streak") ?? 0
-
-        let points = UserDefaults.group?.integer(forKey: "points") ?? 0
-
+        
         let entry = DialoqueDataEntry(
             date: Date(),
             streak: streak,
-            points: points
+            isTodayStreakYet: isTodayStreakYet
         )
-        print("Streak: \(streak), Points: \(points)")
 
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
@@ -48,19 +48,65 @@ struct Provider: TimelineProvider {
 struct DialoqueDataEntry: TimelineEntry {
     var date: Date
     var streak: Int
-    var points: Int
+    var isTodayStreakYet: Bool
 }
 
 struct Dialoque_WidgetEntryView : View {
     var entry: Provider.Entry
 
+    var characterImage: String
+    
+    init(entry: Provider.Entry) {
+        self.entry = entry
+        if !entry.isTodayStreakYet {
+            self.characterImage = "character_sleep"
+        }
+        else if entry.streak > 30 {
+            self.characterImage = "character_uniform"
+        }
+        else {
+            self.characterImage = "character_normal"
+        }
+    }
+    
     var body: some View {
         VStack {
-            Text("Learning Progress")
-                .font(.headline)
-            Text("Streak: \(entry.streak)")
-            Text("Points: \(entry.points)")
+            HStack(alignment: .center, spacing: 3) {
+                GeometryReader { geometry in
+                    HStack {
+                        Spacer()
+                        Image("streak_icon")
+                            .resizable()
+                            .scaledToFit()
+                            .grayscale(entry.isTodayStreakYet ? 0 : 1)
+                    }
+                    .frame(maxHeight: geometry.size.height)
+                }
+                Text(String(entry.streak))
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .bold()
+                    .foregroundColor(.white)
+            }
+            .padding(.trailing, 20)
+            .padding(.top, 20)
+            .fixedSize(horizontal: false, vertical: true)
+            Spacer()
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
+        .background {
+            Image(characterImage)
+                .resizable()
+                .scaledToFit()
+                .padding(.top, 10)
+                .padding(.trailing, 10)
+        }
+        .background(
+            Color(red: 28/255, green: 28/255, blue: 30/255)
+        )
     }
 }
 
@@ -75,7 +121,7 @@ struct Dialoque_Widget: Widget {
             Dialoque_WidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Dialoque")
-        .description("Track the streak and points in Dialoque.")
+        .description("Track your daily streaks in Dialoque.")
     }
 }
 
@@ -85,8 +131,8 @@ struct Dialoque_Widget_Previews: PreviewProvider {
             entry:
                 DialoqueDataEntry(
                     date: Date(),
-                    streak: 5,
-                    points: 39
+                    streak: 35,
+                    isTodayStreakYet: true
                 )
         )
         .previewContext(WidgetPreviewContext(family: .systemSmall))

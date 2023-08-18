@@ -13,6 +13,10 @@ import SwiftSpeech
 import WidgetKit
 
 struct DashboardView: View {
+    let publisher  = NotificationCenter.default.publisher(for: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
+        .receive(on: RunLoop.main)
+    @State private var receiveNotification = false
+    
     @State var yourLocaleString = "en_US"
     @State private var engine: CHHapticEngine?
     
@@ -27,28 +31,66 @@ struct DashboardView: View {
     @State private var isSessionOver = true
     
     @StateObject private var pointsCountManager: PointsCountManager
-        
+    
+    let formatter = DateFormatter()
     init() {
         let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
         _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
+        
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
-    @AppStorage("streak", store: UserDefaults.group) var streak: Int = 0
-    @AppStorage("points", store: UserDefaults.group) var points: Int = 0
+    @AppStorage("streak", store: UserDefaults.group) var streak = 0
+    @AppStorage("points", store: UserDefaults.group) var points = 0
+    
+    @AppStorage("streakStart", store: UserDefaults.group) var streakStart = Date().startOfDay.timeIntervalSince1970
+    @AppStorage("streakDeadline", store: UserDefaults.group) var streakDeadline = Date().endOfDay.timeIntervalSince1970
+    
     
     var body: some View {
         NavigationView {
             VStack{
                 VStack {
-                    Button("Set Widget") {
-                        UserDefaults.group?.synchronize()
-                        WidgetCenter.shared.reloadTimelines(ofKind: "Dialoque Widget")
+                    Text("AppStorage")
+                    Text(
+                        formatter.string(
+                            from: Date(timeIntervalSince1970: streakStart)
+                        )
+                    )
+                    
+                    Text(formatter.string(from: Date(timeIntervalSince1970: streakDeadline)))
+                    
+                    Spacer().frame(height: 15)
+                    
+                    Text("iCloud")
+                    Text(formatter.string(from: Date(timeIntervalSince1970: NSUbiquitousKeyValueStore.ubiquitousStreakStart)))
+                    
+                    Text(formatter.string(from: Date(timeIntervalSince1970: NSUbiquitousKeyValueStore.ubiquitousStreakDeadline)))
+                }
+                .padding()
+                
+                VStack{
+                    Button("Update Streak") {
+                        synchronizeStreak()
+                        if updateStreakToday() { // resync if streak is updated
+                            synchronizeStreak()
+                        }
                     }
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    Button("Sync Streak") {
+                        synchronizeStreak()
+                    }
+                    .padding()
                 }
+                Button("Set Widget") {
+                    points = pointsCountManager.pointsCount
+                    UserDefaults.group?.synchronize()
+                    WidgetCenter.shared.reloadTimelines(ofKind: "Dialoque Widget")
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
                 .padding()
                 
                 Button(
@@ -100,31 +142,100 @@ struct DashboardView: View {
                 
                 Text("isPressed: \(isRecording.description)")
                 
-                Button{
-                    isPresented = true
-                } label: {
+                Button(action: { isPresented = true }) {
                     Text("Leaderboard")
                         .bold()
                         .foregroundColor(.indigo)
                 }
                 .fullScreenCover(isPresented: $isPresented) {
-                    GameCenterView().ignoresSafeArea()
+                    GameCenterView()
+                        .ignoresSafeArea()
                 }
-                
             }
             .onChange(of: isSessionOver) { sessionOver in
                 if sessionOver {
                     gameKitController.reportScore(totalScore: pointsCountManager.pointsCount)
                 }
             }
+            .onChange(of: receiveNotification) { receive in
+                if receive {
+                    synchronizeStreak()
+                }
+            }
             .onAppear {
                 SwiftSpeech.requestSpeechRecognitionAuthorization()
             }
         }
+        .onReceive(publisher, perform: { publisher in
+            if publisher.name == NSUbiquitousKeyValueStore.didChangeExternallyNotification {
+                receiveNotification = true
+            }
+        })
     }
     
     func createPoint(timestamp: Date) {
         PersistenceController.shared.createPoint(timestamp: timestamp)
+    }
+    
+    func updateStreakToday() -> Bool {
+        let today = Date().startOfDay.timeIntervalSince1970
+        let tomorrowEnd = today + 86400 + 86399
+        
+        // Return early if streakDeadline is already set to tomorrow.
+        if streakDeadline == tomorrowEnd {
+            return false
+        }
+        
+        if streakStart <= today && today <= streakDeadline {
+            streakDeadline = tomorrowEnd
+        } else {
+            // If today is not within the current streak period, set new streak start and deadline.
+            streakStart = today
+            streakDeadline = tomorrowEnd
+        }
+        return true
+    }
+    
+    func synchronizeStreak() {
+        NSUbiquitousKeyValueStore.default.synchronize()
+        
+        let icloudStart = NSUbiquitousKeyValueStore.ubiquitousStreakStart
+        let icloudDeadline = NSUbiquitousKeyValueStore.ubiquitousStreakDeadline
+        
+        // Ensure valid start and deadline order
+        if streakStart > streakDeadline {
+            // Correct invalid local data
+            streakStart = Date().startOfDay.timeIntervalSince1970
+            streakDeadline = Date().endOfDay.timeIntervalSince1970
+        }
+        
+        if icloudStart > icloudDeadline {
+            // Correct invalid iCloud data
+            NSUbiquitousKeyValueStore.ubiquitousStreakStart =  Date().startOfDay.timeIntervalSince1970
+            NSUbiquitousKeyValueStore.ubiquitousStreakDeadline =  Date().endOfDay.timeIntervalSince1970
+        }
+        
+        // Handle conflicts or simultaneous updates
+        if streakStart == icloudStart {
+            let maxDeadline = max(streakDeadline, icloudDeadline)
+            streakDeadline = maxDeadline
+            NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = maxDeadline
+        } else if streakDeadline <= icloudStart {
+            streakDeadline = icloudDeadline
+            NSUbiquitousKeyValueStore.ubiquitousStreakStart = streakStart
+        } else if streakStart <= icloudDeadline {
+            streakStart = icloudStart
+            NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = streakDeadline
+        } else {
+            // Assign which values are more recent atomically
+            if streakDeadline < icloudDeadline {
+                streakStart = icloudStart
+                streakDeadline = icloudDeadline
+            } else {
+                NSUbiquitousKeyValueStore.ubiquitousStreakStart = streakStart
+                NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = streakDeadline
+            }
+        }
     }
 }
 

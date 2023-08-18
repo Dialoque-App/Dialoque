@@ -15,10 +15,12 @@ class PointsCountManager: ObservableObject {
         self.context = context
         updatePointsCount()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(contextDidChange),
-                                               name: .NSManagedObjectContextObjectsDidChange,
-                                               object: context)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(contextDidChange),
+            name: .NSManagedObjectContextObjectsDidChange,
+            object: context
+        )
     }
     
     deinit {

@@ -20,49 +20,49 @@ struct GameDashboardView: View {
     
     var body: some View {
         NavigationStack {
-            GeometryReader { geometry in
-                VStack{
-                    HStack(alignment: .bottom) {
-                        Image("american_flag")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(12)
-                            .frame(height: 40)
-                            .clipped()
-                            .padding(.trailing, 8)
-                        Spacer()
-                        PlayerScoreView(score: "27")
-                            .padding(.trailing, 20)
-                            .padding(.top, 14)
-                            .padding(.bottom, 6)
-                            .overlay(
-                                Image("streak_icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipped()
-                                ,alignment: .trailing
-                            )
-                            .padding(.leading, 10)
-                        Spacer()
-                        PlayerScoreView(score: "54")
-                            .padding(.trailing, 30)
-                            .padding(.top, 14)
-                            .padding(.bottom, 6)
-                            .overlay(
-                                Image("coin_icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipped()
-                                ,alignment: .trailing
-                            )
-                    }
-                    .padding(.vertical, geometry.size.height * 0.03)
-                    .padding(.horizontal, geometry.size.width * 0.06)
-                    .frame(height: geometry.size.height * 0.17, alignment: .bottom)
-                    .background(Color.darkGray)
-                    .clipShape(
-                        RoundedCornersShape(corners: [.bottomLeft, .bottomRight], radius: 36)
-                    )
+            VStack{
+                HStack(alignment: .bottom) {
+                    Image("american_flag")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(12)
+                        .frame(height: 40)
+                        .clipped()
+                        .padding(.trailing, 8)
+                    Spacer()
+                    PlayerScoreView(score: "27")
+                        .padding(.trailing, 20)
+                        .padding(.top, 14)
+                        .padding(.bottom, 6)
+                        .overlay(
+                            Image("streak_icon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .clipped()
+                            ,alignment: .trailing
+                        )
+                        .padding(.leading, 10)
+                    Spacer()
+                    PlayerScoreView(score: "54")
+                        .padding(.trailing, 30)
+                        .padding(.top, 14)
+                        .padding(.bottom, 6)
+                        .overlay(
+                            Image("coin_icon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .clipped()
+                            ,alignment: .trailing
+                        )
+                }
+                .padding(.bottom, 25)
+                .padding(.horizontal, 30)
+                .frame(height: 130, alignment: .bottom)
+                .background(Color.darkGray)
+                .clipShape(
+                    RoundedCornersShape(corners: [.bottomLeft, .bottomRight], radius: 36)
+                )
+                GeometryReader { geometry in
                     ZStack(alignment: .top){
                         VStack {
                             HStack {
@@ -110,14 +110,14 @@ struct GameDashboardView: View {
                                 )
                             }
                             .navigationBarBackButtonHidden(true)
-                            .padding(.bottom, geometry.size.height * 0.15)
+                            .padding(.bottom, geometry.size.height * 0.18)
                         }
                         .zIndex(2)
                         ZStack(alignment: .center) {
                             Image("flying_land")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .padding(.top, geometry.size.height * 0.3)
+                                .padding(.top, geometry.size.height * 0.35)
                             
                             Button{
                                 isPressed = !isPressed
@@ -125,14 +125,14 @@ struct GameDashboardView: View {
                                 if(isPressed) {
                                     LottieView(lottieFile: "dialoque_character_mini_jump", loopMode: .loop)
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(height: geometry.size.height * 0.415)
+                                        .frame(height: geometry.size.height * 0.44)
                                         .clipped()
-                                        .padding(.bottom, geometry.size.height * 0.12)
+                                        .padding(.bottom, geometry.size.height * 0.1)
                                 } else {
                                     Image("character_default")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(height:  geometry.size.height * 0.3)
+                                        .frame(height:  geometry.size.height * 0.33)
                                         .clipped()
                                 }
                             }
@@ -141,7 +141,7 @@ struct GameDashboardView: View {
                         .scaleEffect(1.1)
                         .frame(
                             maxWidth: .infinity,
-                            maxHeight: geometry.size.height * 0.7
+                            maxHeight: geometry.size.height * 0.8
                         )
                         .zIndex(1)
                     }

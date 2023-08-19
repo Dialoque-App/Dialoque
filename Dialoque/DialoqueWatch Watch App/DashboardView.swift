@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DashboardView: View {
+    
     @State private var isSessionOver = true
     @State private var isRecording = false
     @State private var recognizedText = ""
@@ -15,11 +16,15 @@ struct DashboardView: View {
     @AppStorage("streak", store: UserDefaults.group) var streak: Int = 0
     @AppStorage("points", store: UserDefaults.group) var points: Int = 0
     
+    @AppStorage("streakStart", store: UserDefaults.group) var streakStart = Date().startOfDay.timeIntervalSince1970
+    @AppStorage("streakDeadline", store: UserDefaults.group) var streakDeadline = Date().endOfDay.timeIntervalSince1970
+    
+    
     
     @Environment(\.managedObjectContext) private var viewContext
     
     @StateObject private var pointsCountManager: PointsCountManager
-        
+    
     init() {
         let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
         _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
@@ -30,6 +35,12 @@ struct DashboardView: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                VStack {
+                    Text("Streak: \(points)")
+                    Text("Point: \(streak)")
+                }
+                .padding()
+                
                 VStack {
                     Button(isSessionOver ? "Start" : "End") {
                         isSessionOver.toggle()
@@ -52,7 +63,7 @@ struct DashboardView: View {
                         Text("Streak: \(streak)")
                     }
                     Button("+") {
-                        createPoint(timestamp: .now)
+                        pointsCountManager.createPoint(timestamp: .now)
                     }
                 }
             }
@@ -81,10 +92,6 @@ struct DashboardView: View {
                 self.recognizedText = "No input"
             }
         }
-    }
-    
-    func createPoint(timestamp: Date) {
-        PersistenceController.shared.createPoint(timestamp: timestamp)
     }
 }
 

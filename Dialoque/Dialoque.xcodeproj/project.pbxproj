@@ -33,6 +33,9 @@
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
 		7D0046D52A824FA5002B71F0 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = 7D0046D42A824FA5002B71F0 /* SwiftSpeech */; };
+		7D385A542A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
+		7D385A552A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
+		7D385A562A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
 		7DAEBE7B2A837D55009379ED /* Dialoque_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */; };
 		7DAEBE7F2A837D55009379ED /* Dialoque_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE7E2A837D55009379ED /* Dialoque_Widget.swift */; };
 		7DAEBE822A837D56009379ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEBE812A837D56009379ED /* Assets.xcassets */; };
@@ -44,6 +47,9 @@
 		7DAEBE8F2A838FCF009379ED /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */; };
 		7DB174882A84D5F2004DEF8E /* PointsCountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */; };
 		7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */; };
+		7DF36A5F2A8CB7E8001C77DC /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
+		7DF36A642A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF36A632A8CD086001C77DC /* UpdateStreaksCount.swift */; };
+		7DF36A652A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF36A632A8CD086001C77DC /* UpdateStreaksCount.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +122,8 @@
 		05EAC9772A8B72950091C1AA /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
+		7D385A532A8A2611009AD290 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		7D385A572A8A279C009AD290 /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		7DAEBE762A837D55009379ED /* Dialoque WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dialoque WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialoque_WidgetBundle.swift; sourceTree = "<group>"; };
 		7DAEBE7E2A837D55009379ED /* Dialoque_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialoque_Widget.swift; sourceTree = "<group>"; };
@@ -123,8 +131,8 @@
 		7DAEBE812A837D56009379ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DAEBE832A837D56009379ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		7DAEBEAE2A83B8C3009379ED /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCountManager.swift; sourceTree = "<group>"; };
+		7DF36A632A8CD086001C77DC /* UpdateStreaksCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStreaksCount.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +176,7 @@
 				7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */,
 				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
 				7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */,
+				7D385A522A8A2611009AD290 /* Extensions */,
 				7DB174862A84D5DE004DEF8E /* Helper */,
 			);
 			path = Shared;
@@ -226,7 +235,6 @@
 		05C18FAF2A73AFA2002FF46C = {
 			isa = PBXGroup;
 			children = (
-				7DAEBEAE2A83B8C3009379ED /* Dialoque WidgetExtension.entitlements */,
 				0586723D2A7CE65100C5B61C /* Shared */,
 				05C18FBA2A73AFA2002FF46C /* Dialoque */,
 				058672792A7CE9AD00C5B61C /* DialoqueWatch Watch App */,
@@ -255,8 +263,8 @@
 				0514B4CC2A8CB52E008A5997 /* Lottie */,
 				05EAC96C2A8B6A520091C1AA /* Extensions */,
 				05C18FC92A73AFA3002FF46C /* Info.plist */,
-				05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */,
 				05C18FBF2A73AFA3002FF46C /* Assets.xcassets */,
+				05BFFD8D2A80DA7100D657B9 /* Dialoque.entitlements */,
 				05C18FC12A73AFA3002FF46C /* Preview Content */,
 			);
 			path = Dialoque;
@@ -291,9 +299,10 @@
 		7DAEBE792A837D55009379ED /* Dialoque Widget */ = {
 			isa = PBXGroup;
 			children = (
-				7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */,
+				7D385A572A8A279C009AD290 /* Dialoque WidgetExtension.entitlements */,
 				7DAEBE7E2A837D55009379ED /* Dialoque_Widget.swift */,
 				7DAEBE802A837D55009379ED /* Dialoque_Widget.intentdefinition */,
+				7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */,
 				7DAEBE812A837D56009379ED /* Assets.xcassets */,
 				7DAEBE832A837D56009379ED /* Info.plist */,
 			);
@@ -304,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */,
+				7DF36A632A8CD086001C77DC /* UpdateStreaksCount.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -450,9 +460,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF36A652A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */,
 				0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */,
 				0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */,
 				7DAEBE8E2A838FCF009379ED /* UserDefaults.swift in Sources */,
+				7D385A552A8A2611009AD290 /* Date.swift in Sources */,
 				7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
@@ -466,9 +478,12 @@
 				05BA05122A7A3F04007DA27D /* PlayerModel.swift in Sources */,
 				0514B4D32A8CB6B3008A5997 /* LottieView.swift in Sources */,
 				05EAC9732A8B6AC40091C1AA /* CKContainer.swift in Sources */,
+				7D385A542A8A2611009AD290 /* Date.swift in Sources */,
+				05BA05142A7A4002007DA27D /* StatModel.swift in Sources */,
 				7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				05EAC97A2A8B8A7F0091C1AA /* GameResultView.swift in Sources */,
 				05BFFDA52A80F9B100D657B9 /* GameCenterView.swift in Sources */,
+				7DF36A642A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */,
 				7DAEBE8D2A838FCF009379ED /* UserDefaults.swift in Sources */,
 				7DAEBE852A837D56009379ED /* Dialoque_Widget.intentdefinition in Sources */,
 				05EAC9782A8B72950091C1AA /* TestView.swift in Sources */,
@@ -488,9 +503,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DAEBE8F2A838FCF009379ED /* UserDefaults.swift in Sources */,
+				7D385A562A8A2611009AD290 /* Date.swift in Sources */,
 				7DAEBE842A837D56009379ED /* Dialoque_Widget.intentdefinition in Sources */,
 				7DAEBE7F2A837D55009379ED /* Dialoque_Widget.swift in Sources */,
 				7DAEBE7B2A837D55009379ED /* Dialoque_WidgetBundle.swift in Sources */,
+				7DF36A5F2A8CB7E8001C77DC /* Dialoque.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,7 +778,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = "Dialoque WidgetExtension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Dialoque Widget/Dialoque WidgetExtension.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G6VH4SDWTF;
@@ -777,6 +795,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nielio.Dialoque.Dialoque-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -789,7 +808,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = "Dialoque WidgetExtension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Dialoque Widget/Dialoque WidgetExtension.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G6VH4SDWTF;
@@ -805,6 +825,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nielio.Dialoque.Dialoque-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

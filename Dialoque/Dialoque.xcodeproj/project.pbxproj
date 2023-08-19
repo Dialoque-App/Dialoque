@@ -32,10 +32,15 @@
 		7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
-		7D0046D52A824FA5002B71F0 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = 7D0046D42A824FA5002B71F0 /* SwiftSpeech */; };
 		7D385A542A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
 		7D385A552A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
 		7D385A562A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
+		7D4C33102A953B4D004FB958 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C330F2A953B4D004FB958 /* Date.swift */; };
+		7D4C33112A953B4D004FB958 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C330F2A953B4D004FB958 /* Date.swift */; };
+		7D4C33122A953B4D004FB958 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C330F2A953B4D004FB958 /* Date.swift */; };
+		7D4C331B2A953B4D004FB958 /* xcschememanagement.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D4C331A2A953B4D004FB958 /* xcschememanagement.plist */; };
+		7D4C331C2A953B4D004FB958 /* xcschememanagement.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D4C331A2A953B4D004FB958 /* xcschememanagement.plist */; };
+		7D4C331D2A953B4D004FB958 /* xcschememanagement.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D4C331A2A953B4D004FB958 /* xcschememanagement.plist */; };
 		7DAEBE7B2A837D55009379ED /* Dialoque_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */; };
 		7DAEBE7F2A837D55009379ED /* Dialoque_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE7E2A837D55009379ED /* Dialoque_Widget.swift */; };
 		7DAEBE822A837D56009379ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEBE812A837D56009379ED /* Assets.xcassets */; };
@@ -124,6 +129,8 @@
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
 		7D385A532A8A2611009AD290 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		7D385A572A8A279C009AD290 /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
+		7D4C330F2A953B4D004FB958 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		7D4C331A2A953B4D004FB958 /* xcschememanagement.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = xcschememanagement.plist; sourceTree = "<group>"; };
 		7DAEBE762A837D55009379ED /* Dialoque WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dialoque WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialoque_WidgetBundle.swift; sourceTree = "<group>"; };
 		7DAEBE7E2A837D55009379ED /* Dialoque_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialoque_Widget.swift; sourceTree = "<group>"; };
@@ -147,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D0046D52A824FA5002B71F0 /* SwiftSpeech in Frameworks */,
 				0514B4D12A8CB5E7008A5997 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,8 +182,9 @@
 				7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */,
 				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
 				7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */,
-				7D385A522A8A2611009AD290 /* Extensions */,
+				7D4C330E2A953B4D004FB958 /* Extensions */,
 				7DB174862A84D5DE004DEF8E /* Helper */,
+				7D4C33132A953B4D004FB958 /* Libraries */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -240,6 +247,7 @@
 				058672792A7CE9AD00C5B61C /* DialoqueWatch Watch App */,
 				7DAEBE792A837D55009379ED /* Dialoque Widget */,
 				05C18FB92A73AFA2002FF46C /* Products */,
+				7D4C33082A953B4D004FB958 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +302,78 @@
 				05EAC9722A8B6AC40091C1AA /* Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7D4C33082A953B4D004FB958 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				7D385A532A8A2611009AD290 /* Date.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		7D4C330E2A953B4D004FB958 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C330F2A953B4D004FB958 /* Date.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7D4C33132A953B4D004FB958 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C33142A953B4D004FB958 /* SwiftSpeech */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		7D4C33142A953B4D004FB958 /* SwiftSpeech */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C33152A953B4D004FB958 /* .swiftpm */,
+			);
+			path = SwiftSpeech;
+			sourceTree = "<group>";
+		};
+		7D4C33152A953B4D004FB958 /* .swiftpm */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C33162A953B4D004FB958 /* xcode */,
+			);
+			path = .swiftpm;
+			sourceTree = "<group>";
+		};
+		7D4C33162A953B4D004FB958 /* xcode */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C33172A953B4D004FB958 /* xcuserdata */,
+			);
+			path = xcode;
+			sourceTree = "<group>";
+		};
+		7D4C33172A953B4D004FB958 /* xcuserdata */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C33182A953B4D004FB958 /* jevinlaudo.xcuserdatad */,
+			);
+			path = xcuserdata;
+			sourceTree = "<group>";
+		};
+		7D4C33182A953B4D004FB958 /* jevinlaudo.xcuserdatad */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C33192A953B4D004FB958 /* xcschemes */,
+			);
+			path = jevinlaudo.xcuserdatad;
+			sourceTree = "<group>";
+		};
+		7D4C33192A953B4D004FB958 /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+				7D4C331A2A953B4D004FB958 /* xcschememanagement.plist */,
+			);
+			path = xcschemes;
 			sourceTree = "<group>";
 		};
 		7DAEBE792A837D55009379ED /* Dialoque Widget */ = {
@@ -356,7 +436,6 @@
 			);
 			name = Dialoque;
 			packageProductDependencies = (
-				7D0046D42A824FA5002B71F0 /* SwiftSpeech */,
 				0514B4D02A8CB5E7008A5997 /* Lottie */,
 			);
 			productName = Dialoque;
@@ -411,7 +490,6 @@
 			);
 			mainGroup = 05C18FAF2A73AFA2002FF46C;
 			packageReferences = (
-				7D0046D32A824FA5002B71F0 /* XCRemoteSwiftPackageReference "SwiftSpeech" */,
 				0514B4CF2A8CB5E7008A5997 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 05C18FB92A73AFA2002FF46C /* Products */;
@@ -430,6 +508,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D4C331C2A953B4D004FB958 /* xcschememanagement.plist in Resources */,
 				058672822A7CE9AE00C5B61C /* Preview Assets.xcassets in Resources */,
 				0586727F2A7CE9AE00C5B61C /* Assets.xcassets in Resources */,
 			);
@@ -442,6 +521,7 @@
 				0514B4CE2A8CB56B008A5997 /* dialoque_character_mini_jump.json in Resources */,
 				05C18FC32A73AFA3002FF46C /* Preview Assets.xcassets in Resources */,
 				05C18FC02A73AFA3002FF46C /* Assets.xcassets in Resources */,
+				7D4C331B2A953B4D004FB958 /* xcschememanagement.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DAEBE822A837D56009379ED /* Assets.xcassets in Resources */,
+				7D4C331D2A953B4D004FB958 /* xcschememanagement.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +548,7 @@
 				7D385A552A8A2611009AD290 /* Date.swift in Sources */,
 				7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
+				7D4C33112A953B4D004FB958 /* Date.swift in Sources */,
 				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,7 +561,6 @@
 				0514B4D32A8CB6B3008A5997 /* LottieView.swift in Sources */,
 				05EAC9732A8B6AC40091C1AA /* CKContainer.swift in Sources */,
 				7D385A542A8A2611009AD290 /* Date.swift in Sources */,
-				05BA05142A7A4002007DA27D /* StatModel.swift in Sources */,
 				7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				05EAC97A2A8B8A7F0091C1AA /* GameResultView.swift in Sources */,
 				05BFFDA52A80F9B100D657B9 /* GameCenterView.swift in Sources */,
@@ -487,6 +568,7 @@
 				7DAEBE8D2A838FCF009379ED /* UserDefaults.swift in Sources */,
 				7DAEBE852A837D56009379ED /* Dialoque_Widget.intentdefinition in Sources */,
 				05EAC9782A8B72950091C1AA /* TestView.swift in Sources */,
+				7D4C33102A953B4D004FB958 /* Date.swift in Sources */,
 				05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */,
 				05EAC96B2A8B647C0091C1AA /* RoundedCornersShape.swift in Sources */,
 				05EAC9742A8B6AC40091C1AA /* Color.swift in Sources */,
@@ -504,6 +586,7 @@
 			files = (
 				7DAEBE8F2A838FCF009379ED /* UserDefaults.swift in Sources */,
 				7D385A562A8A2611009AD290 /* Date.swift in Sources */,
+				7D4C33122A953B4D004FB958 /* Date.swift in Sources */,
 				7DAEBE842A837D56009379ED /* Dialoque_Widget.intentdefinition in Sources */,
 				7DAEBE7F2A837D55009379ED /* Dialoque_Widget.swift in Sources */,
 				7DAEBE7B2A837D55009379ED /* Dialoque_WidgetBundle.swift in Sources */,
@@ -883,14 +966,6 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		7D0046D32A824FA5002B71F0 /* XCRemoteSwiftPackageReference "SwiftSpeech" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Cay-Zhang/SwiftSpeech";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -898,11 +973,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0514B4CF2A8CB5E7008A5997 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		7D0046D42A824FA5002B71F0 /* SwiftSpeech */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7D0046D32A824FA5002B71F0 /* XCRemoteSwiftPackageReference "SwiftSpeech" */;
-			productName = SwiftSpeech;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -100,7 +100,6 @@ struct GameResultView: View {
                     }
                 }
             }
-            
         }
         .ignoresSafeArea()
     }

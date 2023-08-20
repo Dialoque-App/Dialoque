@@ -12,20 +12,21 @@ struct SessionButton: View {
     let foregroundColor: Color
     let backgroundColor: Color
     let strokeColor: Color
+    let horizontalPadding: CGFloat
+    let verticalPadding: CGFloat
     
     var body: some View {
         Text(title)
-            .font(.system(size: 26))
             .fontWeight(.bold)
             .bold()
             .foregroundColor(foregroundColor)
-            .padding(.horizontal, 24)
-            .padding(.vertical, 16)
+            .padding(.horizontal, horizontalPadding)
+            .padding(.vertical, verticalPadding)
             .background(backgroundColor)
             .cornerRadius(30)
             .overlay(
                 RoundedRectangle(cornerRadius: 30)
-                    .stroke(strokeColor, lineWidth: 8)
+                    .stroke(strokeColor, lineWidth: 6)
             )
     }
 }

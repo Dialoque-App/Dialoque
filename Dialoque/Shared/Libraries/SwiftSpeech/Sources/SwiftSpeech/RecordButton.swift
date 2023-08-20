@@ -65,10 +65,9 @@ public extension SwiftSpeech {
                     .zIndex(0)
                 
                 Image(systemName: state != .cancelling ? "mic.fill" : "xmark")
-                    .font(.system(size: 30, weight: .medium, design: .default))
                     .foregroundColor(.white)
                     .opacity(state == .recording ? 0.8 : 1.0)
-                    .padding(20)
+                    .padding(25)
                     .transition(.opacity)
                     .layoutPriority(2)
                     .zIndex(1)

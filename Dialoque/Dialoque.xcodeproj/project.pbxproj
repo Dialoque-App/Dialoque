@@ -26,19 +26,25 @@
 		05EAC96B2A8B647C0091C1AA /* RoundedCornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC96A2A8B647C0091C1AA /* RoundedCornersShape.swift */; };
 		05EAC9732A8B6AC40091C1AA /* CKContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9712A8B6AC40091C1AA /* CKContainer.swift */; };
 		05EAC9742A8B6AC40091C1AA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9722A8B6AC40091C1AA /* Color.swift */; };
-		05EAC9762A8B6C140091C1AA /* InGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9752A8B6C140091C1AA /* InGameView.swift */; };
 		05EAC9782A8B72950091C1AA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9772A8B72950091C1AA /* TestView.swift */; };
 		05EAC97A2A8B8A7F0091C1AA /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */; };
 		7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
 		7D0046D52A824FA5002B71F0 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = 7D0046D42A824FA5002B71F0 /* SwiftSpeech */; };
+		7D3EAF112A914F24000185F3 /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3EAF102A914F24000185F3 /* GameStatus.swift */; };
+		7D3EAF122A914F27000185F3 /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3EAF102A914F24000185F3 /* GameStatus.swift */; };
+		7D3EAF142A915CDF000185F3 /* PlayerPointsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3EAF132A915CDF000185F3 /* PlayerPointsPanel.swift */; };
 		7D4C32FE2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C32FD2A953A0A004FB958 /* PulsingBackgroundShape.swift */; };
 		7D4C32FF2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C32FD2A953A0A004FB958 /* PulsingBackgroundShape.swift */; };
 		7D4C33012A953B0B004FB958 /* SessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C33002A953B0B004FB958 /* SessionButton.swift */; };
 		7D4C33022A953B0B004FB958 /* SessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C33002A953B0B004FB958 /* SessionButton.swift */; };
 		7D4C33042A953B4D004FB958 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C33032A953B4D004FB958 /* PlayerScoreView.swift */; };
 		7D4C33052A953B4D004FB958 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C33032A953B4D004FB958 /* PlayerScoreView.swift */; };
+		7D57A92B2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57A92A2A916A1500C06687 /* FadeSlidingTransition.swift */; };
+		7D57A92C2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57A92A2A916A1500C06687 /* FadeSlidingTransition.swift */; };
+		7D57A9302A916EC000C06687 /* SlideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57A92F2A916EC000C06687 /* SlideDirection.swift */; };
+		7D57A9312A916EC000C06687 /* SlideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57A92F2A916EC000C06687 /* SlideDirection.swift */; };
 		7D74014F2A912BFF0064EB30 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74014E2A912BFF0064EB30 /* Date.swift */; };
 		7D7401502A912BFF0064EB30 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74014E2A912BFF0064EB30 /* Date.swift */; };
 		7D7401512A912BFF0064EB30 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74014E2A912BFF0064EB30 /* Date.swift */; };
@@ -124,14 +130,17 @@
 		05EAC96A2A8B647C0091C1AA /* RoundedCornersShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornersShape.swift; sourceTree = "<group>"; };
 		05EAC9712A8B6AC40091C1AA /* CKContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKContainer.swift; sourceTree = "<group>"; };
 		05EAC9722A8B6AC40091C1AA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		05EAC9752A8B6C140091C1AA /* InGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameView.swift; sourceTree = "<group>"; };
 		05EAC9772A8B72950091C1AA /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
 		7D385A572A8A279C009AD290 /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
+		7D3EAF102A914F24000185F3 /* GameStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
+		7D3EAF132A915CDF000185F3 /* PlayerPointsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPointsPanel.swift; sourceTree = "<group>"; };
 		7D4C32FD2A953A0A004FB958 /* PulsingBackgroundShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsingBackgroundShape.swift; sourceTree = "<group>"; };
 		7D4C33002A953B0B004FB958 /* SessionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionButton.swift; sourceTree = "<group>"; };
 		7D4C33032A953B4D004FB958 /* PlayerScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreView.swift; sourceTree = "<group>"; };
+		7D57A92A2A916A1500C06687 /* FadeSlidingTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeSlidingTransition.swift; sourceTree = "<group>"; };
+		7D57A92F2A916EC000C06687 /* SlideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideDirection.swift; sourceTree = "<group>"; };
 		7D74014E2A912BFF0064EB30 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		7DAEBE762A837D55009379ED /* Dialoque WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dialoque WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DAEBE7A2A837D55009379ED /* Dialoque_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialoque_WidgetBundle.swift; sourceTree = "<group>"; };
@@ -186,6 +195,7 @@
 				7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */,
 				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
 				7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */,
+				7D3EAF0F2A914F17000185F3 /* Enumerated */,
 				7DB174862A84D5DE004DEF8E /* Helper */,
 				7D74014D2A912BFF0064EB30 /* Extensions */,
 				7DF36A662A93E058001C77DC /* Libraries */,
@@ -221,7 +231,6 @@
 				05EAC9772A8B72950091C1AA /* TestView.swift */,
 				05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */,
 				05C18FBD2A73AFA2002FF46C /* GameDashboardView.swift */,
-				05EAC9752A8B6C140091C1AA /* InGameView.swift */,
 				05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */,
 			);
 			path = Views;
@@ -292,9 +301,9 @@
 		05EAC9672A8B64450091C1AA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7D3EAF132A915CDF000185F3 /* PlayerPointsPanel.swift */,
 				05EAC96A2A8B647C0091C1AA /* RoundedCornersShape.swift */,
 				0514B4D22A8CB6B3008A5997 /* LottieView.swift */,
-				7D4C32FD2A953A0A004FB958 /* PulsingBackgroundShape.swift */,
 				7D4C33002A953B0B004FB958 /* SessionButton.swift */,
 				7D4C33032A953B4D004FB958 /* PlayerScoreView.swift */,
 			);
@@ -310,10 +319,21 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7D3EAF0F2A914F17000185F3 /* Enumerated */ = {
+			isa = PBXGroup;
+			children = (
+				7D3EAF102A914F24000185F3 /* GameStatus.swift */,
+				7D57A92F2A916EC000C06687 /* SlideDirection.swift */,
+			);
+			path = Enumerated;
+			sourceTree = "<group>";
+		};
 		7D74014D2A912BFF0064EB30 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				7D74014E2A912BFF0064EB30 /* Date.swift */,
+				7D57A92A2A916A1500C06687 /* FadeSlidingTransition.swift */,
+				7D4C32FD2A953A0A004FB958 /* PulsingBackgroundShape.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -491,16 +511,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DF36A652A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */,
+				7D3EAF122A914F27000185F3 /* GameStatus.swift in Sources */,
 				0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */,
 				0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */,
 				7D7401502A912BFF0064EB30 /* Date.swift in Sources */,
 				7DAEBE8E2A838FCF009379ED /* UserDefaults.swift in Sources */,
 				7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
+				7D57A92C2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */,
 				7D4C33052A953B4D004FB958 /* PlayerScoreView.swift in Sources */,
 				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
 				7D4C33022A953B0B004FB958 /* SessionButton.swift in Sources */,
 				7D4C32FF2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */,
+				7D57A9312A916EC000C06687 /* SlideDirection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +534,9 @@
 				7D4C33042A953B4D004FB958 /* PlayerScoreView.swift in Sources */,
 				05BA05122A7A3F04007DA27D /* PlayerModel.swift in Sources */,
 				0514B4D32A8CB6B3008A5997 /* LottieView.swift in Sources */,
+				7D57A9302A916EC000C06687 /* SlideDirection.swift in Sources */,
+				7D3EAF112A914F24000185F3 /* GameStatus.swift in Sources */,
+				7D57A92B2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */,
 				05EAC9732A8B6AC40091C1AA /* CKContainer.swift in Sources */,
 				7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				05EAC97A2A8B8A7F0091C1AA /* GameResultView.swift in Sources */,
@@ -525,11 +551,11 @@
 				05EAC9742A8B6AC40091C1AA /* Color.swift in Sources */,
 				05C18FBE2A73AFA2002FF46C /* GameDashboardView.swift in Sources */,
 				7DB174882A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
-				05EAC9762A8B6C140091C1AA /* InGameView.swift in Sources */,
 				7D74014F2A912BFF0064EB30 /* Date.swift in Sources */,
 				05C18FBC2A73AFA2002FF46C /* DialoqueApp.swift in Sources */,
 				7D4C32FE2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */,
 				05BA050F2A7A3EB7007DA27D /* GameKitController.swift in Sources */,
+				7D3EAF142A915CDF000185F3 /* PlayerPointsPanel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +604,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = DialoqueWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.nielio.Dialoque;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -610,6 +637,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = DialoqueWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.nielio.Dialoque;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -759,6 +787,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -793,6 +822,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (

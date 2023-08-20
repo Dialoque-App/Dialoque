@@ -324,23 +324,23 @@ struct SlammingImageView: View {
 
     var body: some View {
         VStack {
-            Image("your_image_name")
+            Image(systemName: "flame")
                 .resizable()
+                .foregroundColor(.red)
                 .aspectRatio(contentMode: isZoomed ? .fill : .fit)
                 .frame(width: isZoomed ? 300 : 200, height: isZoomed ? 300 : 200)
                 .scaleEffect(isZoomed ? 1.05 : 1.0)
-                .animation(Animation.easeInOut(duration: 1.0))
                 .onTapGesture {
-                    withAnimation {
+                    withAnimation(.easeOut(duration: 0.6)) {
                         isZoomed.toggle()
                     }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        withAnimation(Animation.linear(duration: 0.08)) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        withAnimation(.easeIn(duration: 0.15)) {
                             isZoomed = false
                         }
                     }
                 }
-        }.background(.red)
+        }
     }
 }
 

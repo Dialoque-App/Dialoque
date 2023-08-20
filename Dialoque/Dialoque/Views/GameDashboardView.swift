@@ -44,207 +44,210 @@ struct GameDashboardView: View {
                     streak: $streak,
                     points: $points
                 )
-                ZStack(alignment: .bottom){
-                    VStack {
-                        HStack {
-                            switch sessionStatus {
-                            case .idle, .end:
-                                Image("leaderboard_icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 60)
-                                    .clipped()
-                                    .onTapGesture {
-                                        isGameCenterPresented = true
-                                    }
-                                    .fullScreenCover(isPresented: $isGameCenterPresented) {
-                                        GameCenterView().ignoresSafeArea()
-                                    }
-                                    .transition(.slideAndFade(direction: .leading))
-                                
-                                Spacer()
-                                
-                                Image("achievement_icon_white")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 60)
-                                    .clipped()
-                                    .onTapGesture {
-                                        isGameCenterPresented = true
-                                    }
-                                    .fullScreenCover(isPresented: $isGameCenterPresented) {
-                                        GameCenterView().ignoresSafeArea()
-                                    }
-                                    .transition(.slideAndFade(direction: .trailing))
-                            case .ongoing:
-                                HStack(alignment: .center, spacing: 2){
-                                    ForEach(0 ..< playerHealth, id:\.self){ _ in
-                                        Image(systemName: "heart.fill")
-                                            .foregroundColor(Color.red)
-                                            .font(.system(size: 32))
-                                            .clipped()
-                                    }
-                                    ForEach(0 ..< 3 - playerHealth, id:\.self){ _ in
-                                        Image(systemName: "heart.fill")
-                                            .foregroundColor(Color.gray)
-                                            .font(.system(size: 32))
-                                            .clipped()
-                                    }
-                                }
-                                .transition(.slideAndFade(direction: .top))
-                            }
-                        }
-                        .padding(.top, 20)
-                        .padding(.horizontal, 35)
-                        .transition(.slideAndFade(direction: .bottom))
-                        .animation(.easeInOut(duration: 0.5).delay(0.1), value: sessionStatus)
-                        
-                        Spacer()
-                        
+                
+                GeometryReader { geometry in
+                    ZStack(alignment: .top){
                         VStack {
-                            switch sessionStatus {
-                            case .idle, .end:
-                                SessionButton (
-                                    title: "START PRACTICE",
-                                    foregroundColor: .white,
-                                    backgroundColor: .accentColor,
-                                    strokeColor: .darkGreen,
-                                    horizontalPadding: 28,
-                                    verticalPadding: 16
-                                )
-                                .font(.system(size: 26))
-                                .pulsingBackgroundShape (
-                                    color: .accentColor,
-                                    shape: Capsule(),
-                                    isPulsing: $isStartButtonPulsing,
-                                    maxXScale: 1.2,
-                                    maxYScale: 1.5
-                                )
-                                .onTapGesture {
-                                    startSession()
+                            HStack {
+                                switch sessionStatus {
+                                case .idle, .end:
+                                    Image("leaderboard_icon")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 60)
+                                        .clipped()
+                                        .onTapGesture {
+                                            isGameCenterPresented = true
+                                        }
+                                        .fullScreenCover(isPresented: $isGameCenterPresented) {
+                                            GameCenterView().ignoresSafeArea()
+                                        }
+                                        .transition(.slideAndFade(direction: .leading))
+                                    
+                                    Spacer()
+                                    
+                                    Image("achievement_icon_white")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 60)
+                                        .clipped()
+                                        .onTapGesture {
+                                            isGameCenterPresented = true
+                                        }
+                                        .fullScreenCover(isPresented: $isGameCenterPresented) {
+                                            GameCenterView().ignoresSafeArea()
+                                        }
+                                        .transition(.slideAndFade(direction: .trailing))
+                                case .ongoing:
+                                    HStack(alignment: .center, spacing: 2){
+                                        ForEach(0 ..< playerHealth, id:\.self){ _ in
+                                            Image(systemName: "heart.fill")
+                                                .foregroundColor(Color.red)
+                                                .font(.system(size: 32))
+                                                .clipped()
+                                        }
+                                        ForEach(0 ..< 3 - playerHealth, id:\.self){ _ in
+                                            Image(systemName: "heart.fill")
+                                                .foregroundColor(Color.gray)
+                                                .font(.system(size: 32))
+                                                .clipped()
+                                        }
+                                    }
+                                    .transition(.slideAndFade(direction: .top))
                                 }
-                                .padding(.bottom, 130)
-                                .transition(.slideAndFade(direction: .bottom))
-                            case .ongoing:
-                                SwiftSpeech.RecordButton()
-                                    .swiftSpeechRecordOnHold(
-                                        sessionConfiguration: SwiftSpeech.Session.Configuration(locale: Locale(identifier: "en-US")),
-                                        animation: .linear(duration: 0.3),
-                                        distanceToCancel: 100
+                            }
+                            .padding(.top, 20)
+                            .padding(.horizontal, 35)
+                            .transition(.slideAndFade(direction: .bottom))
+                            .animation(.easeInOut(duration: 0.5).delay(0.1), value: sessionStatus)
+                            Spacer()
+                            
+                            VStack {
+                                switch sessionStatus {
+                                case .idle, .end:
+                                    SessionButton (
+                                        title: "START PRACTICE",
+                                        foregroundColor: .white,
+                                        backgroundColor: .accentColor,
+                                        strokeColor: .darkGreen,
+                                        horizontalPadding: 28,
+                                        verticalPadding: 16
                                     )
-                                    .onRecognizeLatest(
-                                        includePartialResults: false,
-                                        update: $recognisedSpeech
-                                    )
-                                    .onStartRecording { session in
-                                        isRecording = true
-                                    }
-                                    .onStopRecording { session in
-                                        isRecording = false
-                                    }
-                                    .pulsingBackgroundShape(
+                                    .font(.system(size: 26))
+                                    .pulsingBackgroundShape (
                                         color: .accentColor,
-                                        shape: Circle(),
-                                        isPulsing: $isSpeechButtonPulsing,
-                                        maxXScale: 1.5,
+                                        shape: Capsule(),
+                                        isPulsing: $isStartButtonPulsing,
+                                        maxXScale: 1.2,
                                         maxYScale: 1.5
                                     )
-                                    .foregroundColor(isRecording ? .red : .accentColor)
-                                    .font(.system(size: 50, weight: .medium, design: .default))
-                                    .frame(width: 180, height: 180)
-                                    .padding(.bottom, 40)
+                                    .onTapGesture {
+                                        startSession()
+                                    }
+                                    .padding(.bottom, geometry.size.height * 0.18)
                                     .transition(.slideAndFade(direction: .bottom))
+                                case .ongoing:
+                                    SwiftSpeech.RecordButton()
+                                        .swiftSpeechRecordOnHold(
+                                            sessionConfiguration: SwiftSpeech.Session.Configuration(locale: Locale(identifier: "en-US")),
+                                            animation: .linear(duration: 0.3),
+                                            distanceToCancel: 100
+                                        )
+                                        .onRecognizeLatest(
+                                            includePartialResults: false,
+                                            update: $recognisedSpeech
+                                        )
+                                        .onStartRecording { session in
+                                            isRecording = true
+                                        }
+                                        .onStopRecording { session in
+                                            isRecording = false
+                                        }
+                                        .pulsingBackgroundShape(
+                                            color: .accentColor,
+                                            shape: Circle(),
+                                            isPulsing: $isSpeechButtonPulsing,
+                                            maxXScale: 1.5,
+                                            maxYScale: 1.5
+                                        )
+                                        .foregroundColor(isRecording ? .red : .accentColor)
+                                        .font(.system(size: 50, weight: .medium, design: .default))
+                                        .frame(width: 180, height: 180)
+                                        .padding(.bottom, 30)
+                                        .transition(.slideAndFade(direction: .bottom))
+                                }
                             }
+                            .animation(.easeInOut(duration: 0.6).delay(0.2), value: sessionStatus)
                         }
-                        .animation(.easeInOut(duration: 0.6).delay(0.2), value: sessionStatus)
+                        .zIndex(2)
                         
-                    }
-                    .zIndex(2)
-                    
-                    ZStack {
-                        if sessionStatus == .ongoing {
-                            VStack(alignment: .leading) {
-                                Text("Say this to me..")
-                                    .bold()
-                                    .foregroundColor(Color.white)
-                                    .font(.system(size: 18))
-                                    .padding(.bottom, 5)
-                                
-                                Text(speechPrompt)
-                                    .font(.system(size: 38))
-                                    .fontWeight(.bold)
-                                    .bold()
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(5)
-                                    .background(Color(UIColor.systemGray6))
-                                    .cornerRadius(40)
-                                    .clipped()
-                                    .padding(2)
-                                    .background(.white)
-                                    .cornerRadius(240)
-                                    .clipped()
-                                Spacer()
+                        VStack {
+                            Spacer()
+                            ZStack {
+                                if sessionStatus == .ongoing {
+                                    VStack(alignment: .leading) {
+                                        Text("Say this to me..")
+                                            .bold()
+                                            .foregroundColor(Color.white)
+                                            .font(.system(size: 18))
+                                            .padding(.bottom, 5)
+                                        
+                                        Text(speechPrompt)
+                                            .font(.system(size: 38))
+                                            .fontWeight(.bold)
+                                            .bold()
+                                            .foregroundColor(.white)
+                                            .frame(maxWidth: .infinity)
+                                            .padding(5)
+                                            .background(Color(UIColor.systemGray6))
+                                            .cornerRadius(40)
+                                            .clipped()
+                                            .padding(2)
+                                            .background(.white)
+                                            .cornerRadius(240)
+                                            .clipped()
+                                        Spacer()
+                                    }
+                                    .transition(.slideAndFade(direction: .leading))
+                                    .padding(.horizontal, 60)
+                                    .padding(.top, 220)
+                                    .zIndex(1)
+                                    
+                                    LinearGradient(
+                                        gradient:
+                                            Gradient(
+                                                stops: [
+                                                    .init(color: .clear, location: 0),
+                                                    .init(color: Color(UIColor.systemGray6), location: 0.5)
+                                                ]),
+                                        startPoint: .top, endPoint: .bottom
+                                    )
+                                    .transition(.slideAndFade(direction: .bottom))
+                                    .zIndex(0)
+                                }
                             }
-                            .transition(.slideAndFade(direction: .leading))
-                            .padding(.horizontal, 60)
-                            .padding(.top, 220)
-                            .zIndex(1)
+                            .frame(height: geometry.size.height * 0.75)
+                        }
+                        .animation(.easeInOut(duration: 0.7).delay(0.7), value: sessionStatus)
+                        .zIndex(1)
+                        
+                        ZStack(alignment: .center) {
+                            Image("flying_land")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding(.top, geometry.size.height * 0.35)
+                                .clipped()
                             
-                            LinearGradient(
-                                gradient:
-                                    Gradient(
-                                        stops: [
-                                            .init(color: .clear, location: 0),
-                                            .init(color: Color(UIColor.systemGray6), location: 0.5)
-                                        ]),
-                                startPoint: .top, endPoint: .bottom
-                            )
-                            .transition(.slideAndFade(direction: .bottom))
-                            .zIndex(0)
+                            Button (
+                                action: {
+                                    isCharacterClicked.toggle()
+                                }
+                            ) {
+                                if(isCharacterClicked) {
+                                    LottieView(lottieFile: "dialoque_character_mini_jump", loopMode: .loop)
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: geometry.size.height * 0.44)
+                                        .clipped()
+                                        .padding(.bottom, geometry.size.height * 0.1)
+                                } else {
+                                    Image("character_default")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height:  geometry.size.height * 0.33)
+                                        .clipped()
+                                }
+                            }
+                            .padding(.bottom, geometry.size.height * 0.08)
                         }
-                    }
-                    .frame(maxHeight: 550)
-                    .animation(.easeInOut(duration: 0.7).delay(0.5), value: sessionStatus)
-                    .zIndex(1)
-                        
-                    ZStack(alignment: .center) {
-                        Image("flying_land")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .padding(.top, 140)
-                        
-                        Button{
-                            isCharacterClicked.toggle()
-                        } label: {
-                            if(isCharacterClicked) {
-                                LottieView(lottieFile: "dialoque_character_mini_jump", loopMode: .loop)
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 380)
-                                    .clipped()
-                                    .padding(.bottom, 85)
-                            } else {
-                                Image("character_default")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 280)
-                                    .clipped()
+                        .scaleEffect(isSessionOngoing ? 0.9 : 1.1)
+                        .offset(y: isSessionOngoing ? -10 : 0)
+                        .onChange(of: sessionStatus) { newStatus in
+                            withAnimation(.easeOut(duration: 0.8).delay(0.6)) {
+                                isSessionOngoing = newStatus == .ongoing
                             }
                         }
-                        .padding(.bottom, 220)
+                        .zIndex(0)
                     }
-                    .padding(.bottom, isSessionOngoing ? 100 : 0)
-                    .scaleEffect(isSessionOngoing ? 0.9 : 1.1)
-                    .onChange(of: sessionStatus) { newStatus in
-                        withAnimation(.easeOut(duration: 0.8).delay(0.6)) {
-                            isSessionOngoing = newStatus == .ongoing
-                        }
-                    }
-                    .frame(
-                        maxWidth: .infinity,
-                        maxHeight: .infinity
-                    )
-                    .zIndex(0)
                 }
             }
             .ignoresSafeArea()

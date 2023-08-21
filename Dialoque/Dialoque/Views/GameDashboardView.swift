@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftSpeech
+import Combine
 
 struct GameDashboardView: View {
     
@@ -21,11 +22,7 @@ struct GameDashboardView: View {
     
     @State private var playerHealth = 3
     
-    @State private var speechPrompt = "HAPPY"
-    
-    @State private var recognisedSpeech = ""
-    
-    @State private var isRecording = false
+    @State private var speechPrompt = "happy"
     
     @State private var isSessionOngoing = false
     
@@ -35,6 +32,21 @@ struct GameDashboardView: View {
     
     @AppStorage("streak", store: UserDefaults.group) var streak = 0
     @AppStorage("points", store: UserDefaults.group) var points = 0
+    
+    
+    @StateObject private var pointsCountManager: PointsCountManager
+    @State private var pointsInSession = 0
+    
+    
+    @State private var isStreakYetToday = false
+    
+    @State private var cancellables: Set<AnyCancellable> = []
+    
+    
+    init() {
+        let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
+        _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
+    }
     
     var body: some View {
         NavigationStack {
@@ -50,7 +62,7 @@ struct GameDashboardView: View {
                         VStack {
                             HStack {
                                 switch sessionStatus {
-                                case .idle, .end:
+                                case .idle:
                                     Image("leaderboard_icon")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -59,10 +71,10 @@ struct GameDashboardView: View {
                                         .onTapGesture {
                                             isGameCenterPresented = true
                                         }
+                                        .transition(.slideAndFade(direction: .leading))
                                         .fullScreenCover(isPresented: $isGameCenterPresented) {
                                             GameCenterView().ignoresSafeArea()
                                         }
-                                        .transition(.slideAndFade(direction: .leading))
                                     
                                     Spacer()
                                     
@@ -74,10 +86,10 @@ struct GameDashboardView: View {
                                         .onTapGesture {
                                             isGameCenterPresented = true
                                         }
+                                        .transition(.slideAndFade(direction: .trailing))
                                         .fullScreenCover(isPresented: $isGameCenterPresented) {
                                             GameCenterView().ignoresSafeArea()
                                         }
-                                        .transition(.slideAndFade(direction: .trailing))
                                 case .ongoing:
                                     HStack(alignment: .center, spacing: 2){
                                         ForEach(0 ..< playerHealth, id:\.self){ _ in
@@ -104,7 +116,7 @@ struct GameDashboardView: View {
                             
                             VStack {
                                 switch sessionStatus {
-                                case .idle, .end:
+                                case .idle:
                                     SessionButton (
                                         title: "START PRACTICE",
                                         foregroundColor: .white,
@@ -131,18 +143,32 @@ struct GameDashboardView: View {
                                         .swiftSpeechRecordOnHold(
                                             sessionConfiguration: SwiftSpeech.Session.Configuration(locale: Locale(identifier: "en-US")),
                                             animation: .linear(duration: 0.3),
-                                            distanceToCancel: 100
+                                            distanceToCancel: 50
                                         )
-                                        .onRecognizeLatest(
-                                            includePartialResults: false,
-                                            update: $recognisedSpeech
-                                        )
-                                        .onStartRecording { session in
-                                            isRecording = true
-                                        }
                                         .onStopRecording { session in
-                                            isRecording = false
-                                        }
+                                            session.stopRecording() // Stop the recording session
+                                                
+                                                // Subscribe to the resultPublisher to receive recognition results
+                                            session.resultPublisher?
+                                                .sink (
+                                                    receiveCompletion: { completion in
+                                                        // Handle completion if needed
+                                                        switch completion {
+                                                        case .finished:
+                                                            break
+                                                        case .failure(let error):
+                                                            print("Recognition result error: \(error)")
+                                                        }
+                                                    },
+                                                    receiveValue: { result in
+                                                        if result.isFinal {
+                                                            // Call your function when recognition is finalized
+                                                            checkPronunciation(result.bestTranscription.formattedString)
+                                                        }
+                                                    }
+                                                )
+                                                .store(in: &cancellables) // Store the subscription
+                                            }
                                         .pulsingBackgroundShape(
                                             color: .accentColor,
                                             shape: Circle(),
@@ -150,10 +176,8 @@ struct GameDashboardView: View {
                                             maxXScale: 1.5,
                                             maxYScale: 1.5
                                         )
-                                        .foregroundColor(isRecording ? .red : .accentColor)
                                         .font(.system(size: 50, weight: .medium, design: .default))
-                                        .frame(width: 180, height: 180)
-                                        .padding(.bottom, 30)
+                                        .padding(.bottom, geometry.size.height * 0.08)
                                         .transition(.slideAndFade(direction: .bottom))
                                 }
                             }
@@ -166,7 +190,7 @@ struct GameDashboardView: View {
                             ZStack {
                                 if sessionStatus == .ongoing {
                                     VStack(alignment: .leading) {
-                                        Text("Say this to me..")
+                                        Text("Say this to me…")
                                             .bold()
                                             .foregroundColor(Color.white)
                                             .font(.system(size: 18))
@@ -175,6 +199,8 @@ struct GameDashboardView: View {
                                         Text(speechPrompt)
                                             .font(.system(size: 38))
                                             .fontWeight(.bold)
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(0.01)
                                             .bold()
                                             .foregroundColor(.white)
                                             .frame(maxWidth: .infinity)
@@ -185,7 +211,10 @@ struct GameDashboardView: View {
                                             .padding(2)
                                             .background(.white)
                                             .cornerRadius(240)
+                                            .id("Prompt" + speechPrompt)
+                                            .transition(.slideAndFade(direction: .leading))
                                             .clipped()
+                                        
                                         Spacer()
                                     }
                                     .transition(.slideAndFade(direction: .leading))
@@ -242,6 +271,9 @@ struct GameDashboardView: View {
                         .scaleEffect(isSessionOngoing ? 0.9 : 1.1)
                         .offset(y: isSessionOngoing ? -10 : 0)
                         .onChange(of: sessionStatus) { newStatus in
+                            if newStatus == .ongoing {
+                                generateRandomPrompt()
+                            }
                             withAnimation(.easeOut(duration: 0.8).delay(0.6)) {
                                 isSessionOngoing = newStatus == .ongoing
                             }
@@ -252,14 +284,56 @@ struct GameDashboardView: View {
             }
             .ignoresSafeArea()
             .background(Color(UIColor.systemGray6))
+//            .onAppear {
+//                streak = updateStreaksCount(context: viewContext)
+//                points = pointsCountManager.pointsCount
+//            }
+            .onChange(of: pointsCountManager.pointsCount) { newPoint in
+                if sessionStatus == .idle {
+                    // if the point count change whilst the game is not running
+                    streak = updateStreaksCount(context: viewContext)
+                    points = newPoint
+                }
+            }
+            .onChange(of: playerHealth) { health in
+                if health <= 0 {
+                    endSession()
+                }
+            }
         }
         .preferredColorScheme(.dark)
     }
     
     func startSession() {
         sessionStatus = .ongoing
+        playerHealth = 3
         isStartButtonPulsing = false
         isSpeechButtonPulsing = false
+    }
+    
+    func endSession() {
+        sessionStatus = .idle
+        isStartButtonPulsing = false
+        isSpeechButtonPulsing = false
+    }
+    
+    func checkPronunciation(_ recognisedSpeech: String) {
+        if recognisedSpeech.uppercased().contains(speechPrompt.uppercased()) {
+            // Correct Pronunciation
+            pointsInSession += 1
+//            pointsCountManager.createPoint(timestamp: .now)
+            if playerHealth < 3 {
+                playerHealth += 1
+            }
+        } else {
+            // Inorrect Pronunciation
+            playerHealth -= 1
+        }
+        generateRandomPrompt()
+    }
+    
+    func generateRandomPrompt() {
+        speechPrompt = promptArray.randomElement()?.uppercased() ?? "PROMPT"
     }
 }
 

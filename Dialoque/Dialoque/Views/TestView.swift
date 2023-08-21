@@ -321,26 +321,43 @@ import SwiftUI
 
 struct SlammingImageView: View {
     @State private var isZoomed = false
+    @State private var numb = 5
 
     var body: some View {
-        VStack {
-            Image(systemName: "flame")
-                .resizable()
-                .foregroundColor(.red)
-                .aspectRatio(contentMode: isZoomed ? .fill : .fit)
-                .frame(width: isZoomed ? 300 : 200, height: isZoomed ? 300 : 200)
-                .scaleEffect(isZoomed ? 1.05 : 1.0)
-                .onTapGesture {
-                    withAnimation(.easeOut(duration: 0.6)) {
-                        isZoomed.toggle()
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                        withAnimation(.easeIn(duration: 0.15)) {
-                            isZoomed = false
+        HStack {
+            PlayerScoreView(score: $numb)
+                .padding(.trailing, 20)
+                .padding(.top, 14)
+                .padding(.bottom, 6)
+                .foregroundColor(.black)
+                .bold()
+                .overlay(
+                    Image("streak_icon")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipped()
+                        .scaleEffect(isZoomed ? 1.2 : 1.0)
+                        .onTapGesture {
+                            withAnimation(.easeOut(duration: 0.4)) {
+                                isZoomed = true
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.38) {
+                                withAnimation(.easeOut(duration: 0.02)) {
+                                    isZoomed = false
+                                }
+                                numb += 5
+                            }
                         }
-                    }
-                }
+                    ,alignment: .trailing
+                )
+                .transition(.slideAndFade())
         }
+        .scaleEffect(3)
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
+        .background(Color(UIColor.systemGray))
     }
 }
 

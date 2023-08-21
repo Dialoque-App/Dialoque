@@ -19,7 +19,7 @@ struct PlayerPointsPanel: View {
     var body: some View {
         HStack(alignment: .bottom) {
             switch sessionStatus {
-            case .idle, .end:
+            case .idle:
                 Image("american_flag")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -28,7 +28,7 @@ struct PlayerPointsPanel: View {
                     .clipped()
                     .transition(.slideAndFade())
                 Spacer()
-                PlayerScoreView(score: String(streak))
+                PlayerScoreView(score: $streak)
                     .padding(.trailing, 20)
                     .padding(.top, 14)
                     .padding(.bottom, 6)
@@ -57,7 +57,7 @@ struct PlayerPointsPanel: View {
                 }
             }
             Spacer()
-            PlayerScoreView(score: String(points))
+            PlayerScoreView(score: $points)
                 .padding(.trailing, 30)
                 .padding(.top, 14)
                 .padding(.bottom, 6)
@@ -81,7 +81,7 @@ struct PlayerPointsPanel: View {
     }
     
     func endSession() {
-        sessionStatus = .end
+        sessionStatus = .idle
     }
 }
 

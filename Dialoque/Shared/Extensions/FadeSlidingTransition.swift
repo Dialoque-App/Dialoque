@@ -33,12 +33,8 @@ extension AnyTransition {
                 yOffset = 0
         }
         
-        let insertion = AnyTransition.offset(x: xOffset, y: yOffset)
+        return AnyTransition.offset(x: xOffset, y: yOffset)
             .combined(with: .opacity)
         
-        let removal = AnyTransition.offset(x: xOffset, y: yOffset)
-            .combined(with: .opacity)
-        
-        return .asymmetric(insertion: insertion, removal: removal)
     }
 }

@@ -82,10 +82,7 @@ struct GameResultView: View {
                         
                         Spacer()
                         
-                        Button{
-                            let gameDashboardView = GameDashboardView()
-                            UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: gameDashboardView)
-                        } label: {
+                        NavigationLink(destination: GameDashboardView()) {
                             Text("DONE")
                                 .font(.system(size: 20))
                                 .bold()
@@ -98,6 +95,7 @@ struct GameResultView: View {
                                         .stroke(Color.darkGreen, lineWidth: 8)
                                 )
                         }
+                        .navigationBarBackButtonHidden(true)
                         .padding(.bottom, geometry.size.height*0.08)
                     }
                 }

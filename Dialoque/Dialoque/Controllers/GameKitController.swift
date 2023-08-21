@@ -12,9 +12,6 @@ import SwiftUI
 class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
     @ObservedObject var playerModel = PlayerModel.shared
     @StateObject private var pointsCountManager: PointsCountManager
-    
-    let LEADERBOARD_ID_SCORE = "com.nielio.Dialoque.leaderboard.score"
-    let ACHIEVEMENT_ID_LUCKY_CLOVER = "com.nielio.Dialoque.achievement.luckyClover"
 
     override init() {
         let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
@@ -24,7 +21,7 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
         
         authenticateUser { [self] success in
             if success {
-                self.reportScore(score: pointsCountManager.pointsCount)
+                self.reportStreak(streak: pointsCountManager.pointsCount)
             }
         }
     }
@@ -47,26 +44,26 @@ class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
         }
     }
 
-    func reportScore(score: Int) {
+    func reportStreak(streak: Int) {
         if playerModel.localPlayer.isAuthenticated {
             GKLeaderboard.submitScore(
-                score,
+                streak,
                 context: 0,
                 player: playerModel.localPlayer,
-                leaderboardIDs: [LEADERBOARD_ID_SCORE]
+                leaderboardIDs: [LeaderboardID.streak]
             ) { error in
                 print("Leaderboard Submit Score Error:")
                 if let errorText = error?.localizedDescription {
                     print(errorText)
                 }
             }
-            print("Score submitted: \(score)")
+            print("Score submitted: \(streak)")
         }
     }
     
-    func reportAchievement(identifier: String){
+    func reportAchievement(achievementID: String){
         if playerModel.localPlayer.isAuthenticated{
-            let achievement = GKAchievement(identifier: identifier)
+            let achievement = GKAchievement(identifier: achievementID)
             achievement.percentComplete = 100.0
             achievement.showsCompletionBanner = true
             

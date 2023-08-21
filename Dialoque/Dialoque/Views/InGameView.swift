@@ -18,6 +18,8 @@ struct InGameView: View {
     @State private var isRecording = false
     @State private var isSessionOver = true
     
+    @State private var isSpeechButtonPulsing = false
+    
     var body: some View {
         NavigationStack {
             GeometryReader{ geometry in
@@ -111,7 +113,7 @@ struct InGameView: View {
                             
                             Spacer()
                             
-                            Group{
+                            Group {
                                 Text("Say this to me..")
                                     .foregroundColor(Color.white)
                                     .frame(width: geometry.size.width*0.8 ,alignment: .leading)
@@ -127,30 +129,38 @@ struct InGameView: View {
                                             .stroke(Color.white, lineWidth: 4)
                                     )
                                     .padding(.bottom, geometry.size.height*0.02)
-                                Rectangle()
-                                    .frame(width: 72, height: 72)
-                                    .overlay(
-                                        //                                    if !isSessionOver {
-                                        SwiftSpeech.RecordButton()
-                                            .swiftSpeechRecordOnHold(
-                                                sessionConfiguration: SwiftSpeech.Session.Configuration(locale: Locale(identifier: "en-US")),
-                                                animation: .linear(duration: 0.3),
-                                                distanceToCancel: 100
-                                            )
-                                            .onRecognizeLatest(
-                                                includePartialResults: false,
-                                                update: $recognizedText
-                                            )
-                                            .onStartRecording { session in
-                                                isRecording = true
-                                            }
-                                            .onStopRecording { session in
-                                                isRecording = false
-                                                //                                            createPoint(timestamp: .now)
-                                            }
-                                            .foregroundColor(isRecording ? .red : .blue)
-                                        //                                    }
+                                SwiftSpeech.RecordButton()
+                                    .swiftSpeechRecordOnHold(
+                                        sessionConfiguration: SwiftSpeech.Session.Configuration(locale: Locale(identifier: "en-US")),
+                                        animation: .linear(duration: 0.3),
+                                        distanceToCancel: 100
                                     )
+                                    .onRecognizeLatest(
+                                        includePartialResults: false,
+                                        update: $recognizedText
+                                    )
+                                    .onStartRecording { session in
+                                        isRecording = true
+                                    }
+                                    .onStopRecording { session in
+                                        isRecording = false
+                                    }
+                                    .foregroundColor(isRecording ? .red : .accentColor)
+                                    .background(
+                                        Circle()
+                                            .foregroundColor(isRecording ? .red : .accentColor)
+                                            .scaleEffect(isSpeechButtonPulsing ? 1.5 : 1.0)
+                                            .opacity(isSpeechButtonPulsing ? 0 : 1.0)
+                                            .onAppear() {
+                                                withAnimation(
+                                                    Animation.easeInOut(duration: 1.5)
+                                                        .repeatForever(autoreverses: false)
+                                                ) {
+                                                    isSpeechButtonPulsing.toggle()
+                                                }
+                                            }
+                                    )
+                                    .frame(width: 72, height: 72)
                                     .padding(.bottom, geometry.size.height*0.08)
                             }
                             .padding(.horizontal, geometry.size.width*0.075)

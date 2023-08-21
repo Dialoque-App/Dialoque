@@ -125,6 +125,7 @@
 		7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		7DAEBEAE2A83B8C3009379ED /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCountManager.swift; sourceTree = "<group>"; };
+		7DCA9ADB2A93EA4900B5FA97 /* SwiftSpeech */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftSpeech; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +170,7 @@
 				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
 				7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */,
 				7DB174862A84D5DE004DEF8E /* Helper */,
+				7DF36A662A93E058001C77DC /* Libraries */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -306,6 +308,14 @@
 				7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		7DF36A662A93E058001C77DC /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				7DCA9ADB2A93EA4900B5FA97 /* SwiftSpeech */,
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

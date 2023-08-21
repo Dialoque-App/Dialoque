@@ -27,9 +27,6 @@
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
 		7D0046D52A824FA5002B71F0 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = 7D0046D42A824FA5002B71F0 /* SwiftSpeech */; };
-		7D385A462A8A1BF8009AD290 /* UbiquitousStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A452A8A1BF8009AD290 /* UbiquitousStore.swift */; };
-		7D385A472A8A219A009AD290 /* UbiquitousStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A452A8A1BF8009AD290 /* UbiquitousStore.swift */; };
-		7D385A482A8A21B4009AD290 /* UbiquitousStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A452A8A1BF8009AD290 /* UbiquitousStore.swift */; };
 		7D385A542A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
 		7D385A552A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
 		7D385A562A8A2611009AD290 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D385A532A8A2611009AD290 /* Date.swift */; };
@@ -44,6 +41,9 @@
 		7DAEBE8F2A838FCF009379ED /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */; };
 		7DB174882A84D5F2004DEF8E /* PointsCountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */; };
 		7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */; };
+		7DF36A5F2A8CB7E8001C77DC /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
+		7DF36A642A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF36A632A8CD086001C77DC /* UpdateStreaksCount.swift */; };
+		7DF36A652A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF36A632A8CD086001C77DC /* UpdateStreaksCount.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,7 +111,6 @@
 		05C18FC42A73AFA3002FF46C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		05C18FC92A73AFA3002FF46C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
-		7D385A452A8A1BF8009AD290 /* UbiquitousStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousStore.swift; sourceTree = "<group>"; };
 		7D385A532A8A2611009AD290 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		7D385A572A8A279C009AD290 /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		7DAEBE762A837D55009379ED /* Dialoque WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dialoque WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +121,7 @@
 		7DAEBE832A837D56009379ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCountManager.swift; sourceTree = "<group>"; };
+		7DF36A632A8CD086001C77DC /* UpdateStreaksCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStreaksCount.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +157,6 @@
 				05C18FC42A73AFA3002FF46C /* Persistence.swift */,
 				7DAEBE8C2A838FCF009379ED /* UserDefaults.swift */,
 				7D385A522A8A2611009AD290 /* Extensions */,
-				7D385A442A8A1BDE009AD290 /* PropertyWrappers */,
 				7DB174862A84D5DE004DEF8E /* Helper */,
 			);
 			path = Shared;
@@ -264,14 +263,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		7D385A442A8A1BDE009AD290 /* PropertyWrappers */ = {
-			isa = PBXGroup;
-			children = (
-				7D385A452A8A1BF8009AD290 /* UbiquitousStore.swift */,
-			);
-			path = PropertyWrappers;
-			sourceTree = "<group>";
-		};
 		7D385A522A8A2611009AD290 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				7DB174872A84D5F2004DEF8E /* PointsCountManager.swift */,
+				7DF36A632A8CD086001C77DC /* UpdateStreaksCount.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -440,11 +432,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF36A652A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */,
 				0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */,
 				0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */,
 				7DAEBE8E2A838FCF009379ED /* UserDefaults.swift in Sources */,
 				7D385A552A8A2611009AD290 /* Date.swift in Sources */,
-				7D385A472A8A219A009AD290 /* UbiquitousStore.swift in Sources */,
 				7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
@@ -459,8 +451,8 @@
 				7D385A542A8A2611009AD290 /* Date.swift in Sources */,
 				05BA05142A7A4002007DA27D /* StatModel.swift in Sources */,
 				7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
-				7D385A462A8A1BF8009AD290 /* UbiquitousStore.swift in Sources */,
 				05BFFDA52A80F9B100D657B9 /* GameCenterView.swift in Sources */,
+				7DF36A642A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */,
 				7DAEBE8D2A838FCF009379ED /* UserDefaults.swift in Sources */,
 				7DAEBE852A837D56009379ED /* Dialoque_Widget.intentdefinition in Sources */,
 				05C18FC52A73AFA3002FF46C /* Persistence.swift in Sources */,
@@ -481,8 +473,8 @@
 				7D385A562A8A2611009AD290 /* Date.swift in Sources */,
 				7DAEBE842A837D56009379ED /* Dialoque_Widget.intentdefinition in Sources */,
 				7DAEBE7F2A837D55009379ED /* Dialoque_Widget.swift in Sources */,
-				7D385A482A8A21B4009AD290 /* UbiquitousStore.swift in Sources */,
 				7DAEBE7B2A837D55009379ED /* Dialoque_WidgetBundle.swift in Sources */,
+				7DF36A5F2A8CB7E8001C77DC /* Dialoque.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

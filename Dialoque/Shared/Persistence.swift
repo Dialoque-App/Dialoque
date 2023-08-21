@@ -53,15 +53,4 @@ struct PersistenceController {
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
-    
-    func createPoint(timestamp: Date) {
-        let newPoint = Point(context: container.viewContext)
-        newPoint.timestamp = timestamp
-        
-        do {
-            try container.viewContext.save()
-        } catch {
-            fatalError("Failed to save new point: \(error)")
-        }
-    }
 }

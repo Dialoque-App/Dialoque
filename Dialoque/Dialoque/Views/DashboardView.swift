@@ -13,9 +13,6 @@ import SwiftSpeech
 import WidgetKit
 
 struct DashboardView: View {
-    let publisher = NotificationCenter.default.publisher(for: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
-        .receive(on: RunLoop.main)
-    @State private var receiveNotification = false
     
     @State var yourLocaleString = "en_US"
     @State private var engine: CHHapticEngine?
@@ -31,56 +28,39 @@ struct DashboardView: View {
     @State private var isSessionOver = true
     
     @StateObject private var pointsCountManager: PointsCountManager
+    @State private var pointsInSession = 0
     
-    let formatter = DateFormatter()
+    @State private var isStreakYetToday = false
+    
     init() {
         let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
         _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
-        
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
     @AppStorage("streak", store: UserDefaults.group) var streak = 0
+    
     @AppStorage("points", store: UserDefaults.group) var points = 0
-    
-    @AppStorage("streakStart", store: UserDefaults.group) var streakStart = Date().startOfDay.timeIntervalSince1970
-    @AppStorage("streakDeadline", store: UserDefaults.group) var streakDeadline = Date().endOfDay.timeIntervalSince1970
-    
-    
+
+
     var body: some View {
         NavigationView {
             VStack{
                 VStack {
-                    Text("AppStorage")
-                    Text(
-                        formatter.string(
-                            from: Date(timeIntervalSince1970: streakStart)
-                        )
-                    )
-                    
-                    Text(formatter.string(from: Date(timeIntervalSince1970: streakDeadline)))
-                    
-                    Spacer().frame(height: 15)
-                    
-                    Text("iCloud")
-                    Text(formatter.string(from: Date(timeIntervalSince1970: NSUbiquitousKeyValueStore.ubiquitousStreakStart)))
-                    
-                    Text(formatter.string(from: Date(timeIntervalSince1970: NSUbiquitousKeyValueStore.ubiquitousStreakDeadline)))
+                    Text("Total Points")
+                    Text("\(pointsCountManager.pointsCount)")
+                        .font(.largeTitle)
+                }
+                
+                VStack {
+                    Text("Streak: \(streak)")
+                    Text("Point: \(points)")
                 }
                 .padding()
                 
-                VStack{
-                    Button("Update Streak") {
-                        synchronizeStreak()
-                        if updateStreakToday() { // resync if streak is updated
-                        }
-                    }
-                    .padding()
-                    Button("Sync Streak") {
-                        synchronizeStreak()
-                    }
-                    .padding()
+                Button("Reset Points") {
+                    pointsCountManager.resetPoint()
                 }
+                
                 Button("Set Widget") {
                     points = pointsCountManager.pointsCount
                     UserDefaults.group?.synchronize()
@@ -91,6 +71,8 @@ struct DashboardView: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 .padding()
+                
+                Text("isStreakYetToday: \(isStreakYetToday ? "true" : "false")")
                 
                 Button(
                     action: {
@@ -118,28 +100,23 @@ struct DashboardView: View {
                         }
                         .onStopRecording { session in
                             isRecording = false
-                            createPoint(timestamp: .now)
                         }
                         .foregroundColor(isRecording ? .red : .blue)
-                }
-                
-                Text("\(pointsCountManager.pointsCount)")
-                    .font(.largeTitle)
-                
-                HStack{
-                    Text("Score:")
-                    Text("\(pointsCountManager.pointsCount)")
-                    Button(
-                        action: {
-                            createPoint(timestamp: .now)
+                    
+                    HStack{
+                        Text("Score in session: \(pointsInSession)")
+                        Button(
+                            action: {
+                                pointsInSession += 1
+                                pointsCountManager.createPoint(timestamp: .now)
+                            }
+                        ){
+                            Text("+").bold()
                         }
-                    ){
-                        Text("+").bold()
                     }
                 }
                 
                 
-                Text("isPressed: \(isRecording.description)")
                 
                 Button(action: { isPresented = true }) {
                     Text("Leaderboard")
@@ -153,96 +130,25 @@ struct DashboardView: View {
             }
             .onChange(of: isSessionOver) { sessionOver in
                 if sessionOver {
+                    points += pointsInSession
                     gameKitController.reportScore(totalScore: pointsCountManager.pointsCount)
-                }
-            }
-            .onChange(of: receiveNotification) { receive in
-                if receive {
-                    synchronizeStreak()
+                    if !isStreakYetToday {
+                        streak += 1
+                        isStreakYetToday = true
+                    }
+                    pointsInSession = 0
                 }
             }
             .onAppear {
+                points = pointsCountManager.pointsCount
+                streak = updateStreaksCount(context: viewContext)
                 SwiftSpeech.requestSpeechRecognitionAuthorization()
+                isStreakYetToday = pointsCountManager.isPointScoredToday()
             }
         }
-        .onReceive(publisher, perform: { publisher in
-            if publisher.name == NSUbiquitousKeyValueStore.didChangeExternallyNotification {
-                receiveNotification = true
-            }
-        })
+        
     }
     
-    func createPoint(timestamp: Date) {
-        PersistenceController.shared.createPoint(timestamp: timestamp)
-    }
-    
-    func updateStreakToday() -> Bool {
-        let today = Date().startOfDay.timeIntervalSince1970
-        let tomorrowEnd = today + 86400 + 86399
-        
-        // Return early if streakDeadline is already set to tomorrow.
-        if streakDeadline == tomorrowEnd {
-            return false
-        }
-        
-        if streakStart <= today && today <= streakDeadline {
-            streakDeadline = tomorrowEnd
-        } else {
-            // If today is not within the current streak period, set new streak start and deadline.
-            streakStart = today
-            streakDeadline = tomorrowEnd
-        }
-        return true
-    }
-    
-    func synchronizeStreak() {
-        NSUbiquitousKeyValueStore.default.synchronize()
-        
-        let icloudStart = NSUbiquitousKeyValueStore.ubiquitousStreakStart
-        let icloudDeadline = NSUbiquitousKeyValueStore.ubiquitousStreakDeadline
-        
-        // Ensure valid start and deadline order
-        if streakStart > streakDeadline {
-            // Correct invalid local data
-            streakStart = Date().startOfDay.timeIntervalSince1970
-            streakDeadline = Date().endOfDay.timeIntervalSince1970
-        }
-        
-        if icloudStart > icloudDeadline {
-            // Correct invalid iCloud data
-            NSUbiquitousKeyValueStore.ubiquitousStreakStart =  Date().startOfDay.timeIntervalSince1970
-            NSUbiquitousKeyValueStore.ubiquitousStreakDeadline =  Date().endOfDay.timeIntervalSince1970
-        }
-        
-        // Handle conflicts or simultaneous updates
-        if streakStart == icloudStart {
-            let maxDeadline = max(streakDeadline, icloudDeadline)
-            streakDeadline = maxDeadline
-            NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = maxDeadline
-        } else if
-            (streakDeadline >= icloudStart && streakStart <= icloudDeadline) ||
-                (icloudDeadline >= streakStart && icloudStart <= streakDeadline) {
-            //handle streak continuity
-            assignNewStreak(min(streakStart, icloudStart), max(streakDeadline, icloudDeadline))
-        } else {
-            // When no continuous streak on both
-            // Assign which values are more recent atomically
-            if streakDeadline < icloudDeadline {
-                streakStart = icloudStart
-                streakDeadline = icloudDeadline
-            } else {
-                NSUbiquitousKeyValueStore.ubiquitousStreakStart = streakStart
-                NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = streakDeadline
-            }
-        }
-    }
-    
-    func assignNewStreak(_ start: Double, _ deadline: Double) {
-        streakStart = start
-        NSUbiquitousKeyValueStore.ubiquitousStreakStart = start
-        streakDeadline = deadline
-        NSUbiquitousKeyValueStore.ubiquitousStreakDeadline = deadline
-    }
 }
 
 

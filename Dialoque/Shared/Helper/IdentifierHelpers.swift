@@ -21,8 +21,11 @@ struct AchievementID{
     
     // Answers ... words correctly in a row
     static let correct10 = "com.nielio.Dialoque.achievement.correct10"
-    static let correct50 = "com.nielio.Dialoque.achievement.correct50"
-    static let correct100 = "com.nielio.Dialoque.achievement.correct100"
+    
+    // Collect ... coins in total
+    static let point25 = "com.nielio.Dialoque.achievement.point25"
+    static let point50 = "com.nielio.Dialoque.achievement.point50"
+    static let point100 = "com.nielio.Dialoque.achievement.point100"
     
     // Active for ... days
     static let dayStreak3 = "com.nielio.Dialoque.achievement.dayStreak3"

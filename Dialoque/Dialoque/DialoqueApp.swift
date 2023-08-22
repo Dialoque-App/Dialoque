@@ -18,7 +18,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
 }
 
-
 @main
 struct DialoqueApp: App {
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate

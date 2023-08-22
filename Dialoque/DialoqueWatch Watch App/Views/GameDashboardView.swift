@@ -1,0 +1,104 @@
+//
+//  GameDashboardView.swift
+//  Dialoque
+//
+//  Created by Daniel Aprillio on 21/08/23.
+//
+
+import SwiftUI
+
+struct GameDashboardView: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @State var sessionStatus: GameStatus = .idle
+    
+    @State private var playerHealth = 3
+    
+    @State private var speechPrompt = "HAPPY"
+    
+    @State private var recognisedSpeech = ""
+    
+    @State private var isRecording = false
+    
+    @State var isSessionStarted = false
+    @State private var isSessionOngoing = false
+    
+    // Provides Binding for pulse animations
+    @State private var isStartButtonPulsing = false
+    @State private var isSpeechButtonPulsing = false
+    
+    @AppStorage("streak", store: UserDefaults.group) var streak = 22
+    @AppStorage("points", store: UserDefaults.group) var points = 100
+    
+    var body: some View {
+        NavigationStack {
+            GeometryReader { geometry in
+                ZStack(alignment: .topLeading){
+                    PlayerPointsPanel(streak: $streak, points: $points)
+                        .padding(.top, geometry.size.height*0.04)
+                        .padding(.leading, geometry.size.height*0.06)
+                    
+                    ZStack(alignment: .top) {
+                        Image("flying_land")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: geometry.size.height*1)
+                            .padding(.top, geometry.size.height * 0.8)
+                            .clipped()
+                        Image("character_no_hand")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height:  geometry.size.height * 0.95)
+                            .padding(.top, geometry.size.height * 0.24)
+                            .clipped()
+                        
+                            SessionButton (
+                                title: "START PRACTICE",
+                                foregroundColor: .white,
+                                backgroundColor: .accentColor,
+                                strokeColor: .darkGreen,
+                                horizontalPadding: 14,
+                                verticalPadding: 8
+                            )
+                            .padding(.horizontal, geometry.size.width*0.08)
+                            .overlay{
+                                HStack{
+                                    Image("tangan_depan")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height:  geometry.size.height * 0.26)
+                                        .clipped()
+                                    Spacer()
+                                    Image("tangan_depan")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height:  geometry.size.height * 0.26)
+                                        .clipped()
+                                        .rotationEffect(.degrees(180))
+                                }
+                            }
+                            .onTapGesture {
+                                isSessionStarted = !isSessionStarted
+                            }
+                            .navigationDestination(isPresented: $isSessionStarted){
+                                InGameView()
+                            }
+                            .padding(.top, geometry.size.height * 0.7)
+                        
+                    }
+                }
+                .ignoresSafeArea()
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+        }
+        .preferredColorScheme(.dark)
+    }
+}
+
+struct GameDashboardView_Previews: PreviewProvider {
+    static var previews: some View {
+        GameDashboardView()
+    }
+}

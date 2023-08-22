@@ -12,11 +12,17 @@
 		0514B4D32A8CB6B3008A5997 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514B4D22A8CB6B3008A5997 /* LottieView.swift */; };
 		0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586727A2A7CE9AD00C5B61C /* DialoqueWatchApp.swift */; };
 		0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586727C2A7CE9AD00C5B61C /* DashboardView.swift */; };
-		0586727F2A7CE9AE00C5B61C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0586727E2A7CE9AE00C5B61C /* Assets.xcassets */; };
 		058672822A7CE9AE00C5B61C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058672812A7CE9AE00C5B61C /* Preview Assets.xcassets */; };
 		0586729B2A7CE9AE00C5B61C /* DialoqueWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 058672782A7CE9AD00C5B61C /* DialoqueWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		05A3681C2A9349B400E883F5 /* IdentifierHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3681B2A9349B400E883F5 /* IdentifierHelpers.swift */; };
 		05A3681D2A9349B400E883F5 /* IdentifierHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3681B2A9349B400E883F5 /* IdentifierHelpers.swift */; };
+		05A368212A935EAE00E883F5 /* GameDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3681F2A935EAE00E883F5 /* GameDashboardView.swift */; };
+		05A368242A936DAE00E883F5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9722A8B6AC40091C1AA /* Color.swift */; };
+		05A368272A9371AA00E883F5 /* PlayerPointsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A368262A9371AA00E883F5 /* PlayerPointsPanel.swift */; };
+		05A368282A9371F200E883F5 /* RoundedCornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC96A2A8B647C0091C1AA /* RoundedCornersShape.swift */; };
+		05A3682D2A9496E400E883F5 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3682C2A9496E400E883F5 /* PlayerScoreView.swift */; };
+		05A368312A9499F100E883F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A368302A9499F100E883F5 /* Assets.xcassets */; };
+		05A368332A94A74E00E883F5 /* SessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A368322A94A74E00E883F5 /* SessionButton.swift */; };
 		05BA050F2A7A3EB7007DA27D /* GameKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA050E2A7A3EB7007DA27D /* GameKitController.swift */; };
 		05BA05122A7A3F04007DA27D /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA05112A7A3F04007DA27D /* PlayerModel.swift */; };
 		05BFFDA52A80F9B100D657B9 /* GameCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFFDA42A80F9B100D657B9 /* GameCenterView.swift */; };
@@ -30,6 +36,7 @@
 		05EAC9742A8B6AC40091C1AA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9722A8B6AC40091C1AA /* Color.swift */; };
 		05EAC9782A8B72950091C1AA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9772A8B72950091C1AA /* TestView.swift */; };
 		05EAC97A2A8B8A7F0091C1AA /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */; };
+		05FF53792A94ACDD009B519A /* InGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF53782A94ACDD009B519A /* InGameView.swift */; };
 		7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
@@ -40,9 +47,7 @@
 		7D4C32FE2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C32FD2A953A0A004FB958 /* PulsingBackgroundShape.swift */; };
 		7D4C32FF2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C32FD2A953A0A004FB958 /* PulsingBackgroundShape.swift */; };
 		7D4C33012A953B0B004FB958 /* SessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C33002A953B0B004FB958 /* SessionButton.swift */; };
-		7D4C33022A953B0B004FB958 /* SessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C33002A953B0B004FB958 /* SessionButton.swift */; };
 		7D4C33042A953B4D004FB958 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C33032A953B4D004FB958 /* PlayerScoreView.swift */; };
-		7D4C33052A953B4D004FB958 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C33032A953B4D004FB958 /* PlayerScoreView.swift */; };
 		7D57A92B2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57A92A2A916A1500C06687 /* FadeSlidingTransition.swift */; };
 		7D57A92C2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57A92A2A916A1500C06687 /* FadeSlidingTransition.swift */; };
 		7D57A9302A916EC000C06687 /* SlideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57A92F2A916EC000C06687 /* SlideDirection.swift */; };
@@ -114,9 +119,13 @@
 		058672782A7CE9AD00C5B61C /* DialoqueWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DialoqueWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0586727A2A7CE9AD00C5B61C /* DialoqueWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueWatchApp.swift; sourceTree = "<group>"; };
 		0586727C2A7CE9AD00C5B61C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		0586727E2A7CE9AE00C5B61C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058672812A7CE9AE00C5B61C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		05A3681B2A9349B400E883F5 /* IdentifierHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierHelpers.swift; sourceTree = "<group>"; };
+		05A3681F2A935EAE00E883F5 /* GameDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDashboardView.swift; sourceTree = "<group>"; };
+		05A368262A9371AA00E883F5 /* PlayerPointsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPointsPanel.swift; sourceTree = "<group>"; };
+		05A3682C2A9496E400E883F5 /* PlayerScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreView.swift; sourceTree = "<group>"; };
+		05A368302A9499F100E883F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05A368322A94A74E00E883F5 /* SessionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionButton.swift; sourceTree = "<group>"; };
 		05BA050E2A7A3EB7007DA27D /* GameKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitController.swift; sourceTree = "<group>"; };
 		05BA05112A7A3F04007DA27D /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		05BFFD8C2A80D9A000D657B9 /* DialoqueWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DialoqueWatch Watch App.entitlements"; sourceTree = "<group>"; };
@@ -135,6 +144,7 @@
 		05EAC9722A8B6AC40091C1AA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		05EAC9772A8B72950091C1AA /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
+		05FF53782A94ACDD009B519A /* InGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameView.swift; sourceTree = "<group>"; };
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
 		7D385A572A8A279C009AD290 /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		7D3EAF102A914F24000185F3 /* GameStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
@@ -211,9 +221,9 @@
 			children = (
 				05BFFD982A80E1AD00D657B9 /* DialoqueWatch-Watch-App-Info.plist */,
 				05BFFD8C2A80D9A000D657B9 /* DialoqueWatch Watch App.entitlements */,
+				05A3681E2A935AFB00E883F5 /* Views */,
 				0586727A2A7CE9AD00C5B61C /* DialoqueWatchApp.swift */,
-				0586727C2A7CE9AD00C5B61C /* DashboardView.swift */,
-				0586727E2A7CE9AE00C5B61C /* Assets.xcassets */,
+				05A368302A9499F100E883F5 /* Assets.xcassets */,
 				058672802A7CE9AE00C5B61C /* Preview Content */,
 			);
 			path = "DialoqueWatch Watch App";
@@ -237,6 +247,27 @@
 				05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		05A3681E2A935AFB00E883F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				05A368252A93719200E883F5 /* Components */,
+				0586727C2A7CE9AD00C5B61C /* DashboardView.swift */,
+				05A3681F2A935EAE00E883F5 /* GameDashboardView.swift */,
+				05FF53782A94ACDD009B519A /* InGameView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		05A368252A93719200E883F5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				05A368262A9371AA00E883F5 /* PlayerPointsPanel.swift */,
+				05A3682C2A9496E400E883F5 /* PlayerScoreView.swift */,
+				05A368322A94A74E00E883F5 /* SessionButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		05BA050D2A7A3CCB007DA27D /* Controllers */ = {
@@ -484,8 +515,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A368312A9499F100E883F5 /* Assets.xcassets in Resources */,
 				058672822A7CE9AE00C5B61C /* Preview Assets.xcassets in Resources */,
-				0586727F2A7CE9AE00C5B61C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,21 +545,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A3682D2A9496E400E883F5 /* PlayerScoreView.swift in Sources */,
 				7DF36A652A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */,
 				7D3EAF122A914F27000185F3 /* GameStatus.swift in Sources */,
 				0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */,
 				0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */,
 				7D7401502A912BFF0064EB30 /* Date.swift in Sources */,
 				7DAEBE8E2A838FCF009379ED /* UserDefaults.swift in Sources */,
+				05FF53792A94ACDD009B519A /* InGameView.swift in Sources */,
 				7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
+				05A368332A94A74E00E883F5 /* SessionButton.swift in Sources */,
 				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				7D57A92C2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */,
-				7D4C33052A953B4D004FB958 /* PlayerScoreView.swift in Sources */,
 				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
-				7D4C33022A953B0B004FB958 /* SessionButton.swift in Sources */,
 				7D4C32FF2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */,
 				05A3681D2A9349B400E883F5 /* IdentifierHelpers.swift in Sources */,
 				7D57A9312A916EC000C06687 /* SlideDirection.swift in Sources */,
+				05A368212A935EAE00E883F5 /* GameDashboardView.swift in Sources */,
+				05A368272A9371AA00E883F5 /* PlayerPointsPanel.swift in Sources */,
+				05A368242A936DAE00E883F5 /* Color.swift in Sources */,
+				05A368282A9371F200E883F5 /* RoundedCornersShape.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

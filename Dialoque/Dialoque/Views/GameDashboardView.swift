@@ -97,6 +97,7 @@ struct GameDashboardView: View {
                                                 .foregroundColor(Color.red)
                                                 .font(.system(size: 32))
                                                 .clipped()
+                                                .transition(.slideAndFade(direction: .bottom))
                                         }
                                         ForEach(0 ..< 3 - playerHealth, id:\.self){ _ in
                                             Image(systemName: "heart.fill")
@@ -105,6 +106,7 @@ struct GameDashboardView: View {
                                                 .clipped()
                                         }
                                     }
+                                    .animation(.easeInOut(duration: 0.5), value: sessionStatus)
                                     .transition(.slideAndFade(direction: .top))
                                 }
                             }
@@ -211,12 +213,13 @@ struct GameDashboardView: View {
                                             .padding(2)
                                             .background(.white)
                                             .cornerRadius(240)
+                                            .clipped()
                                             .id("Prompt" + speechPrompt)
                                             .transition(.slideAndFade(direction: .leading))
-                                            .clipped()
                                         
                                         Spacer()
                                     }
+                                    .animation(.easeInOut(duration: 0.7), value: speechPrompt)
                                     .transition(.slideAndFade(direction: .leading))
                                     .padding(.horizontal, 60)
                                     .padding(.top, 220)
@@ -321,7 +324,7 @@ struct GameDashboardView: View {
         if recognisedSpeech.uppercased().contains(speechPrompt.uppercased()) {
             // Correct Pronunciation
             pointsInSession += 1
-//            pointsCountManager.createPoint(timestamp: .now)
+            pointsCountManager.createPoint(timestamp: .now)
             if playerHealth < 3 {
                 playerHealth += 1
             }

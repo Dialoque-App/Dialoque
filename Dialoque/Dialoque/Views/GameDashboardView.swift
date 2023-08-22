@@ -16,6 +16,8 @@ struct GameDashboardView: View {
     @State var isPressed = false
     @State var isGameCenterPresented = false
     
+    @State private var isStartButtonPulsing = false
+    
     var body: some View {
         
         NavigationStack {
@@ -162,6 +164,20 @@ struct GameDashboardView: View {
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 25)
                                             .stroke(Color.darkGreen, lineWidth: 8)
+                                    )
+                                    .background(
+                                        Capsule()
+                                            .foregroundColor(.accentColor)
+                                            .scaleEffect(x: isStartButtonPulsing ? 1.3 : 1.0, y: isStartButtonPulsing ? 1.6 : 1.0)
+                                            .opacity(isStartButtonPulsing ? 0 : 1.0)
+                                            .onAppear() {
+                                                withAnimation(
+                                                    Animation.easeInOut(duration: 1.5)
+                                                        .repeatForever(autoreverses: false)
+                                                ) {
+                                                    isStartButtonPulsing.toggle()
+                                                }
+                                            }
                                     )
                             }.navigationBarBackButtonHidden(true)
                             .padding(.bottom, geometry.size.height * 0.15)

@@ -16,6 +16,8 @@ struct PlayerPointsPanel: View {
     @State var slidingXOffset = false
     @State var sliding = false
     
+    let onEndSession: () -> Void
+    
     var body: some View {
         HStack(alignment: .bottom) {
             switch sessionStatus {
@@ -53,7 +55,7 @@ struct PlayerPointsPanel: View {
                 .font(.system(size: 16))
                 .transition(.slideAndFade())
                 .onTapGesture {
-                    endSession()
+                    onEndSession()
                 }
             }
             Spacer()
@@ -79,10 +81,6 @@ struct PlayerPointsPanel: View {
         )
         .animation(.easeOut(duration: 0.5), value: sessionStatus)
     }
-    
-    func endSession() {
-        sessionStatus = .idle
-    }
 }
 
 struct PlayerPointsPanel_Previews: PreviewProvider {
@@ -90,7 +88,10 @@ struct PlayerPointsPanel_Previews: PreviewProvider {
         PlayerPointsPanel(
             sessionStatus: .constant(.idle),
             streak: .constant(27),
-            points: .constant(54)
+            points: .constant(54),
+            onEndSession: {
+                print("over")
+            }
         )
     }
 }

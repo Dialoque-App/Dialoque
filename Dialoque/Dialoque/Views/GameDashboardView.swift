@@ -22,9 +22,10 @@ struct GameDashboardView: View {
     
     @State private var playerHealth = 3
     
-    @State private var speechPrompt = "happy"
+    @State private var speechPrompt = "prompt"
     
     @State private var isSessionOngoing = false
+    @State private var navigateToResult = false
     
     // Provides Binding for pulse animations
     @State private var isStartButtonPulsing = false
@@ -54,7 +55,10 @@ struct GameDashboardView: View {
                 PlayerPointsPanel(
                     sessionStatus: $sessionStatus,
                     streak: $streak,
-                    points: $points
+                    points: $points,
+                    onEndSession: {
+                        endSession()
+                    }
                 )
                 
                 GeometryReader { geometry in
@@ -287,10 +291,11 @@ struct GameDashboardView: View {
             }
             .ignoresSafeArea()
             .background(Color(UIColor.systemGray6))
-//            .onAppear {
-//                streak = updateStreaksCount(context: viewContext)
-//                points = pointsCountManager.pointsCount
-//            }
+            .onAppear {
+                streak = updateStreaksCount(context: viewContext)
+                points = pointsCountManager.pointsCount
+                isStreakYetToday = pointsCountManager.isPointScoredToday()
+            }
             .onChange(of: pointsCountManager.pointsCount) { newPoint in
                 if sessionStatus == .idle {
                     // if the point count change whilst the game is not running
@@ -303,6 +308,22 @@ struct GameDashboardView: View {
                     endSession()
                 }
             }
+            .navigationDestination(isPresented: $navigateToResult) {
+                let streakAdded = !isStreakYetToday && pointsInSession > 0 ? 1 : 0
+                GameResultView(
+                    pointCount: pointsInSession,
+                    streakCount: streakAdded
+                )
+                .navigationBarBackButtonHidden()
+                .onDisappear {
+                    sessionStatus = .idle
+                    isStartButtonPulsing = false
+                    isSpeechButtonPulsing = false
+                    points += pointsInSession
+                    streak += streakAdded
+                    pointsInSession = 0
+                }
+            }
         }
         .preferredColorScheme(.dark)
     }
@@ -312,12 +333,14 @@ struct GameDashboardView: View {
         playerHealth = 3
         isStartButtonPulsing = false
         isSpeechButtonPulsing = false
+        navigateToResult = false
+        isStreakYetToday = pointsCountManager.isPointScoredToday()
     }
     
     func endSession() {
-        sessionStatus = .idle
-        isStartButtonPulsing = false
-        isSpeechButtonPulsing = false
+        if pointsInSession > 0 {
+            navigateToResult = true
+        }
     }
     
     func checkPronunciation(_ recognisedSpeech: String) {
@@ -337,12 +360,5 @@ struct GameDashboardView: View {
     
     func generateRandomPrompt() {
         speechPrompt = promptArray.randomElement()?.uppercased() ?? "PROMPT"
-    }
-}
-
-
-struct GameDashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameDashboardView()
     }
 }

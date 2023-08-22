@@ -17,7 +17,7 @@ struct PlayerScoreView: View {
             .lineLimit(1)
             .truncationMode(.tail)
             .bold()
-            .padding(.leading, 8)
+            .padding(.leading, 6)
             .padding(.trailing, 18)
             .frame(minWidth: 42, alignment: .center)
             .padding(.vertical, 2)

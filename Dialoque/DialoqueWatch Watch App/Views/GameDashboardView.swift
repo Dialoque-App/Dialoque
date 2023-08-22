@@ -11,16 +11,6 @@ struct GameDashboardView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State var sessionStatus: GameStatus = .idle
-    
-    @State private var playerHealth = 3
-    
-    @State private var speechPrompt = "HAPPY"
-    
-    @State private var recognisedSpeech = ""
-    
-    @State private var isRecording = false
-    
     @State var isSessionStarted = false
     @State private var isSessionOngoing = false
     
@@ -28,16 +18,17 @@ struct GameDashboardView: View {
     @State private var isStartButtonPulsing = false
     @State private var isSpeechButtonPulsing = false
     
-    @AppStorage("streak", store: UserDefaults.group) var streak = 22
-    @AppStorage("points", store: UserDefaults.group) var points = 100
+    @AppStorage("streak", store: UserDefaults.group) var streak = 0
+    @AppStorage("points", store: UserDefaults.group) var points = 0
     
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
                 ZStack(alignment: .topLeading){
+                    Color(red: 28/255, green: 28/255, blue: 30/255)
                     PlayerPointsPanel(streak: $streak, points: $points)
                         .padding(.top, geometry.size.height*0.04)
-                        .padding(.leading, geometry.size.height*0.06)
+                        .padding(.leading, geometry.size.height*0.1)
                     
                     ZStack(alignment: .top) {
                         Image("flying_land")

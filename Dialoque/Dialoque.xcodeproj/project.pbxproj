@@ -37,6 +37,7 @@
 		05EAC9782A8B72950091C1AA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9772A8B72950091C1AA /* TestView.swift */; };
 		05EAC97A2A8B8A7F0091C1AA /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */; };
 		05FF53792A94ACDD009B519A /* InGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF53782A94ACDD009B519A /* InGameView.swift */; };
+		05FF537B2A94BC0C009B519A /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF537A2A94BC0C009B519A /* GameResultView.swift */; };
 		7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C18FC42A73AFA3002FF46C /* Persistence.swift */; };
@@ -145,6 +146,7 @@
 		05EAC9772A8B72950091C1AA /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 		05FF53782A94ACDD009B519A /* InGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameView.swift; sourceTree = "<group>"; };
+		05FF537A2A94BC0C009B519A /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
 		7D385A572A8A279C009AD290 /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		7D3EAF102A914F24000185F3 /* GameStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				0586727C2A7CE9AD00C5B61C /* DashboardView.swift */,
 				05A3681F2A935EAE00E883F5 /* GameDashboardView.swift */,
 				05FF53782A94ACDD009B519A /* InGameView.swift */,
+				05FF537A2A94BC0C009B519A /* GameResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
 				7D57A92C2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */,
 				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
+				05FF537B2A94BC0C009B519A /* GameResultView.swift in Sources */,
 				7D4C32FF2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */,
 				05A3681D2A9349B400E883F5 /* IdentifierHelpers.swift in Sources */,
 				7D57A9312A916EC000C06687 /* SlideDirection.swift in Sources */,

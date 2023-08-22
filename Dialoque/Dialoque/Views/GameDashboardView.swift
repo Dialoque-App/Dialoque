@@ -160,7 +160,11 @@ struct GameDashboardView: View {
                                     .foregroundColor(.white)
                                     .frame(width: geometry.size.width * 0.5)
                                     .padding()
-                                    .background(RoundedRectangle(cornerRadius: 25).fill(Color.lightGreen.shadow(.drop(color: .black, radius: 12))))
+                                    .background(
+                                        Color.accentColor
+                                    )
+                                    .cornerRadius(25)
+                                    .shadow(color: .black, radius: 12)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 25)
                                             .stroke(Color.darkGreen, lineWidth: 8)
@@ -168,8 +172,8 @@ struct GameDashboardView: View {
                                     .background(
                                         Capsule()
                                             .foregroundColor(.accentColor)
-                                            .scaleEffect(x: isStartButtonPulsing ? 1.3 : 1.0, y: isStartButtonPulsing ? 1.6 : 1.0)
-                                            .opacity(isStartButtonPulsing ? 0 : 1.0)
+                                            .scaleEffect(x: isStartButtonPulsing ? 1.2 : 1.0, y: isStartButtonPulsing ? 1.5 : 1.0)
+                                            .opacity(isStartButtonPulsing ? 0 : 1)
                                             .onAppear() {
                                                 withAnimation(
                                                     Animation.easeInOut(duration: 1.5)

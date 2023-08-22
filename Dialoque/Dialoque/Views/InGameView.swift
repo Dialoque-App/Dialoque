@@ -145,23 +145,16 @@ struct InGameView: View {
                                     .onStopRecording { session in
                                         isRecording = false
                                     }
-                                    .foregroundColor(isRecording ? .red : .accentColor)
-                                    .background(
-                                        Circle()
-                                            .foregroundColor(isRecording ? .red : .accentColor)
-                                            .scaleEffect(isSpeechButtonPulsing ? 1.5 : 1.0)
-                                            .opacity(isSpeechButtonPulsing ? 0 : 1.0)
-                                            .onAppear() {
-                                                withAnimation(
-                                                    Animation.easeInOut(duration: 1.5)
-                                                        .repeatForever(autoreverses: false)
-                                                ) {
-                                                    isSpeechButtonPulsing.toggle()
-                                                }
-                                            }
+                                    .pulsingBackgroundShape(
+                                        color: .accentColor,
+                                        shape: Circle(),
+                                        isPulsing: $isSpeechButtonPulsing,
+                                        maxXScale: 1.5,
+                                        maxYScale: 1.5
                                     )
+                                    .foregroundColor(isRecording ? .red : .accentColor)
                                     .frame(width: 72, height: 72)
-                                    .padding(.bottom, geometry.size.height*0.08)
+                                    .padding(.bottom, geometry.size.height * 0.08)
                             }
                             .padding(.horizontal, geometry.size.width*0.075)
                             

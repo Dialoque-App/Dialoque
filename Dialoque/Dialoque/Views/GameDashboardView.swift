@@ -19,178 +19,138 @@ struct GameDashboardView: View {
     @State private var isStartButtonPulsing = false
     
     var body: some View {
-        
         NavigationStack {
-            GeometryReader{ geometry in
+            GeometryReader { geometry in
                 VStack{
+                    HStack(alignment: .bottom) {
+                        Image("american_flag")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(12)
+                            .frame(height: 40)
+                            .clipped()
+                            .padding(.trailing, 8)
+                        Spacer()
+                        PlayerScoreView(score: "27")
+                            .padding(.trailing, 20)
+                            .padding(.top, 14)
+                            .padding(.bottom, 6)
+                            .overlay(
+                                Image("streak_icon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipped()
+                                ,alignment: .trailing
+                            )
+                            .padding(.leading, 10)
+                        Spacer()
+                        PlayerScoreView(score: "54")
+                            .padding(.trailing, 30)
+                            .padding(.top, 14)
+                            .padding(.bottom, 6)
+                            .overlay(
+                                Image("coin_icon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipped()
+                                ,alignment: .trailing
+                            )
+                    }
+                    .padding(.vertical, geometry.size.height * 0.03)
+                    .padding(.horizontal, geometry.size.width * 0.06)
+                    .frame(height: geometry.size.height * 0.17, alignment: .bottom)
+                    .background(Color.darkGray)
+                    .clipShape(
+                        RoundedCornersShape(corners: [.bottomLeft, .bottomRight], radius: 36)
+                    )
                     ZStack(alignment: .top){
-                        Color.black
-                        Group{
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .background(
-                                    Image("flying_land")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: geometry.size.height*0.40)
-                                        .clipped()
+                        VStack {
+                            HStack {
+                                Image("leaderboard_icon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipped()
+                                    .onTapGesture {
+                                        isGameCenterPresented = true
+                                    }
+                                    .fullScreenCover(isPresented: $isGameCenterPresented) {
+                                        GameCenterView().ignoresSafeArea()
+                                    }
+                                
+                                Spacer()
+                                
+                                Image("achievement_icon_white")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipped()
+                                    .onTapGesture {
+                                        isGameCenterPresented = true
+                                    }
+                                    .fullScreenCover(isPresented: $isGameCenterPresented) {
+                                        GameCenterView().ignoresSafeArea()
+                                    }
+                            }
+                            .frame(height: 65)
+                            .padding(.top, 25)
+                            .padding(.horizontal, 30)
+                            Spacer()
+                            NavigationLink(destination: InGameView()) {
+                                SessionButton (
+                                    title: "START PRACTICE",
+                                    foregroundColor: .white,
+                                    backgroundColor: .accentColor,
+                                    strokeColor: .darkGreen
                                 )
-                                .padding(.top, geometry.size.height*0.48)
+                                .pulsingBackgroundShape (
+                                    color: .accentColor,
+                                    shape: Capsule(),
+                                    isPulsing: $isStartButtonPulsing,
+                                    maxXScale: 1.2,
+                                    maxYScale: 1.5
+                                )
+                            }
+                            .navigationBarBackButtonHidden(true)
+                            .padding(.bottom, geometry.size.height * 0.15)
+                        }
+                        .zIndex(2)
+                        ZStack(alignment: .center) {
+                            Image("flying_land")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding(.top, geometry.size.height * 0.3)
+                            
                             Button{
                                 isPressed = !isPressed
                             } label: {
-                                if(isPressed){
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .background(
-                                            LottieView(lottieFile: "dialoque_character_mini_jump", loopMode: .loop)
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(height: geometry.size.height*1.8)
-                                                .clipped()
-                                                .padding(.bottom, geometry.size.height*0.1)
-                                        )
-                                        .onAppear {
-                                            withAnimation(.easeOut) {
-                                                // Additional animations or actions you want to perform
-                                            }
-                                        }
+                                if(isPressed) {
+                                    LottieView(lottieFile: "dialoque_character_mini_jump", loopMode: .loop)
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: geometry.size.height * 0.415)
+                                        .clipped()
+                                        .padding(.bottom, geometry.size.height * 0.12)
                                 } else {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .background(
-                                            Image("character_default")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(height: geometry.size.height*0.35)
-                                                .clipped()
-                                        )
-                                        .onAppear {
-                                            withAnimation(.easeOut) {
-                                                // Additional animations or actions you want to perform
-                                            }
-                                        }
-                                }
-                            }
-                            .padding(.top, geometry.size.height*0.05)
-                        }
-                        VStack{
-                            Group{
-                                ZStack{
-                                    RoundedCornersShape(corners: [.bottomLeft, .bottomRight], radius: 36)
-                                        .fill(Color.darkGray).frame(height: geometry.size.height*0.2)
-                                    HStack(alignment: .bottom ,spacing: geometry.size.width*0.045){
-                                        Image("american_flag")
-                                            .resizable()
-                                            .cornerRadius(12)
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: geometry.size.width*0.25, height: geometry.size.height*0.05)
-                                            .clipped()
-                                        ZStack(alignment: .bottomTrailing){
-                                            RoundedCornersShape(corners: [.allCorners], radius: 16)
-                                                .fill(Color.white)
-                                                .frame(width: geometry.size.width*0.3, height: geometry.size.height*0.05)
-                                            HStack(alignment: .center){
-                                                Text("24")
-                                                    .font(.system(size: 22))
-                                                    .bold()
-                                                    .padding(.top, 12)
-                                                Image("streak_icon")
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .padding(.bottom, geometry.size.height*0.01)
-                                                    .frame(height: geometry.size.height*0.065)
-                                                    .clipped()
-                                            }
-                                        }
-                                        ZStack(alignment: .bottomTrailing){
-                                            RoundedCornersShape(corners: [.allCorners], radius: 16)
-                                                .fill(Color.white)
-                                                .frame(width: geometry.size.width*0.3, height: geometry.size.height*0.05)
-                                            HStack(alignment: .center){
-                                                Text("952")
-                                                    .font(.system(size: 22))
-                                                    .bold()
-                                                    .padding(.top, 12)
-                                                Image("coin_icon")
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .padding(.bottom, geometry.size.height*0.01)
-                                                    .frame(height: geometry.size.height*0.065)
-                                                    .clipped()
-                                            }
-                                        }
-                                    }
-                                    .padding(.top, geometry.size.height*0.02)
-                                }
-                            }
-                            HStack{
-                                Spacer().frame(width: geometry.size.width*0.05)
-                                Button{
-                                    isGameCenterPresented = true
-                                } label: {
-                                    Image("leaderboard_icon")
+                                    Image("character_default")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(height: geometry.size.height*0.08)
+                                        .frame(height:  geometry.size.height * 0.3)
                                         .clipped()
-                                }.fullScreenCover(isPresented: $isGameCenterPresented) {
-                                    GameCenterView().ignoresSafeArea()
-                                }
-                                Spacer()
-                                Button{
-                                    isGameCenterPresented = true
-                                } label: {
-                                    Image("achievement_icon_white")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: geometry.size.height*0.08)
-                                        .clipped()
-                                }.fullScreenCover(isPresented: $isGameCenterPresented) {
-                                    GameCenterView().ignoresSafeArea()
                                 }
                             }
-                            .padding(.top)
-                            
-                            Spacer()
-                            
-                            NavigationLink(destination: InGameView()) {
-                                Text("START PRACTICE")
-                                    .font(.system(size: 20))
-                                    .bold()
-                                    .foregroundColor(.white)
-                                    .frame(width: geometry.size.width * 0.5)
-                                    .padding()
-                                    .background(
-                                        Color.accentColor
-                                    )
-                                    .cornerRadius(25)
-                                    .shadow(color: .black, radius: 12)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 25)
-                                            .stroke(Color.darkGreen, lineWidth: 8)
-                                    )
-                                    .background(
-                                        Capsule()
-                                            .foregroundColor(.accentColor)
-                                            .scaleEffect(x: isStartButtonPulsing ? 1.2 : 1.0, y: isStartButtonPulsing ? 1.5 : 1.0)
-                                            .opacity(isStartButtonPulsing ? 0 : 1)
-                                            .onAppear() {
-                                                withAnimation(
-                                                    Animation.easeInOut(duration: 1.5)
-                                                        .repeatForever(autoreverses: false)
-                                                ) {
-                                                    isStartButtonPulsing.toggle()
-                                                }
-                                            }
-                                    )
-                            }.navigationBarBackButtonHidden(true)
-                            .padding(.bottom, geometry.size.height * 0.15)
+                            .padding(.bottom, geometry.size.height * 0.08)
                         }
+                        .scaleEffect(1.1)
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: geometry.size.height * 0.7
+                        )
+                        .zIndex(1)
                     }
                 }
             }
             .ignoresSafeArea()
+            .background(Color(UIColor.systemGray6))
         }
+        .preferredColorScheme(.dark)
     }
 }
 

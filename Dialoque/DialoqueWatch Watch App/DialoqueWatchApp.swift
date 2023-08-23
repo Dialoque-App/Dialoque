@@ -16,6 +16,10 @@ struct DialoqueWatch_Watch_AppApp: App {
         WindowGroup {
             GameDashboardView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//                .onAppear{
+//                    let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//                    print(urls[urls.count - 1] as URL)
+//                }
         }
     }
 }

@@ -17,6 +17,7 @@
 		0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586727C2A7CE9AD00C5B61C /* DashboardView.swift */; };
 		058672822A7CE9AE00C5B61C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058672812A7CE9AE00C5B61C /* Preview Assets.xcassets */; };
 		0586729B2A7CE9AE00C5B61C /* DialoqueWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 058672782A7CE9AD00C5B61C /* DialoqueWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		05998CD02A95FE6200236335 /* PromptArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D422B282A9353A2007B1526 /* PromptArray.swift */; };
 		05A3681C2A9349B400E883F5 /* IdentifierHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3681B2A9349B400E883F5 /* IdentifierHelpers.swift */; };
 		05A3681D2A9349B400E883F5 /* IdentifierHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3681B2A9349B400E883F5 /* IdentifierHelpers.swift */; };
 		05A368212A935EAE00E883F5 /* GameDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3681F2A935EAE00E883F5 /* GameDashboardView.swift */; };
@@ -561,6 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05A3682D2A9496E400E883F5 /* PlayerScoreView.swift in Sources */,
+				05998CD02A95FE6200236335 /* PromptArray.swift in Sources */,
 				7DF36A652A8CD086001C77DC /* UpdateStreaksCount.swift in Sources */,
 				7D3EAF122A914F27000185F3 /* GameStatus.swift in Sources */,
 				0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */,

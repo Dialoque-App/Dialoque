@@ -9,13 +9,17 @@ import SwiftUI
 
 struct InGameFirstView: View {
     
+    @Binding var pointsInSession: Int
+    @Binding var navigateToResult: Bool
+    @Binding var isBackToDashboard: Bool
+    
     @State private var currentPage = 0
     
     @State var isSessionEnded = false
     
     @State private var playerHealth = 3
     
-    @State private var speechPrompt = "HAPPY"
+    @State private var speechPrompt: String
     @State private var recognizedText = ""
     
     @State private var isRecording = false
@@ -23,6 +27,19 @@ struct InGameFirstView: View {
     // Provides Binding for pulse animations
     @State private var isStartButtonPulsing = false
     @State private var isSpeechButtonPulsing = false
+    
+    @StateObject private var pointsCountManager: PointsCountManager
+    
+    init(pointsInSession: Binding<Int>, navigateToResult: Binding<Bool>, isBackToDashboard: Binding<Bool>) {
+        self._pointsInSession = pointsInSession
+        self._navigateToResult = navigateToResult
+        self._isBackToDashboard = isBackToDashboard
+        
+        let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
+        _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
+        
+        _speechPrompt = State(initialValue: InGameFirstView.generateRandomPrompt())
+    }
     
     @AppStorage("streak", store: UserDefaults.group) var streak = 0
     @AppStorage("points", store: UserDefaults.group) var points = 0
@@ -108,8 +125,24 @@ struct InGameFirstView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
         }
+        .onChange(of: recognizedText){ text in
+            checkPronunciation(text)
+        }
+        .onChange(of: playerHealth) { health in
+            if health <= 0 {
+                endSession()
+            }
+        }
         .preferredColorScheme(.dark)
         
+    }
+    
+    func endSession() {
+        if pointsInSession > 0 {
+            navigateToResult = true
+        } else {
+            isBackToDashboard = true
+        }
     }
     
     private func presentTextInputControllerForLanguage(language: String) {
@@ -128,14 +161,33 @@ struct InGameFirstView: View {
             if let input = results?.first as? String {
                 self.recognizedText = input
             } else {
-                self.recognizedText = "No input"
+                return
             }
         }
+    }
+    
+    func checkPronunciation(_ recognisedSpeech: String) {
+        if recognisedSpeech.uppercased().contains(speechPrompt) {
+            // Correct Pronunciation
+            pointsInSession += 1
+            pointsCountManager.createPoint(timestamp: .now)
+            if playerHealth < 3 {
+                playerHealth += 1
+            }
+        } else {
+            // Inorrect Pronunciation
+            playerHealth -= 1
+        }
+        speechPrompt = InGameFirstView.generateRandomPrompt()
+    }
+    
+    static func generateRandomPrompt() -> String {
+        return promptArray.randomElement()?.uppercased() ?? "PROMPT"
     }
 }
 
 struct InGameFirstView_Previews: PreviewProvider {
     static var previews: some View {
-        InGameFirstView()
+        InGameFirstView(pointsInSession: .constant(0), navigateToResult: .constant(false), isBackToDashboard: .constant(false))
     }
 }

@@ -9,7 +9,15 @@ import SwiftUI
 
 struct InGameSecondView: View {
     
-    @State private var isSessionEnded = false
+    @Binding var pointsInSession: Int
+    @Binding var navigateToResult: Bool
+    @Binding var isBackToDashboard: Bool
+    
+    init(pointsInSession: Binding<Int>, navigateToResult: Binding<Bool>, isBackToDashboard: Binding<Bool>) {
+        self._pointsInSession = pointsInSession
+        self._navigateToResult = navigateToResult
+        self._isBackToDashboard = isBackToDashboard
+    }
     
     var body: some View {
         NavigationStack {
@@ -37,10 +45,7 @@ struct InGameSecondView: View {
                         verticalPadding: 8
                     )
                     .onTapGesture {
-                        isSessionEnded = !isSessionEnded
-                    }
-                    .navigationDestination(isPresented: $isSessionEnded){
-                        GameResultView()
+                        isBackToDashboard = true
                     }
                     .padding(.top, geometry.size.height*0.4)
                     
@@ -58,6 +63,6 @@ struct InGameSecondView: View {
 
 struct InGameSecondView_Previews: PreviewProvider {
     static var previews: some View {
-        InGameSecondView()
+        InGameSecondView(pointsInSession: .constant(0), navigateToResult: .constant(false), isBackToDashboard: .constant(false))
     }
 }

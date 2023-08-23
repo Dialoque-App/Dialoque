@@ -12,14 +12,19 @@ struct GameDashboardView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State var isSessionStarted = false
-    @State private var isSessionOngoing = false
     
-    // Provides Binding for pulse animations
-    @State private var isStartButtonPulsing = false
-    @State private var isSpeechButtonPulsing = false
+    @StateObject private var pointsCountManager: PointsCountManager
+    @State private var pointsInSession = 0
+    
+    @State private var isStreakYetToday = false
     
     @AppStorage("streak", store: UserDefaults.group) var streak = 0
     @AppStorage("points", store: UserDefaults.group) var points = 0
+    
+    init() {
+        let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
+        _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
+    }
     
     var body: some View {
         NavigationStack {
@@ -44,38 +49,38 @@ struct GameDashboardView: View {
                             .padding(.top, geometry.size.height * 0.24)
                             .clipped()
                         
-                            SessionButton (
-                                title: "START PRACTICE",
-                                foregroundColor: .white,
-                                backgroundColor: .accentColor,
-                                strokeColor: .darkGreen,
-                                horizontalPadding: 14,
-                                verticalPadding: 8
-                            )
-                            .padding(.horizontal, geometry.size.width*0.08)
-                            .overlay{
-                                HStack{
-                                    Image("tangan_depan")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height:  geometry.size.height * 0.26)
-                                        .clipped()
-                                    Spacer()
-                                    Image("tangan_depan")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height:  geometry.size.height * 0.26)
-                                        .clipped()
-                                        .rotationEffect(.degrees(180))
-                                }
+                        SessionButton (
+                            title: "START PRACTICE",
+                            foregroundColor: .white,
+                            backgroundColor: .accentColor,
+                            strokeColor: .darkGreen,
+                            horizontalPadding: 14,
+                            verticalPadding: 8
+                        )
+                        .padding(.horizontal, geometry.size.width*0.08)
+                        .overlay{
+                            HStack{
+                                Image("tangan_depan")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height:  geometry.size.height * 0.26)
+                                    .clipped()
+                                Spacer()
+                                Image("tangan_depan")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height:  geometry.size.height * 0.26)
+                                    .clipped()
+                                    .rotationEffect(.degrees(180))
                             }
-                            .onTapGesture {
-                                isSessionStarted = !isSessionStarted
-                            }
-                            .navigationDestination(isPresented: $isSessionStarted){
-                                InGameView()
-                            }
-                            .padding(.top, geometry.size.height * 0.7)
+                        }
+                        .onTapGesture {
+                            isSessionStarted = true
+                        }
+                        .navigationDestination(isPresented: $isSessionStarted){
+                            InGameView(pointsInSession: $pointsInSession, isStreakYetToday: isStreakYetToday)
+                        }
+                        .padding(.top, geometry.size.height * 0.7)
                         
                     }
                 }
@@ -84,12 +89,24 @@ struct GameDashboardView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
         }
+        .onAppear {
+            streak = updateStreaksCount(context: viewContext)
+            points = pointsCountManager.pointsCount
+            isStreakYetToday = pointsCountManager.isPointScoredToday()
+        }
+        .onChange(of: pointsCountManager.pointsCount) { newPoint in
+            // if the point count change whilst the game is not running
+            if !isSessionStarted{
+                streak = updateStreaksCount(context: viewContext)
+                points = newPoint
+            }
+        }
         .preferredColorScheme(.dark)
     }
 }
 
-struct GameDashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameDashboardView()
-    }
-}
+//struct GameDashboardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameDashboardView()
+//    }
+//}

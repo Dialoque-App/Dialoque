@@ -11,8 +11,8 @@ struct GameResultView: View {
     
     @State private var isSessionEnded = false
     
-    @AppStorage("streak", store: UserDefaults.group) var streak = 0
-    @AppStorage("points", store: UserDefaults.group) var points = 0
+    @State var streak = 0
+    @State var points = 0
     
     var body: some View {
         NavigationStack {

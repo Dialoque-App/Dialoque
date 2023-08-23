@@ -315,3 +315,37 @@
 //    }
 //}
 //
+
+
+import SwiftUI
+
+struct SlammingImageView: View {
+    @State private var isZoomed = false
+
+    var body: some View {
+        VStack {
+            Image(systemName: "flame")
+                .resizable()
+                .foregroundColor(.red)
+                .aspectRatio(contentMode: isZoomed ? .fill : .fit)
+                .frame(width: isZoomed ? 300 : 200, height: isZoomed ? 300 : 200)
+                .scaleEffect(isZoomed ? 1.05 : 1.0)
+                .onTapGesture {
+                    withAnimation(.easeOut(duration: 0.6)) {
+                        isZoomed.toggle()
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        withAnimation(.easeIn(duration: 0.15)) {
+                            isZoomed = false
+                        }
+                    }
+                }
+        }
+    }
+}
+
+struct SlammingImageView_Previews: PreviewProvider {
+    static var previews: some View {
+        SlammingImageView()
+    }
+}

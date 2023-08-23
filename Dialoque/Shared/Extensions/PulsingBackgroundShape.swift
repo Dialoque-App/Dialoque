@@ -18,6 +18,7 @@ extension View {
     ) -> some View {
         return self.background(
             shape
+                .fill(color)
                 .scaleEffect(x: isPulsing.wrappedValue ? maxXScale : 1.0, y: isPulsing.wrappedValue ? maxYScale : 1.0)
                 .opacity(isPulsing.wrappedValue ? 0 : 1)
                 .onAppear {

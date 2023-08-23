@@ -9,11 +9,12 @@ import SwiftUI
 
 @main
 struct DialoqueWatch_Watch_AppApp: App {
+    
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
-            DashboardView()
+            GameDashboardView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

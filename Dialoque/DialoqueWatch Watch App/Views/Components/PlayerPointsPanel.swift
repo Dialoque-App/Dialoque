@@ -41,7 +41,6 @@ struct PlayerPointsPanel: View {
                 )
                 .transition(.slideAndFade())
         }
-        .animation(.easeOut(duration: 0.5))
     }
     
 }

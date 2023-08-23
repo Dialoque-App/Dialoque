@@ -10,6 +10,10 @@
 		0514B4CE2A8CB56B008A5997 /* dialoque_character_mini_jump.json in Resources */ = {isa = PBXBuildFile; fileRef = 0514B4CD2A8CB56B008A5997 /* dialoque_character_mini_jump.json */; };
 		0514B4D12A8CB5E7008A5997 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0514B4D02A8CB5E7008A5997 /* Lottie */; };
 		0514B4D32A8CB6B3008A5997 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514B4D22A8CB6B3008A5997 /* LottieView.swift */; };
+		0570865C2A95E9A1003E75BF /* PlayerScoreResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0570865B2A95E9A1003E75BF /* PlayerScoreResultView.swift */; };
+		0570865E2A95F188003E75BF /* PagerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0570865D2A95F188003E75BF /* PagerManager.swift */; };
+		057086622A95F425003E75BF /* InGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057086612A95F425003E75BF /* InGameView.swift */; };
+		057086642A95F45A003E75BF /* InGameSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057086632A95F45A003E75BF /* InGameSecondView.swift */; };
 		0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586727A2A7CE9AD00C5B61C /* DialoqueWatchApp.swift */; };
 		0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586727C2A7CE9AD00C5B61C /* DashboardView.swift */; };
 		058672822A7CE9AE00C5B61C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058672812A7CE9AE00C5B61C /* Preview Assets.xcassets */; };
@@ -36,7 +40,7 @@
 		05EAC9742A8B6AC40091C1AA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9722A8B6AC40091C1AA /* Color.swift */; };
 		05EAC9782A8B72950091C1AA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9772A8B72950091C1AA /* TestView.swift */; };
 		05EAC97A2A8B8A7F0091C1AA /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */; };
-		05FF53792A94ACDD009B519A /* InGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF53782A94ACDD009B519A /* InGameView.swift */; };
+		05FF53792A94ACDD009B519A /* InGameFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF53782A94ACDD009B519A /* InGameFirstView.swift */; };
 		05FF537B2A94BC0C009B519A /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF537A2A94BC0C009B519A /* GameResultView.swift */; };
 		7D0046CD2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
 		7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0046CB2A82360D002B71F0 /* Dialoque.xcdatamodeld */; };
@@ -117,6 +121,10 @@
 /* Begin PBXFileReference section */
 		0514B4CD2A8CB56B008A5997 /* dialoque_character_mini_jump.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dialoque_character_mini_jump.json; sourceTree = "<group>"; };
 		0514B4D22A8CB6B3008A5997 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		0570865B2A95E9A1003E75BF /* PlayerScoreResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreResultView.swift; sourceTree = "<group>"; };
+		0570865D2A95F188003E75BF /* PagerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerManager.swift; sourceTree = "<group>"; };
+		057086612A95F425003E75BF /* InGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameView.swift; sourceTree = "<group>"; };
+		057086632A95F45A003E75BF /* InGameSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameSecondView.swift; sourceTree = "<group>"; };
 		058672782A7CE9AD00C5B61C /* DialoqueWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DialoqueWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0586727A2A7CE9AD00C5B61C /* DialoqueWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoqueWatchApp.swift; sourceTree = "<group>"; };
 		0586727C2A7CE9AD00C5B61C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -145,7 +153,7 @@
 		05EAC9722A8B6AC40091C1AA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		05EAC9772A8B72950091C1AA /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		05EAC9792A8B8A7F0091C1AA /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
-		05FF53782A94ACDD009B519A /* InGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameView.swift; sourceTree = "<group>"; };
+		05FF53782A94ACDD009B519A /* InGameFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameFirstView.swift; sourceTree = "<group>"; };
 		05FF537A2A94BC0C009B519A /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 		7D0046CC2A82360D002B71F0 /* Dialoque.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dialoque.xcdatamodel; sourceTree = "<group>"; };
 		7D385A572A8A279C009AD290 /* Dialoque WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialoque WidgetExtension.entitlements"; sourceTree = "<group>"; };
@@ -257,7 +265,9 @@
 				05A368252A93719200E883F5 /* Components */,
 				0586727C2A7CE9AD00C5B61C /* DashboardView.swift */,
 				05A3681F2A935EAE00E883F5 /* GameDashboardView.swift */,
-				05FF53782A94ACDD009B519A /* InGameView.swift */,
+				057086612A95F425003E75BF /* InGameView.swift */,
+				05FF53782A94ACDD009B519A /* InGameFirstView.swift */,
+				057086632A95F45A003E75BF /* InGameSecondView.swift */,
 				05FF537A2A94BC0C009B519A /* GameResultView.swift */,
 			);
 			path = Views;
@@ -269,6 +279,8 @@
 				05A368262A9371AA00E883F5 /* PlayerPointsPanel.swift */,
 				05A3682C2A9496E400E883F5 /* PlayerScoreView.swift */,
 				05A368322A94A74E00E883F5 /* SessionButton.swift */,
+				0570865B2A95E9A1003E75BF /* PlayerScoreResultView.swift */,
+				0570865D2A95F188003E75BF /* PagerManager.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -553,14 +565,18 @@
 				7D3EAF122A914F27000185F3 /* GameStatus.swift in Sources */,
 				0586727D2A7CE9AD00C5B61C /* DashboardView.swift in Sources */,
 				0586727B2A7CE9AD00C5B61C /* DialoqueWatchApp.swift in Sources */,
+				0570865E2A95F188003E75BF /* PagerManager.swift in Sources */,
 				7D7401502A912BFF0064EB30 /* Date.swift in Sources */,
 				7DAEBE8E2A838FCF009379ED /* UserDefaults.swift in Sources */,
-				05FF53792A94ACDD009B519A /* InGameView.swift in Sources */,
+				05FF53792A94ACDD009B519A /* InGameFirstView.swift in Sources */,
 				7DB174892A84D5F2004DEF8E /* PointsCountManager.swift in Sources */,
 				05A368332A94A74E00E883F5 /* SessionButton.swift in Sources */,
 				7D0046CE2A82360D002B71F0 /* Dialoque.xcdatamodeld in Sources */,
+				0570865C2A95E9A1003E75BF /* PlayerScoreResultView.swift in Sources */,
 				7D57A92C2A916A1500C06687 /* FadeSlidingTransition.swift in Sources */,
 				7D0046D22A8238DB002B71F0 /* Persistence.swift in Sources */,
+				057086642A95F45A003E75BF /* InGameSecondView.swift in Sources */,
+				057086622A95F425003E75BF /* InGameView.swift in Sources */,
 				05FF537B2A94BC0C009B519A /* GameResultView.swift in Sources */,
 				7D4C32FF2A953A0A004FB958 /* PulsingBackgroundShape.swift in Sources */,
 				05A3681D2A9349B400E883F5 /* IdentifierHelpers.swift in Sources */,

@@ -8,5 +8,4 @@
 enum GameStatus {
     case idle
     case ongoing
-    case end
 }

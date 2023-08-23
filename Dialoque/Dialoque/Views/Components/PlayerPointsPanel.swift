@@ -16,10 +16,12 @@ struct PlayerPointsPanel: View {
     @State var slidingXOffset = false
     @State var sliding = false
     
+    let onEndSession: () -> Void
+    
     var body: some View {
         HStack(alignment: .bottom) {
             switch sessionStatus {
-            case .idle, .end:
+            case .idle:
                 Image("american_flag")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -28,7 +30,7 @@ struct PlayerPointsPanel: View {
                     .clipped()
                     .transition(.slideAndFade())
                 Spacer()
-                PlayerScoreView(score: String(streak))
+                PlayerScoreView(score: $streak)
                     .padding(.trailing, 20)
                     .padding(.top, 14)
                     .padding(.bottom, 6)
@@ -53,11 +55,11 @@ struct PlayerPointsPanel: View {
                 .font(.system(size: 16))
                 .transition(.slideAndFade())
                 .onTapGesture {
-                    endSession()
+                    onEndSession()
                 }
             }
             Spacer()
-            PlayerScoreView(score: String(points))
+            PlayerScoreView(score: $points)
                 .padding(.trailing, 30)
                 .padding(.top, 14)
                 .padding(.bottom, 6)
@@ -79,10 +81,6 @@ struct PlayerPointsPanel: View {
         )
         .animation(.easeOut(duration: 0.5), value: sessionStatus)
     }
-    
-    func endSession() {
-        sessionStatus = .end
-    }
 }
 
 struct PlayerPointsPanel_Previews: PreviewProvider {
@@ -90,7 +88,10 @@ struct PlayerPointsPanel_Previews: PreviewProvider {
         PlayerPointsPanel(
             sessionStatus: .constant(.idle),
             streak: .constant(27),
-            points: .constant(54)
+            points: .constant(54),
+            onEndSession: {
+                print("over")
+            }
         )
     }
 }

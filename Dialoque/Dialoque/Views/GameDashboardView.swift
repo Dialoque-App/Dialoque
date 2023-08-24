@@ -360,9 +360,11 @@ struct GameDashboardView: View {
             if playerHealth < 3 {
                 playerHealth += 1
             }
+            simpleHaptics(hapticType: "correct")
         } else {
             // Inorrect Pronunciation
             playerHealth -= 1
+            simpleHaptics(hapticType: "incorrect")
         }
         generateRandomPrompt()
     }
@@ -374,6 +376,15 @@ struct GameDashboardView: View {
     func updateStorageStreakYetToday(value: Bool) {
         UserDefaults.group?.set(value, forKey: "isTodayStreakYet")
         refreshWidget()
+    }
+    
+    func simpleHaptics(hapticType: String) {
+        let generator = UINotificationFeedbackGenerator()
+        if hapticType == "correct" {
+            generator.notificationOccurred(.success)
+        } else if hapticType == "incorrect" {
+            generator.notificationOccurred(.error)
+        }
     }
     
     func refreshWidget() {

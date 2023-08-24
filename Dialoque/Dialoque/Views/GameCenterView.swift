@@ -11,7 +11,7 @@ import GameKit
 public struct GameCenterView: UIViewControllerRepresentable {
     let viewController: GKGameCenterViewController
 
-    public init(viewState: GKGameCenterViewControllerState = .default) {
+    public init(viewState: GKGameCenterViewControllerState) {
         viewController = GKGameCenterViewController(state: viewState)
     }
 
@@ -42,7 +42,7 @@ public class GameCenterCoordinator: NSObject, GKGameCenterControllerDelegate {
 
 struct GameCenterView_Previews: PreviewProvider {
     static var previews: some View {
-        GameCenterView()
+        GameCenterView(viewState: .default)
             .ignoresSafeArea()
     }
 }

@@ -17,7 +17,8 @@ struct GameDashboardView: View {
     @EnvironmentObject var gameKitController: GameKitController
     
     @State var isCharacterClicked = false
-    @State var isGameCenterPresented = false
+    @State var isGameCenterLeaderboardsPresented = false
+    @State var isGameCenterAchievementsPresented = false
     
     @State var sessionStatus: GameStatus = .idle
     
@@ -74,11 +75,11 @@ struct GameDashboardView: View {
                                         .frame(height: 60)
                                         .clipped()
                                         .onTapGesture {
-                                            isGameCenterPresented = true
+                                            isGameCenterLeaderboardsPresented = true
                                         }
                                         .transition(.slideAndFade(direction: .leading))
-                                        .fullScreenCover(isPresented: $isGameCenterPresented) {
-                                            GameCenterView().ignoresSafeArea()
+                                        .fullScreenCover(isPresented: $isGameCenterLeaderboardsPresented) {
+                                            GameCenterView(viewState: .leaderboards).ignoresSafeArea()
                                         }
                                     
                                     Spacer()
@@ -89,11 +90,11 @@ struct GameDashboardView: View {
                                         .frame(height: 60)
                                         .clipped()
                                         .onTapGesture {
-                                            isGameCenterPresented = true
+                                            isGameCenterAchievementsPresented = true
                                         }
                                         .transition(.slideAndFade(direction: .trailing))
-                                        .fullScreenCover(isPresented: $isGameCenterPresented) {
-                                            GameCenterView().ignoresSafeArea()
+                                        .fullScreenCover(isPresented: $isGameCenterAchievementsPresented) {
+                                            GameCenterView(viewState: .achievements).ignoresSafeArea()
                                         }
                                 case .ongoing:
                                     HStack(alignment: .center, spacing: 2){

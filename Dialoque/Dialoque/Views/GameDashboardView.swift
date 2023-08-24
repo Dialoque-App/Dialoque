@@ -155,8 +155,8 @@ struct GameDashboardView: View {
                                         )
                                         .onStopRecording { session in
                                             session.stopRecording() // Stop the recording session
-                                                
-                                                // Subscribe to the resultPublisher to receive recognition results
+                                            
+                                            // Subscribe to the resultPublisher to receive recognition results
                                             session.resultPublisher?
                                                 .sink (
                                                     receiveCompletion: { completion in
@@ -176,7 +176,7 @@ struct GameDashboardView: View {
                                                     }
                                                 )
                                                 .store(in: &cancellables) // Store the subscription
-                                            }
+                                        }
                                         .pulsingBackgroundShape(
                                             color: .accentColor,
                                             shape: Circle(),
@@ -294,6 +294,8 @@ struct GameDashboardView: View {
             .ignoresSafeArea()
             .background(Color(UIColor.systemGray6))
             .onAppear {
+                requestNotificationsPermission()
+                setUpLocalNotification(hour: 8, minute: 0)
                 streak = updateStreaksCount(context: viewContext)
                 points = pointsCountManager.pointsCount
                 isStreakYetToday = pointsCountManager.isPointScoredToday()
@@ -330,6 +332,56 @@ struct GameDashboardView: View {
             }
         }
         .preferredColorScheme(.dark)
+    }
+    
+    func requestNotificationsPermission(){
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        UNUserNotificationCenter.current().requestAuthorization(options: options){success, error in
+            if let error = error{
+                print("Error: \(error.localizedDescription)")
+            } else if success {
+                print("Notification permission granted")
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            } else {
+                print("Notification permission failure")
+            }
+        }
+    }
+    
+    func setUpLocalNotification(hour: Int, minute: Int) {
+
+        // have to use NSCalendar for the components
+        let calendar = NSCalendar(identifier: .gregorian)!;
+
+        var dateFire = Date()
+
+        // if today's date is passed, use tomorrow
+        var fireComponents = calendar.components( [NSCalendar.Unit.day, NSCalendar.Unit.month, NSCalendar.Unit.year, NSCalendar.Unit.hour, NSCalendar.Unit.minute], from:dateFire)
+
+        if (fireComponents.hour! > hour
+            || (fireComponents.hour == hour && fireComponents.minute! >= minute) ) {
+
+            dateFire = dateFire.addingTimeInterval(86400)  // Use tomorrow's date
+            fireComponents = calendar.components( [NSCalendar.Unit.day, NSCalendar.Unit.month, NSCalendar.Unit.year, NSCalendar.Unit.hour, NSCalendar.Unit.minute], from:dateFire);
+        }
+
+        // set up the time
+        fireComponents.hour = hour
+        fireComponents.minute = minute
+
+        // schedule local notification
+        dateFire = calendar.date(from: fireComponents)!
+
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = dateFire
+        localNotification.alertTitle = "It's Time to Learn!"
+        localNotification.alertBody = "Keep your streak alive, don't miss a day on Dialoque."
+        localNotification.repeatInterval = NSCalendar.Unit.day
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+
+        UIApplication.shared.scheduleLocalNotification(localNotification);
     }
     
     func startSession() {

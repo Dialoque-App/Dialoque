@@ -299,11 +299,8 @@ struct GameDashboardView: View {
                 updateStorageStreakYetToday(value: isStreakYetToday)
             }
             .onChange(of: pointsCountManager.pointsCount) { newPoint in
-                if sessionStatus == .idle {
-                    // if the point count change whilst the game is not running
-                    streak = updateStreaksCount(context: viewContext)
-                    points = newPoint
-                }
+                streak = updateStreaksCount(context: viewContext)
+                points = newPoint
             }
             .onChange(of: playerHealth) { health in
                 if health <= 0 {

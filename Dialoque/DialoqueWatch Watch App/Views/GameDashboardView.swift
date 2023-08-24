@@ -96,10 +96,8 @@ struct GameDashboardView: View {
         }
         .onChange(of: pointsCountManager.pointsCount) { newPoint in
             // if the point count change whilst the game is not running
-            if !isSessionStarted{
-                streak = updateStreaksCount(context: viewContext)
-                points = newPoint
-            }
+            streak = updateStreaksCount(context: viewContext)
+            points = newPoint
         }
         .preferredColorScheme(.dark)
     }

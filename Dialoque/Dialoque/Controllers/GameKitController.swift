@@ -11,17 +11,18 @@ import SwiftUI
 
 class GameKitController: NSObject, GKLocalPlayerListener, ObservableObject {
     @ObservedObject var playerModel = PlayerModel.shared
-    @StateObject private var pointsCountManager: PointsCountManager
+//    @StateObject private var pointsCountManager: PointsCountManager
 
     override init() {
-        let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
-        _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
+//        let pointsCountManager = PointsCountManager(context: PersistenceController.shared.container.viewContext)
+//        _pointsCountManager = StateObject(wrappedValue: pointsCountManager)
+        let streakCount = updateStreaksCount(context: PersistenceController.shared.container.viewContext)
         
         super.init()
         
         authenticateUser { [self] success in
             if success {
-                self.reportStreak(streak: pointsCountManager.pointsCount)
+                self.reportStreak(streak: streakCount)
             }
         }
     }

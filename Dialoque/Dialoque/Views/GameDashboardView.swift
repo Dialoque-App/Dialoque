@@ -18,18 +18,18 @@ struct GameDashboardView: View {
     
     @EnvironmentObject var gameKitController: GameKitController
     
+    @State var sessionStatus: GameStatus = .idle
+    
     @State var isCharacterClicked = false
     @State var isGameCenterLeaderboardsPresented = false
     @State var isGameCenterAchievementsPresented = false
     
-    @State var sessionStatus: GameStatus = .idle
+    @State private var isSessionOngoing = false
+    @State private var navigateToResult = false
     
     @State private var playerHealth = 3
     
     @State private var speechPrompt = "prompt"
-    
-    @State private var isSessionOngoing = false
-    @State private var navigateToResult = false
     
     // Provides Binding for pulse animations
     @State private var isStartButtonPulsing = false
@@ -41,7 +41,6 @@ struct GameDashboardView: View {
     
     @StateObject private var pointsCountManager: PointsCountManager
     @State private var pointsInSession = 0
-    
     
     @State private var isStreakYetToday = false
     
@@ -330,6 +329,8 @@ struct GameDashboardView: View {
                     isStartButtonPulsing = false
                     isSpeechButtonPulsing = false
                     pointsInSession = 0
+                    
+                    gameKitController.reportStreak(streak: streakAdded)
                 }
             }
             .onChange(of: streak) { _ in

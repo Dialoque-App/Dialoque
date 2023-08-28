@@ -10,6 +10,7 @@ import SwiftSpeech
 import Combine
 import WidgetKit
 import AVFoundation
+import Speech
 
 struct GameDashboardView: View {
     
@@ -297,6 +298,8 @@ struct GameDashboardView: View {
             .onAppear {
                 requestNotificationsPermission()
                 requestMicrophonePermission()
+                requestSpeechRecognitonPermission()
+                
                 setUpLocalNotification(hour: 8, minute: 0)
                 streak = updateStreaksCount(context: viewContext)
                 points = pointsCountManager.pointsCount
@@ -344,6 +347,23 @@ struct GameDashboardView: View {
                 print("Microphone permission granted.")
             } else {
                 print("Microphone permission denied.")
+            }
+        }
+    }
+    
+    func requestSpeechRecognitonPermission() {
+        SFSpeechRecognizer.requestAuthorization { authorizationStatus in
+            switch authorizationStatus {
+            case .authorized:
+                print("Speech recognition authorized.")
+            case .denied:
+                print("Speech recognition denied.")
+            case .restricted:
+                print("Speech recognition restricted.")
+            case .notDetermined:
+                print("Speech recognition not determined.")
+            @unknown default:
+                fatalError("Unknown authorization status.")
             }
         }
     }

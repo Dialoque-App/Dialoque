@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftSpeech
 import Combine
 import WidgetKit
+import AVFoundation
 
 struct GameDashboardView: View {
     
@@ -295,6 +296,7 @@ struct GameDashboardView: View {
             .background(Color(UIColor.systemGray6))
             .onAppear {
                 requestNotificationsPermission()
+                requestMicrophonePermission()
                 setUpLocalNotification(hour: 8, minute: 0)
                 streak = updateStreaksCount(context: viewContext)
                 points = pointsCountManager.pointsCount
@@ -334,6 +336,18 @@ struct GameDashboardView: View {
         .preferredColorScheme(.dark)
     }
     
+    func requestMicrophonePermission() {
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        audioSession.requestRecordPermission { granted in
+            if granted {
+                print("Microphone permission granted.")
+            } else {
+                print("Microphone permission denied.")
+            }
+        }
+    }
+    
     func requestNotificationsPermission(){
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         UNUserNotificationCenter.current().requestAuthorization(options: options){success, error in
@@ -351,36 +365,36 @@ struct GameDashboardView: View {
     }
     
     func setUpLocalNotification(hour: Int, minute: Int) {
-
+        
         // have to use NSCalendar for the components
         let calendar = NSCalendar(identifier: .gregorian)!;
-
+        
         var dateFire = Date()
-
+        
         // if today's date is passed, use tomorrow
         var fireComponents = calendar.components( [NSCalendar.Unit.day, NSCalendar.Unit.month, NSCalendar.Unit.year, NSCalendar.Unit.hour, NSCalendar.Unit.minute], from:dateFire)
-
+        
         if (fireComponents.hour! > hour
             || (fireComponents.hour == hour && fireComponents.minute! >= minute) ) {
-
+            
             dateFire = dateFire.addingTimeInterval(86400)  // Use tomorrow's date
             fireComponents = calendar.components( [NSCalendar.Unit.day, NSCalendar.Unit.month, NSCalendar.Unit.year, NSCalendar.Unit.hour, NSCalendar.Unit.minute], from:dateFire);
         }
-
+        
         // set up the time
         fireComponents.hour = hour
         fireComponents.minute = minute
-
+        
         // schedule local notification
         dateFire = calendar.date(from: fireComponents)!
-
+        
         let localNotification = UILocalNotification()
         localNotification.fireDate = dateFire
         localNotification.alertTitle = "It's Time to Learn!"
         localNotification.alertBody = "Keep your streak alive, don't miss a day on Dialoque."
         localNotification.repeatInterval = NSCalendar.Unit.day
         localNotification.soundName = UILocalNotificationDefaultSoundName;
-
+        
         UIApplication.shared.scheduleLocalNotification(localNotification);
     }
     
